@@ -6,6 +6,7 @@ type FooterProps = {
 
 export function Footer({ activeLink }: FooterProps) {
   const navLinks = [
+    { label: "Home", href: "/" },
     { label: "Work", href: "/work" },
     { label: "Services", href: "#services" },
     { label: "Media", href: "#media" },
@@ -59,16 +60,15 @@ export function Footer({ activeLink }: FooterProps) {
   {/* Right group: Nav columns — close together */}
   <div className="flex gap-12">
     <div>
-      <p className="text-sm font-semibold uppercase tracking-[0.25em] text-red-500">Navigation</p>
-      <div className="mt-5 space-y-3 text-base text-zinc-300">
+      <div className="space-y-3 text-base text-zinc-300">
         {navLinks.map((link) => {
-          const isActive = activeLink === link.label;
+          const isActive = activeLink === link.label || (!activeLink && link.label === "Home");
           return (
             <Link
               key={link.label}
               href={link.href}
               className={`block transition ${
-                isActive ? "text-white font-semibold" : "text-zinc-300 hover:text-white"
+                isActive ? "text-red-500 font-semibold" : "text-zinc-300 hover:text-white"
               }`}
             >
               {link.label}

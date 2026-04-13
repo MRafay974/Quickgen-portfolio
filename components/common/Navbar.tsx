@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 type NavLink = {
   label: string;
@@ -20,6 +21,7 @@ const navLinks: NavLink[] = [
 ];
 
 export function Navbar({ currentPage }: NavbarProps) {
+  const pathname = usePathname();
   const [isVisible, setIsVisible] = useState(true);
   const lastScrollY = useRef(0);
 
@@ -67,6 +69,12 @@ export function Navbar({ currentPage }: NavbarProps) {
     ? "flex h-12 w-12 items-center justify-center rounded-full bg-zinc-950 text-sm font-bold text-white"
     : "flex h-12 w-12 items-center justify-center rounded-full bg-white text-sm font-bold text-zinc-950";
 
+  const isActiveRoute = (href: string, label: string) => {
+    if (pathname === href) return true;
+    if (pathname.startsWith(`${href}/`)) return true;
+    return currentPage === label;
+  };
+
   return (
     <header
       className={`sticky top-0 z-50 transition-transform duration-500 ease-out ${
@@ -82,7 +90,7 @@ export function Navbar({ currentPage }: NavbarProps) {
 
         <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => {
-            const isActive = currentPage === link.label;
+            const isActive = isActiveRoute(link.href, link.label);
             return (
               <Link
                 key={link.label}
