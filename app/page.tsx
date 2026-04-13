@@ -1,3 +1,11 @@
+"use client";
+
+import { useRef } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper/modules";
+import type { Swiper as SwiperInstance } from "swiper";
+import "swiper/css";
+
 import { Featured } from "@/components/mainPage/Featured";
 import { Process } from "@/components/mainPage/Process";
 import { ProjectCards } from "@/components/mainPage/ProjectCards";
@@ -8,45 +16,121 @@ import { RecipeSection } from "@/components/common/RecipeSection";
 import { Footer } from "@/components/common/Footer";
 import { Navbar } from "@/components/common/Navbar";
 
+// ─── Card data ────────────────────────────────────────────────────────────────
+// Drop your image paths into `imageSrc` when ready.
+const CARDS = [
+  { bg: "#FF3B3B", imageSrc: "" },   // bright red
+  { bg: "#FF8C00", imageSrc: "" },   // vivid orange
+  { bg: "#FFD600", imageSrc: "" },   // bright yellow
+  { bg: "#00E676", imageSrc: "" },   // neon green
+  { bg: "#2979FF", imageSrc: "" },   // bright blue
+];
+
 export default function Home() {
+  const swiperRef = useRef<SwiperInstance | null>(null);
+
   return (
     <div className="min-h-screen bg-black text-white font-sans">
       <Navbar currentPage="Home" />
 
-      {/* Hero Section */}
-      <main className="flex items-center justify-center min-h-[calc(100vh-100px)] px-6 py-16">
-        <div className="max-w-4xl text-center">
-          <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold mb-8 leading-tight">
+      {/* ── Hero ── */}
+      <section className="relative min-h-[calc(100vh-80px)] flex flex-col items-center justify-center overflow-hidden">
+
+        {/* ── Swiper carousel ── */}
+        <div
+          className="absolute inset-0 z-0"
+        >
+          
+         <Swiper
+  modules={[Autoplay]}
+  onSwiper={(swiper) => (swiperRef.current = swiper)}
+  slidesPerView="auto"
+  spaceBetween={16}
+  loop={true}
+  freeMode={true}
+  centeredSlides={false}
+  allowTouchMove={true}
+  autoplay={{
+    delay: 0,
+    disableOnInteraction: false,
+    pauseOnMouseEnter: false,
+  }}
+  speed={10000}
+  grabCursor={true}
+  className="hero-swiper h-full! w-full!"
+  style={{ paddingLeft: "16px" }}
+>
+            {[...CARDS, ...CARDS, ...CARDS].map((card, i) => (
+              <SwiperSlide key={i} style={{ width: 420 }} className="h-full!">
+                <div className="relative w-full h-full flex items-center py-10">
+                  <div
+                    className="relative w-full overflow-hidden carousel-card"
+                    style={{
+                      height: 400,
+                      backgroundColor: card.bg,
+                      borderRadius: "1.75rem",
+                      transition: "border-radius 0.45s cubic-bezier(0.34,1.56,0.64,1)",
+                    }}
+                  >
+                    {card.imageSrc && (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={card.imageSrc}
+                        alt=""
+                        className="absolute inset-0 w-full h-full object-cover"
+                      />
+                    )}
+                  </div>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+
+        {/* ── Scrim ── */}
+        <div
+          className="absolute inset-0 z-10 pointer-events-none"
+          style={{ background: "rgba(0,0,0,0.42)" }}
+        />
+
+        {/* ── Heading — centred vertically ── */}
+        <div className="relative z-20 w-full flex flex-col items-center text-center px-4 select-none">
+          <h1
+            className="font-black leading-none tracking-tight whitespace-nowrap"
+            style={{ fontSize: "clamp(3rem, 7vw, 6.5rem)" }}
+          >
             Design for Change<span className="text-red-500">.</span>
           </h1>
-          <p className="text-xl md:text-2xl text-zinc-400 leading-relaxed max-w-2xl mx-auto">
-            A collaborative team of passionate designers and engineers relentlessly delivering innovation.
+        </div>
+
+        {/* ── Subtitle — pinned to bottom ── */}
+        <div className="absolute bottom-10 left-0 right-0 z-20 flex justify-center px-6 pointer-events-none">
+          <p className="text-lg md:text-xl text-zinc-400  text-center max-w-xl font-bold leading-tight">
+            A collaborative team of passionate designers and engineers
+            relentlessly delivering innovation.
           </p>
         </div>
-      </main>
 
-      {/* Featured Section */}
+        {/* Hover border-radius style */}
+        <style>{`
+          .carousel-card:hover {
+            border-radius: 3rem !important;
+          }
+
+          .hero-swiper .swiper-wrapper {
+            transition-timing-function: linear !important;
+          }
+        `}</style>
+      </section>
+
+      {/* ── Rest of page ── */}
       <Featured />
-
-      {/* Process Section */}
       <Process />
-
-      {/* Project Cards Section */}
       <ProjectCards />
-
-      {/* Testimonials Section */}
       <Testimonials />
-
-      {/* Impact Carousel Section */}
       <ImpactCarousel />
-
-      {/* Stats Section */}
       <StatsSection />
-
-      {/* Recipe Section */}
       <RecipeSection />
-
-      {/* Footer Section */}
       <Footer />
     </div>
   );

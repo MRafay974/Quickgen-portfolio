@@ -20,8 +20,8 @@ export function Footer({ activeLink }: FooterProps) {
 
   return (
     <footer className="relative bg-black text-white">
-      <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
-        <div className="relative overflow-hidden rounded-[2.5rem] bg-[#49c88e] px-8 py-20 shadow-[0_30px_90px_-40px_rgba(0,0,0,0.35)] sm:px-12 sm:py-40">
+      <div className="mx-auto max-w-7xl px-2 py-20 lg:px-8">
+        <div className="relative overflow-hidden rounded-[2.5rem] bg-[#49c88e] px-4 py-20 shadow-[0_30px_90px_-40px_rgba(0,0,0,0.35)] sm:px-8 sm:py-40">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.28),transparent_25%),radial-gradient(circle_at_bottom_right,rgba(0,0,0,0.18),transparent_20%)] opacity-80" />
           <div className="relative flex flex-col items-center justify-center gap-8 text-center">
             <h2 className="text-4xl font-bold tracking-tight text-black sm:text-5xl">
