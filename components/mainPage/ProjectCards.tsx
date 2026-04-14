@@ -5,9 +5,9 @@ import Link from "next/link";
 import { workCards } from "@/constants/work/workCards";
 
 const FEATURED_PROJECT_SPECS = [
-  { slug: "iot_pillbox", previewImage: "", background: "#ff3434", hoverBackground: "#3a3a3a" },
-  { slug: "apollo_golf", previewImage: "", background: "#35a70f", hoverBackground: null },
-  { slug: "lumevue", previewImage: "", background: "#4660d6", hoverBackground: null },
+  { slug: "iot_pillbox", previewImage: "/images/landingPage/pillbox.png", background: "#1A1A1A", hoverBackground: "#3a3a3a" },
+  { slug: "provectus_breath", previewImage: "/images/landingPage/usb1.png", background: "#35a70f", hoverBackground: null },
+  { slug: "smart_glucose", previewImage: "/images/landingPage/glucose.png", background: "#4660d6", hoverBackground: null },
 ] as const;
 
 const FEATURED_PROJECTS = FEATURED_PROJECT_SPECS.map((spec) => {
@@ -34,7 +34,7 @@ export function ProjectCards() {
                 style={{ backgroundColor: project.background }}
               >
                 <div
-                  className="relative h-80 overflow-hidden rounded-4xl md:h-[30rem] transition-colors duration-500"
+                  className="relative h-80 overflow-hidden rounded-4xl md:h-120 transition-colors duration-500"
                   style={
                     project.hoverBackground
                       ? { ['--hover-bg' as string]: project.hoverBackground }
