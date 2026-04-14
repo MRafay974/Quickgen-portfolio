@@ -19,11 +19,11 @@ import { Navbar } from "@/components/common/Navbar";
 // ─── Card data ────────────────────────────────────────────────────────────────
 // Drop your image paths into `imageSrc` when ready.
 const CARDS = [
-  { bg: "#FF3B3B", imageSrc: "" },   // bright red
-  { bg: "#FF8C00", imageSrc: "" },   // vivid orange
-  { bg: "#FFD600", imageSrc: "" },   // bright yellow
-  { bg: "#00E676", imageSrc: "" },   // neon green
-  { bg: "#2979FF", imageSrc: "" },   // bright blue
+  { bg: "#FF3B3B", imageSrc: "/images/landingPage/usb.png" },   // bright red
+  { bg: "#FF8C00", imageSrc: "/images/landingPage/glasses.png" },   // vivid orange
+  { bg: "#FFD600", imageSrc: "/images/landingPage/drone.png" },   // bright yellow
+  { bg: "#FFFFF0", imageSrc: "/images/landingPage/pulse.png" },   // neon green
+  { bg: "#2979FF", imageSrc: "/images/landingPage/box.png" },   // bright blue
 ];
 
 export default function Home() {
@@ -77,7 +77,7 @@ export default function Home() {
                       <img
                         src={card.imageSrc}
                         alt=""
-                        className="absolute inset-0 w-full h-full object-cover"
+                        className="absolute inset-0 w-full h-full object-contain object-center p-4"
                       />
                     )}
                   </div>
