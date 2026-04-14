@@ -1,81 +1,5 @@
 "use client";
 
-// ─── Roadmap Steps Data ───────────────────────────────────────────────────────
-
-const roadmapSteps = [
-  {
-    id: "01",
-    title: "Discover",
-    description: "Tailored research and background for your big ideas",
-  },
-  {
-    id: "02",
-    title: "Create",
-    description: "Validate design through a mix of models, renders and component testing.",
-  },
-  {
-    id: "03",
-    title: "Refine",
-    description:
-      "Finalize design for manufacturing, making minor adjustments to optimize cost, quality, and assembly.",
-  },
-  {
-    id: "04",
-    title: "Launch",
-    description:
-      "Mass manufacturing and ongoing product updates, including potential future upgrades.",
-  },
-];
-
-// ─── Roadmap / Timeline Section ───────────────────────────────────────────────
-
-function RoadmapSection() {
-  return (
-    <section className="bg-white px-6 lg:px-16 pt-16 pb-20">
-      {/* Label + heading */}
-      <p className="text-sm text-zinc-400 font-medium mb-3">The roadmap</p>
-      <h2 className="text-4xl lg:text-5xl font-black leading-tight max-w-sm mb-20">
-        Timelines that are tailored to you.
-      </h2>
-
-      {/* Timeline track */}
-      <div className="relative mb-8">
-        {/* Labels above the line */}
-        <div className="flex justify-between mb-3">
-          <span className="text-sm text-zinc-500">Kickoff</span>
-          <span className="text-sm text-zinc-500">Finished product</span>
-        </div>
-
-        {/* Line with dots */}
-        <div className="relative flex items-center">
-          <div className="absolute inset-0 top-1/2 -translate-y-1/2 h-px bg-zinc-300 w-full" />
-          <div className="relative w-full flex justify-between">
-            {roadmapSteps.map((step) => (
-              <div key={step.id} className="relative flex flex-col items-center">
-                <div className="w-2 h-2 rounded-full bg-zinc-950 z-10" />
-              </div>
-            ))}
-            {/* Extra dot for "Finished product" */}
-            <div className="relative flex flex-col items-center">
-              <div className="w-2 h-2 rounded-full bg-zinc-950 z-10" />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Step labels below the line */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-10">
-        {roadmapSteps.map((step) => (
-          <div key={step.id} className="flex flex-col gap-2">
-            <h3 className="text-2xl font-black text-zinc-950">{step.title}</h3>
-            <p className="text-sm leading-6 text-zinc-500">{step.description}</p>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
-
 // ─── Main Export ──────────────────────────────────────────────────────────────
 
 export default function ProcessPageContent() {
@@ -90,7 +14,7 @@ export default function ProcessPageContent() {
           Our Process
         </h1>
         <p className="text-base text-zinc-500 mb-0">
-          From inception straight through to production, we'll get you there.
+          From inception straight through to production, we&apos;ll get you there.
         </p>
       </section>
 
@@ -132,7 +56,7 @@ export default function ProcessPageContent() {
           <div className="flex-1" />
 
           {/* Right: product image anchored to right edge */}
-          <div className="w-1/2 lg:w-2/5 flex-shrink-0 relative">
+          <div className="w-1/2 lg:w-2/5 shrink-0 relative">
             <img
               src="https://placehold.co/700x380/ffffff/cccccc?text=Product+Image"
               alt="Product"
@@ -142,11 +66,6 @@ export default function ProcessPageContent() {
           </div>
         </div>
       </section>
-
-      {/* ─────────────────────────────────────────
-          SECTION 4 – Roadmap / Timeline
-      ───────────────────────────────────────── */}
-      <RoadmapSection />
 
     </main>
   );

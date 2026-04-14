@@ -121,73 +121,8 @@ const phases: Phase[] = [
   },
 ];
 
-// ─── Sticky Nav Bar (GSAP-driven) ────────────────────────────────────────────
-
-function StickyNav({
-  activePhase,
-  expandedProgress,
-}: {
-  activePhase: number;
-  expandedProgress: number;
-}) {
-  return (
-    <div className="sticky top-0 z-50 bg-white/90 backdrop-blur-sm border-b border-zinc-100">
-      <div className="max-w-5xl mx-auto px-6 py-4">
-        {/* Timeline container */}
-        <div className="flex items-center gap-6 overflow-x-auto pb-2">
-          {/* Kickoff label */}
-          <span className="text-xs font-semibold text-zinc-400 whitespace-nowrap">Kickoff</span>
-
-          {/* Timeline track */}
-          <div className="flex-1 relative flex items-center min-w-75">
-            <div className="absolute inset-0 top-1/2 -translate-y-1/2 h-px bg-zinc-200 w-full" />
-
-            {/* Progress line (fills with color) */}
-            <div
-              className="absolute left-0 top-1/2 -translate-y-1/2 h-px transition-all"
-              style={{
-                width: `${expandedProgress}%`,
-                backgroundColor: phases[Math.min(activePhase, phases.length - 1)]?.color ?? "#4ade80",
-              }}
-            />
-
-            {/* Phase dots */}
-            <div className="relative w-full flex justify-between">
-              {phases.map((phase, i) => {
-                const isActive = i <= activePhase;
-                return (
-                  <div
-                    key={phase.id}
-                    className="relative flex flex-col items-center"
-                  >
-                    <div
-                      className="w-3 h-3 rounded-full border-2 transition-all duration-300"
-                      style={{
-                        backgroundColor: isActive ? phase.color : "white",
-                        borderColor: isActive ? phase.color : "#d1d5db",
-                      }}
-                    />
-                    <span
-                      className="text-xs font-semibold mt-2 whitespace-nowrap transition-colors duration-300"
-                      style={{
-                        color: i === activePhase ? phase.color : "#9ca3af",
-                      }}
-                    >
-                      {phase.label}
-                    </span>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Finished product label */}
-          <span className="text-xs font-semibold text-zinc-400 whitespace-nowrap">Finished product</span>
-        </div>
-      </div>
-    </div>
-  );
-}
+const ROADMAP_TRANSITION_START = 0.12;
+const ROADMAP_TRANSITION_END = 0.22;
 
 // ─── Single Sub-section Card ──────────────────────────────────────────────────
 
@@ -312,14 +247,14 @@ function PhaseBlock({ phase, phaseIndex }: { phase: Phase; phaseIndex: number })
 
 export default function ProcessScrollSections() {
   const [activePhase, setActivePhase] = useState(0);
-  const [expandedProgress, setExpandedProgress] = useState(0);
+  const [completedProgress, setCompletedProgress] = useState(0);
+  const [isCompactRoadmap, setIsCompactRoadmap] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const timelineContainerRef = useRef<HTMLDivElement>(null);
-  const navTriggerRef = useRef<HTMLDivElement>(null);
   const gsapTimelineRef = useRef<gsap.core.Timeline | null>(null);
 
   useEffect(() => {
-    if (!containerRef.current || !timelineContainerRef.current || !navTriggerRef.current) {
+    if (!containerRef.current || !timelineContainerRef.current) {
       return;
     }
 
@@ -342,13 +277,13 @@ export default function ProcessScrollSections() {
 
     gsapTimelineRef.current = tl;
 
-    // Animate progress fill
+    // Update roadmap state from scroll progress
     tl.to(
       {},
       {
         onUpdate() {
-          const progress = tl.progress() * 100;
-          setExpandedProgress(progress);
+          const progress = tl.progress();
+          setIsCompactRoadmap(progress >= ROADMAP_TRANSITION_START);
         },
       },
       0
@@ -358,9 +293,22 @@ export default function ProcessScrollSections() {
     const phaseCount = phases.length;
     tl.eventCallback("onUpdate", () => {
       const progress = tl.progress();
-      const newPhase = Math.floor(progress * phaseCount);
+      const normalizedPhaseProgress =
+        progress <= ROADMAP_TRANSITION_END
+          ? 0
+          : (progress - ROADMAP_TRANSITION_END) / (1 - ROADMAP_TRANSITION_END);
+      const newPhase = Math.floor(normalizedPhaseProgress * phaseCount);
       const clamped = Math.max(0, Math.min(newPhase, phaseCount - 1));
       setActivePhase(clamped);
+
+      const discreteProgress =
+        progress <= ROADMAP_TRANSITION_END
+          ? 0
+          : phaseCount > 1
+            ? (clamped / (phaseCount - 1)) * 100
+            : 100;
+
+      setCompletedProgress(discreteProgress);
     });
 
     // Animate the timeline container (scale, opacity, y-offset)
@@ -394,21 +342,6 @@ export default function ProcessScrollSections() {
       }
     });
 
-    // Stagger in the content sections below timeline
-    gsap.utils.toArray<HTMLElement>("[data-phase]").forEach((el, i) => {
-      tl.from(
-        el,
-        {
-          opacity: 0,
-          y: 60,
-          scale: 0.95,
-          duration: 0.8,
-          ease: "power2.out",
-        },
-        0.3 + i * 0.2
-      );
-    });
-
     return () => {
       if (gsapTimelineRef.current) {
         gsapTimelineRef.current.kill();
@@ -419,27 +352,36 @@ export default function ProcessScrollSections() {
 
   return (
     <>
-      <div ref={navTriggerRef} />
-      <StickyNav activePhase={activePhase} expandedProgress={expandedProgress} />
-
-      <div ref={containerRef} className="w-full bg-white">
+      <div ref={containerRef} className="w-full bg-white px-6 lg:px-16">
         {/* Horizontal Timeline Section (pinned & morphed) */}
-        <div className="sticky top-15 z-40 bg-white/95 backdrop-blur-sm border-b border-zinc-100 py-8 px-6">
-          <div ref={timelineContainerRef} className="max-w-5xl mx-auto">
-            <p className="text-sm text-zinc-400 font-medium mb-6">The roadmap</p>
+        <div
+          className={`sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-zinc-100 transition-all duration-500 ${isCompactRoadmap ? "py-2" : "py-10"}`}
+        >
+          <div ref={timelineContainerRef} className="w-full">
+            <div
+              className={`overflow-hidden transition-all duration-500 ${isCompactRoadmap ? "max-h-0 opacity-0 mb-0" : "max-h-80 opacity-100 mb-16"}`}
+            >
+              <p className="text-sm text-zinc-400 font-medium mb-3">The roadmap</p>
+              <h2 className="text-4xl lg:text-5xl font-black leading-tight max-w-sm">
+                Timelines that are tailored to you.
+              </h2>
+            </div>
 
-            <div className="flex items-center gap-6">
-              <span className="text-xs font-semibold text-zinc-400 whitespace-nowrap shrink-0">Kickoff</span>
+            <div className={`transition-all duration-500 ${isCompactRoadmap ? "pt-0" : "pt-2"}`}>
+              <div className={`flex items-center ${isCompactRoadmap ? "justify-center gap-0" : "gap-6"}`}>
+              {!isCompactRoadmap ? (
+                <span className="text-xs font-semibold text-zinc-400 whitespace-nowrap shrink-0">Kickoff</span>
+              ) : null}
 
               {/* Timeline track */}
-              <div className="flex-1 relative flex items-center min-w-75">
+              <div className={`relative flex items-center min-w-75 ${isCompactRoadmap ? "w-full max-w-3xl" : "flex-1"}`}>
                 <div className="absolute inset-0 top-1/2 -translate-y-1/2 h-px bg-zinc-200 w-full" />
 
                 {/* Animated progress line */}
                 <div
                   className="absolute left-0 top-1/2 -translate-y-1/2 h-px"
                   style={{
-                    width: `${expandedProgress}%`,
+                    width: `${completedProgress}%`,
                     backgroundColor: phases[activePhase]?.color ?? "#4ade80",
                     transition: "background-color 0.3s ease",
                   }}
@@ -462,17 +404,30 @@ export default function ProcessScrollSections() {
                             borderColor: isActive ? phase.color : "#d1d5db",
                           }}
                         />
+                        <span
+                          className={`text-xs font-semibold mt-2 whitespace-nowrap transition-all duration-300 ${isCompactRoadmap ? "opacity-100" : "opacity-0"}`}
+                          style={{
+                            color: i === activePhase ? phase.color : "#a1a1aa",
+                          }}
+                        >
+                          {phase.label}
+                        </span>
                       </div>
                     );
                   })}
                 </div>
               </div>
 
-              <span className="text-xs font-semibold text-zinc-400 whitespace-nowrap shrink-0">Finished product</span>
+              {!isCompactRoadmap ? (
+                <span className="text-xs font-semibold text-zinc-400 whitespace-nowrap shrink-0">Finished product</span>
+              ) : null}
+              </div>
             </div>
 
             {/* Step labels */}
-            <div className="grid grid-cols-4 gap-6 mt-10">
+            <div
+              className={`grid grid-cols-4 gap-6 overflow-hidden transition-all duration-500 ${isCompactRoadmap ? "max-h-0 opacity-0 mt-0" : "max-h-64 opacity-100 mt-10"}`}
+            >
               {phases.map((step) => (
                 <div key={step.id} className="flex flex-col gap-2">
                   <h3 className="text-xl font-black text-zinc-950">{step.label}</h3>

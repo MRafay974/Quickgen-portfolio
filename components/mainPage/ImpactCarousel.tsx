@@ -4,6 +4,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import type { Swiper as SwiperInstance } from "swiper";
 import { useRef } from "react";
+import Link from "next/link";
+
 
 import "swiper/css";
 
@@ -63,9 +65,10 @@ export function ImpactCarousel() {
               partnership, responsive, efficient, and strategically aligned, at
               a cost that keeps innovation within reach.
             </p>
-            <button className="inline-flex rounded-full bg-black px-8 py-3 text-base font-semibold text-white transition hover:bg-zinc-900">
+            <Link href="/services"
+ className="inline-flex rounded-full bg-black px-8 py-3 text-base font-semibold text-white transition hover:bg-zinc-900">
               View services
-            </button>
+            </Link>
           </div>
         </div>
       </div>
