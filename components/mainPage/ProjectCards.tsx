@@ -5,9 +5,9 @@ import Link from "next/link";
 import { workCards } from "@/constants/work/workCards";
 
 const FEATURED_PROJECT_SPECS = [
-  { slug: "iot_pillbox", previewImage: "/images/landingPage/pillbox.png", background: "#1A1A1A", hoverBackground: "#3a3a3a" },
+  { slug: "motion_track", previewImage: "", background: "#1A1A1A", hoverBackground: "#3a3a3a" },
   { slug: "provectus_breath", previewImage: "/images/landingPage/usb1.png", background: "#35a70f", hoverBackground: null },
-  { slug: "smart_glucose", previewImage: "/images/landingPage/glucose.png", background: "#4660d6", hoverBackground: null },
+  { slug: "iphone_case_lumevue", previewImage: "", background: "#4660d6", hoverBackground: null },
 ] as const;
 
 const FEATURED_PROJECTS = FEATURED_PROJECT_SPECS.map((spec) => {

@@ -8,8 +8,8 @@ export function Footer({ activeLink }: FooterProps) {
   const navLinks = [
     { label: "Home", href: "/" },
     { label: "Work", href: "/work" },
-    { label: "Services", href: "#services" },
-    { label: "Media", href: "#media" },
+    { label: "Services", href: "/services" },
+    { label: "Media", href: "/media" },
     { label: "Contact", href: "/contact" },
   ];
   const socialLinks = ["LinkedIn", "Clutch", "Upwork"];
