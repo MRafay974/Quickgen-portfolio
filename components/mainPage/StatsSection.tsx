@@ -5,11 +5,14 @@ export function StatsSection() {
     <section className="bg-white text-black">
       <div className="mx-auto max-w-6xl px-6 py-24 lg:px-8">
         <div className="space-y-16 text-center">
-          <div className="grid gap-8 sm:grid-cols-3 justify-items-center">
+          <div className="grid gap-3 sm:grid-cols-4 justify-items-center">
             {[
-              { value: "35+", label: "Awards" },
-              { value: "40+", label: "Patents" },
-              { value: "100+", label: "Projects" },
+              { value: "150+", label: "Clients" },
+              { value: "300+", label: "Projects" },
+                            { value: "5", label: "Continents" },
+
+                            { value: "Zero", label: "Missed Deadlines" },
+
             ].map((item) => (
               <div key={item.label} className="space-y-3">
                 <div className="text-5xl font-black tracking-tight text-black sm:text-7xl">

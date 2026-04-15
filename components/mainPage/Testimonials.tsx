@@ -5,49 +5,28 @@ import { useEffect, useState } from "react";
 const testimonials = [
   {
     quote: [
-      { text: "Brash continues to impress by going ", highlight: false },
-      { text: "above and beyond", highlight: true },
-      { text: " with research, design, and even testing.", highlight: false },
+      { text: "First FCC submission,  ", highlight: false },
+      { text: "First pass ", highlight: true },
+      { text: " I didn't think that was possible.", highlight: false },
     ],
-    name: "Mike",
-    title: "Owner, Tramline Travel",
+    name: "Founder, USA",
   },
   {
     quote: [
-      { text: "They took our idea from sketch to launch ", highlight: false },
-      { text: "faster than any team", highlight: true },
-      { text: " we’ve worked with before.", highlight: false },
+      { text: "Every discipline moved as one,  ", highlight: false },
+      { text: "That had never happened before", highlight: true },
     ],
-    name: "Asha",
-    title: "Product Lead, Nexo Health",
+    name: "CEO, Australia",
   },
   {
     quote: [
-      { text: "The attention to detail and product polish made our brand feel ", highlight: false },
-      { text: "premium instantly", highlight: true },
-      { text: ".", highlight: false },
+      { text: "We came in with a concept,  ", highlight: false },
+      { text: "Eight weeks later we had something real.", highlight: true },
     ],
-    name: "Jules",
-    title: "Founder, Ember Audio",
+    name: "Co-Founder, UK",
   },
-  {
-    quote: [
-      { text: "Every step of the process was ", highlight: false },
-      { text: "clear, collaborative, and exceptionally well executed", highlight: true },
-      { text: ".", highlight: false },
-    ],
-    name: "Noah",
-    title: "Chief Marketing Officer, Arc Systems",
-  },
-  {
-    quote: [
-      { text: "The final experience was ", highlight: false },
-      { text: "beautifully engineered", highlight: true },
-      { text: " and aligned perfectly with our goals.", highlight: false },
-    ],
-    name: "Priya",
-    title: "Head of Growth, Luma Labs",
-  },
+  
+  
 ];
 
 export function Testimonials() {
@@ -103,9 +82,9 @@ export function Testimonials() {
                 <span className="text-xl font-medium text-white">
                   {activeTestimonial.name}
                 </span>
-                <span className="text-sm text-zinc-400">
+                {/* <span className="text-sm text-zinc-400">
                   {activeTestimonial.title}
-                </span>
+                </span> */}
               </div>
             </div>
 

@@ -3,6 +3,16 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import {
+  DiscoverCard,
+  CreateCard1,
+  CreateCard2,
+  CreateCard3,
+  RefineCard1,
+  RefineCard2,
+  LaunchCard1,
+  LaunchCard2,
+} from "./PhaseCards";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -165,7 +175,7 @@ function RoadmapExpanded({ activePhase, progressPct }: SharedRoadmapProps) {
 
 function RoadmapCollapsed({ activePhase, progressPct }: SharedRoadmapProps) {
   return (
-    <div className="px-100 py-8 m-0">
+    <div className="px-100 py-5 m-0">
       <TimelineTrack
         activePhase={activePhase}
         progressPct={progressPct}
@@ -189,88 +199,140 @@ function RoadmapCollapsed({ activePhase, progressPct }: SharedRoadmapProps) {
   );
 }
 
-// ─── Main Export with Single Scroll Controller ──────────────────────────────
+// ─── Phase Cards Map (2 cards per phase = 2 cards per fill segment) ─────────
+//
+// 5 dots / 4 segments:
+//  Phase 0 (Discover) → segment 1: DiscoverCard + CreateCard1
+//  Phase 1 (Create)   → segment 2: CreateCard2  + CreateCard3
+//  Phase 2 (Refine)   → segment 3: RefineCard1  + RefineCard2
+//  Phase 3 (Launch)   → segment 4: LaunchCard1  + LaunchCard2
+
+const phaseCardContent: Record<number, React.ReactNode> = {
+  0: (
+    <div className="space-y-8 md:space-y-12">
+      <DiscoverCard />
+      <CreateCard1 />
+    </div>
+  ),
+  1: (
+    <div className="space-y-8 md:space-y-12">
+      <CreateCard2 />
+      <CreateCard3 />
+    </div>
+  ),
+  2: (
+    <div className="space-y-8 md:space-y-12">
+      <RefineCard1 />
+      <RefineCard2 />
+    </div>
+  ),
+  3: (
+    <div className="space-y-8 md:space-y-12">
+      <LaunchCard1 />
+      <LaunchCard2 />
+    </div>
+  ),
+};
+
+// ─── Main Export ─────────────────────────────────────────────────────────────
 
 export default function ProcessScrollSections() {
   const [activePhase, setActivePhase] = useState(0);
-  const [progressPct, setProgressPct] = useState(0);
   const [blendProgress, setBlendProgress] = useState(0);
-  const scrollRootRef = useRef<HTMLDivElement>(null);
-  const collapsedStepPct = ((activePhase + 1) / phases.length) * 100;
-  const collapsedProgressPct =
-    blendProgress > 0 ? collapsedStepPct : progressPct;
 
+  // Section 1 ref: drives the expand→collapse animation only
+  const animSectionRef = useRef<HTMLDivElement>(null);
+  // Section 2 ref: for scroll position
+  const section2Ref = useRef<HTMLElement>(null);
+  // Section 2 refs: one per phase, drives phase indicator via IntersectionObserver
+  const phaseRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  // blendProgress reaches exactly 1 when collapse is complete
+  const isCollapsed = blendProgress >= 1;
+  // 5-dot track: each phase fills to its segment end-dot (25%, 50%, 75%, 100%)
+  const collapsedStepPct = ((activePhase + 1) / phases.length) * 100;
+
+  // ── Collapse animation (Section 1 only) ────────────────────────────────────
   useEffect(() => {
-    const scrollRoot = scrollRootRef.current;
-    if (!scrollRoot) return;
+    const el = animSectionRef.current;
+    if (!el) return;
 
     const trigger = ScrollTrigger.create({
-      trigger: scrollRoot,
+      trigger: el,
       start: "top top",
-      end: "bottom bottom",
+      end: "bottom top",
       onUpdate(self) {
         const p = Math.max(0, Math.min(1, self.progress));
         const blendStart = SWITCH_POINT - BLEND_RANGE / 2;
         const blendEnd = SWITCH_POINT + BLEND_RANGE / 2;
-        const nextBlend = Math.max(
-          0,
-          Math.min(1, (p - blendStart) / (blendEnd - blendStart))
-        );
-
-        setBlendProgress((prev) => (prev === nextBlend ? prev : nextBlend));
-
-        const phaseCount = phases.length;
-        const phaseProgress =
-          p <= SWITCH_POINT ? 0 : (p - SWITCH_POINT) / (1 - SWITCH_POINT);
-        const rawIdx = phaseProgress * phaseCount;
-        const nextActive = Math.max(
-          0,
-          Math.min(phaseCount - 1, Math.floor(rawIdx))
-        );
-        const nextPct =
-          phaseCount > 1 ? (nextActive / (phaseCount - 1)) * 100 : 100;
-
-        setActivePhase((prev) => (prev === nextActive ? prev : nextActive));
-        setProgressPct((prev) => (prev === nextPct ? prev : nextPct));
+        const next = Math.max(0, Math.min(1, (p - blendStart) / (blendEnd - blendStart)));
+        setBlendProgress((prev) => (prev === next ? prev : next));
       },
     });
 
-    return () => {
-      trigger.kill();
-    };
+    return () => trigger.kill();
   }, []);
 
-  return (
-    <div ref={scrollRootRef} className="w-full" style={{ height: "500vh" }}>
-      <div className="sticky top-0 z-40 bg-white/97 backdrop-blur-sm border-b border-zinc-100 m-0">
-        <div className="relative">
-          <div
-            className="transition-opacity duration-300 ease-out"
-            style={{
-              opacity: 1 - blendProgress,
-              transform: `translateY(${blendProgress * 8}px)`,
-            }}
-          >
-            <RoadmapExpanded activePhase={activePhase} progressPct={progressPct} />
-          </div>
+  // ── Phase tracking (Section 2: IntersectionObserver on each phase section) ─
+  useEffect(() => {
+    if (!isCollapsed) return;
 
-          <div
-            className="absolute inset-0 transition-opacity duration-300 ease-out"
-            style={{
-              opacity: blendProgress,
-              transform: `translateY(${(1 - blendProgress) * -8}px)`,
-              pointerEvents: blendProgress > 0.5 ? "auto" : "none",
-            }}
-          >
-            <RoadmapCollapsed
-              activePhase={activePhase}
-              progressPct={collapsedProgressPct}
-            />
-          </div>
-        </div>
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const idx = Number(entry.target.getAttribute("data-phase-idx"));
+            setActivePhase(idx);
+          }
+        });
+      },
+      // trigger when the phase section is at least 30% in the viewport center
+      { threshold: 0.15, rootMargin: "-10% 0px -50% 0px" }
+    );
+
+    phaseRefs.current.forEach((ref) => {
+      if (ref) observer.observe(ref);
+    });
+
+    return () => observer.disconnect();
+  }, [isCollapsed]);
+
+  return (
+    <>
+      {/* ═══════════════════════════════════════════════════════════════════
+          SECTION 1 — Shows expanded roadmap, 300vh drives the GSAP trigger
+      ══════════════════════════════════════════════════════════════════════ */}
+      <div ref={animSectionRef} className="w-full" style={{ display: isCollapsed ? "none" : "block" }}>
+        <RoadmapExpanded activePhase={0} progressPct={0} />
       </div>
 
-      <div style={{ height: "400vh" }} />
-    </div>
+      {/* ═══════════════════════════════════════════════════════════════════
+          SECTION 2 — Cards in normal document flow (only after collapse)
+          Sticky roadmap header updates as user scrolls through phases.
+      ══════════════════════════════════════════════════════════════════════ */}
+      {isCollapsed && (
+        <section ref={section2Ref} className="mt-70">
+          {/* Sticky collapsed roadmap — stays at top while reading cards */}
+          <div className="sticky top-0 z-40 bg-white/97 backdrop-blur-sm  border-zinc-100">
+            <RoadmapCollapsed
+              activePhase={activePhase}
+              progressPct={collapsedStepPct}
+            />
+          </div>
+
+          {/* One section per phase — IntersectionObserver updates activePhase */}
+          {phases.map((phase, i) => (
+            <div
+              key={phase.id}
+              ref={(el) => { phaseRefs.current[i] = el; }}
+              data-phase-idx={i}
+              className="w-full px-4 md:px-8 lg:px-16 py-16 md:py-20 lg:py-24"
+            >
+              {phaseCardContent[i]}
+            </div>
+          ))}
+        </section>
+      )}
+    </>
   );
 }

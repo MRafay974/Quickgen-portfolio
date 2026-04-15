@@ -1,22 +1,23 @@
 export function RecipeSection() {
   const cards = [
     {
-      title: "Product Development Guide",
+      title: "Hardware Dev Guide",
       subtitle: "Product",
       accent: "bg-slate-950 text-white",
     },
-    {
-      title: "Product Design Brochure",
-      subtitle: "Design",
-      accent: "bg-slate-900 text-white",
-    },
-    {
+     {
       title: "Software Brochure",
       subtitle: "Software",
       accent: "bg-amber-50 text-slate-950",
     },
     {
-      title: "Medical Device Brochure",
+      title: "Product Dev Guide",
+      subtitle: "Design",
+      accent: "bg-slate-900 text-white",
+    },
+   
+    {
+      title: "GTM Playbook",
       subtitle: "Medical",
       accent: "bg-slate-200 text-slate-950",
     },
@@ -28,10 +29,11 @@ export function RecipeSection() {
         <div className="rounded-[3rem] bg-[#f4f4f4] p-8 shadow-[0_30px_80px_-40px_rgba(15,23,42,0.2)] sm:p-12">
           <div className="mx-auto max-w-3xl text-center">
             <h2 className="text-4xl font-bold tracking-tight text-black sm:text-5xl">
-              Our recipe for innovation.
+Our build philosophy.
             </h2>
             <p className="mt-4 text-lg leading-8 text-zinc-600">
-              Learn more by downloading one of our info packs.
+Learn how we approach product development — from first schematic to global launch.
+
             </p>
           </div>
 
@@ -45,9 +47,9 @@ export function RecipeSection() {
                   <div className="h-52 rounded-[1.75rem] bg-white/5" />
                 </div>
                 <div className="text-center">
-                  <p className="text-base font-semibold uppercase tracking-[0.35em] text-zinc-500">
+                  {/* <p className="text-base font-semibold uppercase tracking-[0.35em] text-zinc-500">
                     {card.subtitle}
-                  </p>
+                  </p> */}
                   <h3 className="mt-3 text-lg font-semibold text-slate-950">{card.title}</h3>
                 </div>
               </div>

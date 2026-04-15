@@ -99,15 +99,17 @@ export default function Home() {
             className="font-black leading-none tracking-tight whitespace-nowrap"
             style={{ fontSize: "clamp(3rem, 7vw, 6.5rem)" }}
           >
-            Design for Change<span className="text-red-500">.</span>
+            Build for Real
+<span className="text-red-500">.</span>
           </h1>
         </div>
 
         {/* ── Subtitle — pinned to bottom ── */}
         <div className="absolute bottom-10 left-0 right-0 z-20 flex justify-center px-6 pointer-events-none">
           <p className="text-lg md:text-xl text-zinc-400  text-center max-w-xl font-bold leading-tight">
-            A collaborative team of passionate designers and engineers
-            relentlessly delivering innovation.
+           We turn what exists
+in your mind into what
+exists in the market.
           </p>
         </div>
 

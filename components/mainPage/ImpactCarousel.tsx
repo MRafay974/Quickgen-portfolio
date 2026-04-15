@@ -50,13 +50,14 @@ export function ImpactCarousel() {
         <div className="mt-16 grid gap-10 lg:grid-cols-[0.3fr_1fr] lg:items-start">
           <div className="flex items-start">
             <span className="ml-10 text-sm font-bold uppercase tracking-[0.35em] text-[#ff1d1d]">
-              The Brash Impact
+              The QuickGen Difference
+
             </span>
           </div>
           <div className="space-y-8">
             <h2 className="text-4xl font-bold leading-tight tracking-tight text-black sm:text-5xl">
-              We are the Goldilocks team for real collaboration.
-            </h2>
+The complete team.
+Without the layers.            </h2>
             <p className="max-w-3xl text-lg leading-8 text-zinc-600">
               Our team is structured to deliver top-tier expertise without the
               barriers of a large agency. You work directly with seasoned
@@ -67,7 +68,7 @@ export function ImpactCarousel() {
             </p>
             <Link href="/services"
  className="inline-flex rounded-full bg-black px-8 py-3 text-base font-semibold text-white transition hover:bg-zinc-900">
-              View services
+              Explore Services
             </Link>
           </div>
         </div>

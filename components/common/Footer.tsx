@@ -26,7 +26,8 @@ export function Footer({ activeLink }: FooterProps) {
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.28),transparent_25%),radial-gradient(circle_at_bottom_right,rgba(0,0,0,0.18),transparent_20%)] opacity-80" />
           <div className="relative flex flex-col items-center justify-center gap-8 text-center">
             <h2 className="text-4xl font-bold tracking-tight text-black sm:text-5xl">
-              Let’s work together.
+               Let's build <br/> what's next.
+
             </h2>
             <button className="inline-flex items-center justify-center rounded-full bg-black px-11 py-4 text-xl font-semibold text-[#7ee4c2] shadow-[0_20px_40px_-20px_rgba(0,0,0,0.45)] transition hover:bg-zinc-900">
               Say hello
@@ -37,24 +38,24 @@ export function Footer({ activeLink }: FooterProps) {
 
       <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
         <div className="mb-14">
-          <p className="text-2xl font-semibold">hello@brashinc.com</p>
+          <p className="text-2xl font-semibold">hello@quickgentech.com</p>
         </div>
 
        <div className="flex items-start justify-between">
   {/* Left group: Address columns — close together */}
   <div className="flex gap-16">
     <div>
-      <p className="text-sm font-semibold uppercase tracking-[0.25em] text-red-500">United States</p>
-      <p className="mt-3 text-lg font-semibold">San Diego</p>
-      <p className="mt-2 text-base text-zinc-300">2173 Salk Ave, Suite 250</p>
-      <p className="text-base text-zinc-300">Carlsbad, California</p>
+      <p className="text-sm font-semibold uppercase tracking-[0.25em] text-red-500">UAE</p>
+      <p className="mt-3 text-lg font-semibold">Dubai</p>
+      {/* <p className="mt-2 text-base text-zinc-300">2173 Salk Ave, Suite 250</p>
+      <p className="text-base text-zinc-300">Carlsbad, California</p> */}
     </div>
-    <div>
+    {/* <div>
       <p className="text-sm font-semibold uppercase tracking-[0.25em] text-red-500">Canada</p>
       <p className="mt-3 text-lg font-semibold">Ottawa</p>
       <p className="mt-2 text-base text-zinc-300">168 Dalhousie St.</p>
       <p className="text-base text-zinc-300">Ottawa, Ontario</p>
-    </div>
+    </div> */}
   </div>
 
   {/* Right group: Nav columns — close together */}
