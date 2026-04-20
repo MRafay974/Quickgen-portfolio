@@ -10,6 +10,7 @@ import "swiper/css";
 import { Featured } from "@/components/mainPage/Featured";
 import { Process } from "@/components/mainPage/Process";
 import { ProjectCards } from "@/components/mainPage/ProjectCards";
+import { MoreWork } from "@/components/mainPage/MoreWork"
 import { Testimonials } from "@/components/mainPage/Testimonials";
 import { ImpactCarousel } from "@/components/mainPage/ImpactCarousel";
 import { StatsSection } from "@/components/mainPage/StatsSection";
@@ -138,6 +139,7 @@ exists in the market.
       <ProjectCards />
       <Testimonials />
       <ImpactCarousel />
+            <MoreWork />
       <StatsSection />
       <RecipeSection />
       <Footer />
