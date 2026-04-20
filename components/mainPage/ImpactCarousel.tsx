@@ -66,10 +66,12 @@ Without the layers.            </h2>
               partnership, responsive, efficient, and strategically aligned, at
               a cost that keeps innovation within reach.
             </p>
-            <Link href="/services"
- className="inline-flex rounded-full bg-black px-8 py-3 text-base font-semibold text-white transition hover:bg-zinc-900">
-              Explore Services
-            </Link>
+           <Link
+  href="/services"
+  className="rounded px-6 py-2 text-sm font-semibold text-white bg-[#C0392B] transition hover:bg-[#a93226] inline-flex items-center gap-2"
+>
+  Explore Services <span>→</span>
+</Link>
           </div>
         </div>
       </div>

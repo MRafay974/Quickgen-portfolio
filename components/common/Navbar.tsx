@@ -102,11 +102,11 @@ export function Navbar({ currentPage }: NavbarProps) {
             );
           })}
           <Link
-            href="/contact"
-            className="rounded-full border border-red-500 bg-white px-6 py-2 text-sm font-semibold text-red-500 transition hover:bg-red-50"
-          >
-            Let&apos;s chat
-          </Link>
+  href="/contact"
+  className="rounded px-6 py-2 text-sm font-semibold text-white bg-[#C0392B] transition hover:bg-[#a93226]"
+>
+  Book Free Call
+</Link>
         </nav>
       </div>
     </header>
