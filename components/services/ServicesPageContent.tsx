@@ -1,18 +1,18 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
 const servicesList = [
-  { id: "01", label: "Design" },
-  { id: "02", label: "Engineering" },
-  { id: "03", label: "Software" },
-  { id: "04", label: "Manufacturing" },
+  { id: "01", label: "Design",        subtitle: "Crafting form through function, aesthetics, and usability.",  preview: "/images/service/1.png" },
+  { id: "02", label: "Engineering",   subtitle: "Turning ideas into precise, manufacturable hardware solutions.", preview: "/images/service/2.png" },
+  { id: "03", label: "Software",      subtitle: "Building seamless digital experiences from app to firmware.",   preview: "/images/service/3.png" },
+  { id: "04", label: "Manufacturing", subtitle: "Taking products from prototype to production at scale.",          preview: "/images/service/4.png" },
 ];
 
 const designSection = {
-  image: "https://placehold.co/1200x500/e5e7eb/6b7280?text=Design+Hero+Image",
+  image: "/images/service/1.png",
   title: "Design",
   tags: ["Product design", "Branding", "UX/UI", "Design research", "Prototyping", "Modelling", "Packaging"],
   description:
@@ -29,7 +29,7 @@ const designSection = {
 };
 
 const engineeringSection = {
-  image: "https://placehold.co/1200x500/1e3a8a/bfdbfe?text=Engineering+Hero+Image",
+  image: "/images/service/2.png",
   title: "Engineering",
   tags: ["Mechanical Design and CAD", "PCB Design and Schematics", "Part Analysis and Testing", "Component Sourcing", "Certification"],
   description:
@@ -46,7 +46,7 @@ const engineeringSection = {
 };
 
 const softwareSection = {
-  image: "https://placehold.co/1200x500/064e3b/6ee7b7?text=Software+Hero+Image",
+  image: "/images/service/3.png",
   title: "Software",
   tags: ["Web Development", "Mobile Apps", "Embedded Firmware", "Cloud & IoT", "UI/UX Engineering"],
   description:
@@ -63,7 +63,7 @@ const softwareSection = {
 };
 
 const manufacturingSection = {
-  image: "https://placehold.co/1200x500/78350f/fde68a?text=Manufacturing+Hero+Image",
+  image: "/images/service/4.png",
   title: "Manufacturing",
   tags: ["DFM Consulting", "Supplier Sourcing", "Injection Moulding", "PCBA", "Assembly & Fulfilment"],
   description:
@@ -82,6 +82,7 @@ const manufacturingSection = {
 // ─── Sub-components ───────────────────────────────────────────────────────────
 
 interface ServiceBlockProps {
+  id: string;
   image: string;
   title: string;
   tags: string[];
@@ -91,7 +92,7 @@ interface ServiceBlockProps {
   textColor: string;
 }
 
-function ServiceBlock({ image, title, tags, description, caseStudies, bg, textColor }: ServiceBlockProps) {
+function ServiceBlock({ id, image, title, tags, description, caseStudies, bg, textColor }: ServiceBlockProps) {
   const isLight = bg === "bg-white";
   const tagColor = isLight ? "text-zinc-950" : "text-white";
   const descColor = isLight ? "text-zinc-700" : "text-zinc-300";
@@ -101,15 +102,14 @@ function ServiceBlock({ image, title, tags, description, caseStudies, bg, textCo
   const nameBold = isLight ? "text-zinc-950" : "text-white";
 
   return (
-    <section className={`${bg} ${textColor} w-full`}>
+    <section id={id} className={`${bg} ${textColor} w-full`}>
       {/* Hero image */}
       <div className="w-full px-6 lg:px-16 pt-10 pb-0">
         <div className="rounded-2xl overflow-hidden w-full">
           <img
             src={image}
             alt={title}
-            className="w-full object-cover"
-            style={{ maxHeight: "480px", objectFit: "cover" }}
+            className="w-full object-contain"
           />
         </div>
       </div>
@@ -188,8 +188,51 @@ function WhatWeDoSection() {
 
 // ─── Main export ──────────────────────────────────────────────────────────────
 
+const serviceIds = ["design", "engineering", "software", "manufacturing"];
+
+// ─── Cursor follower ─────────────────────────────────────────────────────────
+
+function CursorFollower({ src, visible }: { src: string; visible: boolean }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const pos = useRef({ x: 0, y: 0 });
+  const raf = useRef<number | null>(null);
+
+  useEffect(() => {
+    const onMove = (e: MouseEvent) => {
+      pos.current = { x: e.clientX, y: e.clientY };
+      if (raf.current !== null) return;
+      raf.current = requestAnimationFrame(() => {
+        raf.current = null;
+        if (ref.current) {
+          ref.current.style.transform = `translate(${pos.current.x + 20}px, ${pos.current.y - 60}px)`;
+        }
+      });
+    };
+    window.addEventListener("mousemove", onMove);
+    return () => {
+      window.removeEventListener("mousemove", onMove);
+      if (raf.current !== null) cancelAnimationFrame(raf.current);
+    };
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      className="pointer-events-none fixed top-0 left-0 z-[9999] w-28 h-28 rounded-full overflow-hidden border-2 border-white shadow-xl transition-opacity duration-200"
+      style={{ opacity: visible ? 1 : 0 }}
+    >
+      <img src={src} alt="" className="w-full h-full object-cover" />
+    </div>
+  );
+}
+
 export default function ServicesPageContent() {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
+  const scrollToSection = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
     <main className="w-full font-sans bg-white text-zinc-950">
@@ -205,10 +248,9 @@ export default function ServicesPageContent() {
       {/* ── Full-width hero image ── */}
       <div className="w-full px-0">
         <img
-          src="https://placehold.co/1600x500/1a1a1a/888888?text=Services+Hero+%E2%80%93+Workshop+Photo"
+          src="/images/service/top.png"
           alt="Services hero"
-          className="w-full object-cover"
-          style={{ maxHeight: "480px" }}
+          className="w-full object-contain"
         />
       </div>
 
@@ -219,35 +261,64 @@ export default function ServicesPageContent() {
         </h2>
 
         <div className="flex flex-col divide-y divide-zinc-200 border-t border-zinc-200">
-          {servicesList.map((s, i) => (
-            <div
-              key={s.id}
-              className="flex items-center justify-between py-6 cursor-pointer group"
-              onClick={() => setOpenIndex(openIndex === i ? null : i)}
-            >
-              <div className="flex items-center gap-6">
-                <span className="text-sm text-zinc-400 font-medium w-6">{s.id}</span>
-                <span className="text-2xl lg:text-3xl font-bold text-zinc-950 group-hover:underline underline-offset-4">
-                  {s.label}
+          {servicesList.map((s, i) => {
+            const isHovered = hoveredIndex === i;
+            return (
+              <div
+                key={s.id}
+                className="flex items-center justify-between py-6 cursor-none group"
+                onClick={() => scrollToSection(serviceIds[i])}
+                onMouseEnter={() => setHoveredIndex(i)}
+                onMouseLeave={() => setHoveredIndex(null)}
+              >
+                <div className="flex items-center gap-6">
+                  <span
+                    className="text-sm font-medium w-6 transition-colors duration-200"
+                    style={{ color: isHovered ? "#e53e3e" : "#a1a1aa" }}
+                  >
+                    {s.id}
+                  </span>
+                  <span
+                    className="text-2xl lg:text-3xl font-bold transition-colors duration-200"
+                    style={{ color: isHovered ? "#e53e3e" : "#09090b" }}
+                  >
+                    {s.label}
+                  </span>
+                  <span
+                    className="text-sm text-zinc-500 transition-all duration-300 hidden lg:block"
+                    style={{ opacity: isHovered ? 1 : 0, transform: isHovered ? "translateX(0)" : "translateX(-8px)" }}
+                  >
+                    {s.subtitle}
+                  </span>
+                </div>
+                <span
+                  className="text-2xl transition-colors duration-200"
+                  style={{ color: isHovered ? "#e53e3e" : "#71717a" }}
+                >
+                  →
                 </span>
               </div>
-              <span className="text-2xl text-zinc-500 group-hover:text-zinc-950 transition-colors">→</span>
-            </div>
-          ))}
+            );
+          })}
         </div>
+
+        {/* Cursor-following circle images */}
+        {servicesList.map((s, i) => (
+          <CursorFollower key={s.id} src={s.preview} visible={hoveredIndex === i} />
+        ))}
       </section>
 
       {/* ── Design Section ── */}
-      <ServiceBlock {...designSection} />
+      <ServiceBlock id="design" {...designSection} />
 
       {/* ── Engineering Section ── */}
-      <ServiceBlock {...engineeringSection} />
+      <ServiceBlock id="engineering" {...engineeringSection} />
 
       {/* ── Software Section ── */}
-      <ServiceBlock {...softwareSection} />
+      <ServiceBlock id="software" {...softwareSection} />
 
       {/* ── Manufacturing Section ── */}
-      <ServiceBlock {...manufacturingSection} />
+      <ServiceBlock id="manufacturing" {...manufacturingSection} />
 
       {/* ── What we do video ── */}
       <WhatWeDoSection />
