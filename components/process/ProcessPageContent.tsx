@@ -23,7 +23,7 @@ export default function ProcessPageContent() {
       ───────────────────────────────────────── */}
       <div className="w-full mt-8">
         <img
-          src="https://placehold.co/1600x520/1a1a1a/888888?text=Process+Hero+%E2%80%93+Hands+with+PCB"
+          src="/images/process/top.png"
           alt="Process hero"
           className="w-full object-cover"
           style={{ maxHeight: "520px", objectFit: "cover" }}
@@ -50,7 +50,7 @@ export default function ProcessPageContent() {
         {/* Red card with product image */}
         <div
           className="w-full rounded-2xl overflow-hidden relative flex items-stretch"
-          style={{ backgroundColor: "#f03a2e", minHeight: "340px" }}
+          style={{ backgroundColor: "#FC3732", minHeight: "340px" }}
         >
           {/* Left: empty red space */}
           <div className="flex-1" />
@@ -58,7 +58,7 @@ export default function ProcessPageContent() {
           {/* Right: product image anchored to right edge */}
           <div className="w-1/2 lg:w-2/5 shrink-0 relative">
             <img
-              src="https://placehold.co/700x380/ffffff/cccccc?text=Product+Image"
+              src="/images/process/printer.png"
               alt="Product"
               className="absolute bottom-0 right-0 w-full object-contain"
               style={{ maxHeight: "380px" }}

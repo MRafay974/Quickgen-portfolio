@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import ScrollRevealCard from "./ScrollRevealCard";
 
 // ─── Shared Layout ─────────────────────────────────────────────────────────
@@ -7,10 +8,7 @@ import ScrollRevealCard from "./ScrollRevealCard";
 interface CardLayoutProps {
   bgColor: string;
   accentColor: string;
-  imagePlaceholderBg: string;
-  imagePlaceholderBorder: string;
-  imagePlaceholderText: string;
-  imageLabel: string;
+  imageSrc: string;
   title: React.ReactNode;
   bullets: string[];
   description: string;
@@ -19,10 +17,7 @@ interface CardLayoutProps {
 function CardLayout({
   bgColor,
   accentColor,
-  imagePlaceholderBg,
-  imagePlaceholderBorder,
-  imagePlaceholderText,
-  imageLabel,
+  imageSrc,
   title,
   bullets,
   description,
@@ -37,14 +32,14 @@ function CardLayout({
         </h3>
 
         {/* Image — full width, centered */}
-        <div className="w-full max-w-2xl mb-4">
-          <div
-            className={`w-full aspect-[16/7] ${imagePlaceholderBg} rounded-xl border-2 ${imagePlaceholderBorder} flex items-center justify-center`}
-          >
-            <span className={`${imagePlaceholderText} text-sm font-semibold`}>
-              {imageLabel}
-            </span>
-          </div>
+        <div className="relative w-full max-w-2xl aspect-16/7 mb-4 overflow-hidden rounded-xl">
+          <Image
+            src={imageSrc}
+            alt=""
+            fill
+            className="object-contain"
+            sizes="(min-width: 768px) 672px, 100vw"
+          />
         </div>
 
         {/* Bullets — centered row with dot separators */}
@@ -80,10 +75,7 @@ export function DiscoverCard() {
     <CardLayout
       bgColor="bg-emerald-50"
       accentColor="text-emerald-500"
-      imagePlaceholderBg="bg-gradient-to-br from-emerald-100 to-emerald-50"
-      imagePlaceholderBorder="border-emerald-200"
-      imagePlaceholderText="text-emerald-400"
-      imageLabel="[Research Mood Board & References]"
+      imageSrc="/images/process/1.png"
       title={
         <>
           Strong starts with{" "}
@@ -101,10 +93,7 @@ export function CreateCard1() {
     <CardLayout
       bgColor="bg-emerald-50"
       accentColor="text-emerald-500"
-      imagePlaceholderBg="bg-gradient-to-br from-emerald-100 to-emerald-50"
-      imagePlaceholderBorder="border-emerald-200"
-      imagePlaceholderText="text-emerald-400"
-      imageLabel="[Concept Sketches & Wireframes]"
+      imageSrc="/images/process/2.png"
       title={
         <>
           Grounded{" "}
@@ -122,10 +111,7 @@ export function CreateCard2() {
     <CardLayout
       bgColor="bg-orange-50"
       accentColor="text-orange-500"
-      imagePlaceholderBg="bg-gradient-to-br from-orange-100 to-orange-50"
-      imagePlaceholderBorder="border-orange-200"
-      imagePlaceholderText="text-orange-400"
-      imageLabel="[Prototype Testing Components]"
+      imageSrc="/images/process/3.png"
       title={
         <>
           Testing brilliance with{" "}
@@ -143,10 +129,7 @@ export function CreateCard3() {
     <CardLayout
       bgColor="bg-orange-50"
       accentColor="text-orange-500"
-      imagePlaceholderBg="bg-gradient-to-br from-orange-100 to-orange-50"
-      imagePlaceholderBorder="border-orange-200"
-      imagePlaceholderText="text-orange-400"
-      imageLabel="[Product Models & Renders]"
+      imageSrc="/images/process/4.png"
       title={
         <>
           Polished with{" "}
@@ -164,10 +147,7 @@ export function RefineCard1() {
     <CardLayout
       bgColor="bg-blue-50"
       accentColor="text-blue-500"
-      imagePlaceholderBg="bg-gradient-to-br from-blue-100 to-blue-50"
-      imagePlaceholderBorder="border-blue-200"
-      imagePlaceholderText="text-blue-400"
-      imageLabel="[Design Optimization & Documentation]"
+      imageSrc="/images/process/5.png"
       title={
         <>
           Optimizing your{" "}
@@ -185,10 +165,7 @@ export function RefineCard2() {
     <CardLayout
       bgColor="bg-blue-50"
       accentColor="text-blue-500"
-      imagePlaceholderBg="bg-gradient-to-br from-blue-100 to-blue-50"
-      imagePlaceholderBorder="border-blue-200"
-      imagePlaceholderText="text-blue-400"
-      imageLabel="[Manufacturing Specifications]"
+      imageSrc="/images/process/6.png"
       title={
         <>
           Precision{" "}
@@ -206,10 +183,7 @@ export function LaunchCard1() {
     <CardLayout
       bgColor="bg-cyan-50"
       accentColor="text-cyan-500"
-      imagePlaceholderBg="bg-gradient-to-br from-cyan-100 to-cyan-50"
-      imagePlaceholderBorder="border-cyan-200"
-      imagePlaceholderText="text-cyan-400"
-      imageLabel="[Manufacturing & Assembly Line]"
+      imageSrc="/images/process/7.png"
       title={
         <>
           Cross the finish with{" "}
@@ -227,10 +201,7 @@ export function LaunchCard2() {
     <CardLayout
       bgColor="bg-cyan-50"
       accentColor="text-cyan-500"
-      imagePlaceholderBg="bg-gradient-to-br from-cyan-100 to-cyan-50"
-      imagePlaceholderBorder="border-cyan-200"
-      imagePlaceholderText="text-cyan-400"
-      imageLabel="[Product Support & Updates]"
+      imageSrc="/images/process/8.png"
       title={
         <>
           Always here for{" "}

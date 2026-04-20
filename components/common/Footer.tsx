@@ -25,7 +25,15 @@ export function Footer({ activeLink: _activeLink }: FooterProps) {
       <div className="border-t border-white/10 px-8 py-6">
         <div className="mx-auto flex max-w-7xl items-center justify-between text-sm text-zinc-400">
           <span>QuickGen Technology</span>
-          <span>Dubai, UAE &nbsp;·&nbsp; hello@quickgentech.com</span>
+          <span>
+            Dubai, UAE &nbsp;·&nbsp;{" "}
+            <a
+              href="mailto:hello@quickgentech.com"
+              className="transition-colors duration-200 hover:text-red-500"
+            >
+              hello@quickgentech.com
+            </a>
+          </span>
         </div>
       </div>
     </footer>

@@ -209,25 +209,25 @@ function RoadmapCollapsed({ activePhase, progressPct }: SharedRoadmapProps) {
 
 const phaseCardContent: Record<number, React.ReactNode> = {
   0: (
-    <div className="space-y-8 md:space-y-12">
+    <div className="space-y-6 md:space-y-6">
       <DiscoverCard />
       <CreateCard1 />
     </div>
   ),
   1: (
-    <div className="space-y-8 md:space-y-12">
+    <div className="space-y-6 md:space-y-6">
       <CreateCard2 />
       <CreateCard3 />
     </div>
   ),
   2: (
-    <div className="space-y-8 md:space-y-12">
+    <div className="space-y-6 md:space-y-6">
       <RefineCard1 />
       <RefineCard2 />
     </div>
   ),
   3: (
-    <div className="space-y-8 md:space-y-12">
+    <div className="space-y-6 md:space-y-6">
       <LaunchCard1 />
       <LaunchCard2 />
     </div>
