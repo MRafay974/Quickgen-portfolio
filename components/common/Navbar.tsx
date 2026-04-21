@@ -79,9 +79,10 @@ export function Navbar({ currentPage }: NavbarProps) {
   };
 
   return (
+    <>
     <header
       className={`sticky top-0 z-50 transition-transform duration-500 ease-out ${
-        isVisible ? "translate-y-0" : "-translate-y-full"
+        isVisible || mobileOpen ? "translate-y-0" : "-translate-y-full"
       } ${headerClasses}`}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4 md:py-6">
@@ -136,23 +137,32 @@ export function Navbar({ currentPage }: NavbarProps) {
           />
         </button>
       </div>
+    </header>
 
-      {/* Mobile menu */}
+      {/* Mobile menu — full screen overlay, outside header so z-index works correctly */}
       <div
-        className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
-          mobileOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-        } ${isWhiteBackground ? "bg-white/95" : "bg-black/95"}`}
+        className={`md:hidden fixed inset-0 z-[9999] flex flex-col items-center justify-center transition-all duration-300 ease-in-out ${
+          mobileOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        } ${isWhiteBackground ? "bg-white" : "bg-black"}`}
       >
-        <div className="flex flex-col gap-1 px-6 pb-6 pt-2">
+        {/* Close button */}
+        <button
+          className={`absolute top-5 right-6 p-2 ${hamburgerColor}`}
+          onClick={() => setMobileOpen(false)}
+          aria-label="Close menu"
+        >
+          <span className="block h-0.5 w-6 bg-current translate-y-[3px] rotate-45" />
+          <span className="block h-0.5 w-6 bg-current -translate-y-[3px] -rotate-45" />
+        </button>
+
+        <nav className="flex flex-col items-center gap-8">
           {navLinks.map((link) => {
             const isActive = isActiveRoute(link.href, link.label);
             return (
               <Link
                 key={link.label}
                 href={link.href}
-                className={`py-3 text-lg font-medium border-b ${
-                  isWhiteBackground ? "border-zinc-100" : "border-white/10"
-                } ${navLinkClasses(isActive)}`}
+                className={`text-2xl font-bold ${navLinkClasses(isActive)}`}
                 onClick={() => setMobileOpen(false)}
               >
                 {link.label}
@@ -161,13 +171,13 @@ export function Navbar({ currentPage }: NavbarProps) {
           })}
           <Link
             href="/contact"
-            className="mt-4 self-start rounded px-6 py-2.5 text-sm font-semibold text-white bg-[#C0392B] transition hover:bg-[#a93226]"
+            className="mt-4 rounded px-8 py-3 text-base font-semibold text-white bg-[#C0392B] transition hover:bg-[#a93226]"
             onClick={() => setMobileOpen(false)}
           >
             Book Free Call
           </Link>
-        </div>
+        </nav>
       </div>
-    </header>
+    </>
   );
 }
