@@ -239,7 +239,7 @@ export default function ServicesPageContent() {
 
       {/* ── Hero ── */}
       <section className="px-6 lg:px-16 pt-12 pb-6">
-        <h1 className="text-[clamp(3rem,9vw,5.5rem)] font-black leading-none tracking-tight">
+        <h1 className="text-[clamp(2.5rem,9vw,5.5rem)] font-black leading-none tracking-tight">
           Services
         </h1>
         <p className="mt-3 text-base text-zinc-500">Take a peek behind the curtain.</p>
@@ -256,7 +256,7 @@ export default function ServicesPageContent() {
 
       {/* ── "Whether you need..." intro + numbered list ── */}
       <section className="px-6 lg:px-16 pt-16 pb-10 bg-white">
-        <h2 className="text-3xl lg:text-4xl font-black leading-tight max-w-2xl mb-12">
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black leading-tight max-w-2xl mb-12">
           Whether you need niche expertise or full development, we&apos;ve got you covered.
         </h2>
 
@@ -266,7 +266,7 @@ export default function ServicesPageContent() {
             return (
               <div
                 key={s.id}
-                className="flex items-center justify-between py-6 cursor-none group"
+                className="flex items-center justify-between py-6 cursor-pointer md:cursor-none group"
                 onClick={() => scrollToSection(serviceIds[i])}
                 onMouseEnter={() => setHoveredIndex(i)}
                 onMouseLeave={() => setHoveredIndex(null)}
@@ -279,7 +279,7 @@ export default function ServicesPageContent() {
                     {s.id}
                   </span>
                   <span
-                    className="text-2xl lg:text-3xl font-bold transition-colors duration-200"
+                    className="text-xl sm:text-2xl lg:text-3xl font-bold transition-colors duration-200"
                     style={{ color: isHovered ? "#e53e3e" : "#09090b" }}
                   >
                     {s.label}
@@ -302,10 +302,12 @@ export default function ServicesPageContent() {
           })}
         </div>
 
-        {/* Cursor-following circle images */}
-        {servicesList.map((s, i) => (
-          <CursorFollower key={s.id} src={s.preview} visible={hoveredIndex === i} />
-        ))}
+        {/* Cursor-following circle images — desktop only */}
+        <div className="hidden md:block">
+          {servicesList.map((s, i) => (
+            <CursorFollower key={s.id} src={s.preview} visible={hoveredIndex === i} />
+          ))}
+        </div>
       </section>
 
       {/* ── Design Section ── */}
@@ -321,7 +323,7 @@ export default function ServicesPageContent() {
       <ServiceBlock id="manufacturing" {...manufacturingSection} />
 
       {/* ── What we do video ── */}
-      <WhatWeDoSection />
+      {/* <WhatWeDoSection /> */}
 
     </main>
   );

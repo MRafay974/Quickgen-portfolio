@@ -4,9 +4,6 @@ import { RecipeSection } from "@/components/common/RecipeSection";
 import ServicesPageContent from "@/components/services/ServicesPageContent";
 
 
-
-
-
 export default function ServicesPage() {
   return (
     <div>
