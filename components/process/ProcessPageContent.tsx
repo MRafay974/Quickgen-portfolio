@@ -49,8 +49,8 @@ export default function ProcessPageContent() {
 
         {/* Red card with product image */}
         <div
-          className="w-full rounded-2xl overflow-hidden relative flex items-stretch"
-          style={{ backgroundColor: "#FC3732", minHeight: "340px" }}
+          className="w-full rounded-2xl overflow-hidden relative flex items-stretch min-h-[180px] lg:min-h-[350px]"
+          style={{ backgroundColor: "#FC3732" }}
         >
           {/* Left: empty red space */}
           <div className="flex-1" />
@@ -60,8 +60,7 @@ export default function ProcessPageContent() {
             <img
               src="/images/process/printer.png"
               alt="Product"
-              className="absolute bottom-0 right-0 w-full object-contain"
-              style={{ maxHeight: "380px" }}
+              className="absolute bottom-0 right-[-5] w-full object-contain max-h-[175px] lg:max-h-[380px]"
             />
           </div>
         </div>

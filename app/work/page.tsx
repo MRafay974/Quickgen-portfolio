@@ -82,22 +82,22 @@ export default function WorkPage() {
       <main className="max-w-7xl mx-auto px-6 py-12 lg:px-8 lg:py-16">
         <section className="border-b border-zinc-200 pb-10">
           <div className="mb-8 max-w-3xl">
-            <h1 className="text-6xl font-black tracking-tight sm:text-7xl">Work</h1>
-            <p className="mt-4 max-w-2xl text-xl leading-8 text-zinc-600">
+            <h1 className="text-4xl font-black tracking-tight sm:text-6xl lg:text-7xl">Work</h1>
+            <p className="mt-4 max-w-2xl text-base sm:text-xl leading-8 text-zinc-600">
               We love what we do, and it shows.
             </p>
           </div>
 
           <div className="flex flex-col gap-6 border-t border-zinc-200 pt-8 sm:flex-row sm:items-center sm:justify-between">
-            <div className="flex flex-wrap items-center gap-3">
+            <div className="flex flex-wrap items-center gap-2 sm:gap-3">
               {FILTERS.map((filter) => (
                 <button
                   key={filter}
                   onClick={() => handleFilterChange(filter)}
                   className={
                     activeFilter === filter
-                      ? "rounded-full bg-zinc-950 px-5 py-3 text-sm font-semibold text-white"
-                      : "rounded-full border border-zinc-200 bg-white px-5 py-3 text-sm font-medium text-zinc-950 transition hover:border-zinc-300 hover:bg-zinc-50"
+                      ? "rounded-full bg-zinc-950 px-4 py-2 sm:px-5 sm:py-3 text-xs sm:text-sm font-semibold text-white"
+                      : "rounded-full border border-zinc-200 bg-white px-4 py-2 sm:px-5 sm:py-3 text-xs sm:text-sm font-medium text-zinc-950 transition hover:border-zinc-300 hover:bg-zinc-50"
                   }
                 >
                   {filter === "All" ? filter : formatCategoryLabel(filter)}
@@ -119,10 +119,41 @@ export default function WorkPage() {
     <p className="py-16 text-center text-zinc-500">No projects found.</p>
   ) : (
     <>
+      {/* Mobile: 2-column masonry */}
+      <div className="columns-2 gap-3 sm:hidden">
+        {visibleCards.map((project, index) => {
+          const aspectRatios = ["2/3", "1/1", "3/4", "4/5", "2/3", "3/4"];
+          const aspectRatio = aspectRatios[index % aspectRatios.length];
+          return (
+            <Link
+              key={project.slug}
+              href={`/work/${project.slug}`}
+              className="group mb-3 block break-inside-avoid cursor-pointer"
+            >
+              <article className="overflow-hidden rounded-2xl bg-zinc-100">
+                <div className="relative overflow-hidden bg-zinc-200" style={{ aspectRatio }}>
+                  <ProjectCardImage
+                    src={project.image}
+                    alt={project.title}
+                    sizes="50vw"
+                  />
+                  <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute bottom-0 left-0 right-0 p-3 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                    <h2 className="text-sm font-bold text-white leading-tight">{project.title}</h2>
+                  </div>
+                </div>
+              </article>
+            </Link>
+          );
+        })}
+      </div>
+
+      {/* Desktop: featured card + masonry */}
+      <div className="hidden sm:block">
       {/* Featured full-width card */}
       <Link href={`/work/${visibleCards[0].slug}`} className="group block mb-6">
         <article className="relative overflow-hidden rounded-3xl cursor-pointer">
-          <div className="relative h-[500px] w-full overflow-hidden bg-zinc-200">
+          <div className="relative h-[380px] lg:h-[500px] w-full overflow-hidden bg-zinc-200">
             <ProjectCardImage
               src={visibleCards[0].image}
               alt={visibleCards[0].title}
@@ -147,7 +178,7 @@ export default function WorkPage() {
 
       {/* Masonry grid */}
       {visibleCards.length > 1 && (
-        <div className="columns-1 gap-6 sm:columns-2">
+        <div className="columns-2 gap-6">
           {visibleCards.slice(1).map((project, index) => {
             const aspectRatios = ["4/5", "1/1", "3/4", "4/5", "3/4", "1/1"];
             const aspectRatio = aspectRatios[index % aspectRatios.length];
@@ -157,7 +188,7 @@ export default function WorkPage() {
                 href={`/work/${project.slug}`}
                 className="group mb-6 block break-inside-avoid cursor-pointer"
               >
-                <article className="overflow-hidden rounded-3xl border border-zinc-200 bg-zinc-50 shadow-sm transition hover:shadow-lg">
+                <article className="overflow-hidden rounded-2xl border border-zinc-200 bg-zinc-50 shadow-sm transition hover:shadow-lg">
                   <div
                     className="relative overflow-hidden bg-zinc-200"
                     style={{ aspectRatio }}
@@ -165,7 +196,7 @@ export default function WorkPage() {
                     <ProjectCardImage
                       src={project.image}
                       alt={project.title}
-                      sizes="(min-width: 640px) 50vw, 100vw"
+                      sizes="50vw"
                     />
                     <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -186,6 +217,7 @@ export default function WorkPage() {
           })}
         </div>
       )}
+      </div>
 
       {hasMore && (
         <div className="mt-10 flex justify-center">

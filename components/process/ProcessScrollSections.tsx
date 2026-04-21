@@ -53,7 +53,7 @@ const phases: Phase[] = [
     label: "Launch",
     description:
       "Mass manufacturing and ongoing product updates, including potential future upgrades.",
-    color: "#c084fc",
+    color: "#06b6d4",
   },
 ];
 
@@ -300,6 +300,56 @@ export default function ProcessScrollSections() {
   return (
     <>
       {/* ═══════════════════════════════════════════════════════════════════
+          MOBILE LAYOUT — vertical roadmap then phases with cards
+      ══════════════════════════════════════════════════════════════════════ */}
+      <div className="md:hidden w-full px-6 py-12">
+        {/* Heading */}
+        <p className="text-sm font-semibold text-zinc-400 mb-2">The roadmap</p>
+        <h2 className="text-3xl font-black leading-tight text-zinc-950 mb-10">
+          Timelines that are <br /> tailored to you.
+        </h2>
+
+        {/* Vertical roadmap */}
+        <div className="relative mb-14 pl-6">
+          {/* Vertical line */}
+          <div className="absolute left-[5px] top-2 bottom-2 w-px bg-zinc-200" />
+
+          {phases.map((phase, i) => (
+            <div key={phase.id} className="relative mb-8 last:mb-0">
+              {/* Dot */}
+              <div
+                className="absolute -left-6 top-1 w-3 h-3 rounded-full border-2 z-10"
+                style={{ backgroundColor: "black", borderColor: "black" }}
+              />
+              <h3 className="text-base font-black text-zinc-950">{phase.label}</h3>
+              <p className="text-sm text-zinc-500 mt-1 leading-relaxed">{phase.description}</p>
+            </div>
+          ))}
+
+         
+        </div>
+
+        {/* Phase cards */}
+        {phases.map((phase, i) => (
+          <div key={phase.id} className="mb-14">
+            <div className="flex items-center gap-3 mb-5">
+              <div
+                className="w-3 h-3 rounded-full shrink-0"
+                style={{ backgroundColor: phase.color }}
+              />
+              <h3 className="text-xl font-black text-zinc-950 ">{phase.label}</h3>
+            </div>
+            {/* <p className="text-sm text-zinc-500 mb-6 pl-6">{phase.description}</p> */}
+            <div>{phaseCardContent[i]}</div>
+          </div>
+        ))}
+      </div>
+
+      {/* ═══════════════════════════════════════════════════════════════════
+          DESKTOP LAYOUT — animated scroll sections (hidden on mobile)
+      ══════════════════════════════════════════════════════════════════════ */}
+      <div className="hidden md:block">
+      {/* ═══════════════════════════════════════════════════════════════════
           SECTION 1 — Shows expanded roadmap, 300vh drives the GSAP trigger
       ══════════════════════════════════════════════════════════════════════ */}
       <div ref={animSectionRef} className="w-full" style={{ display: isCollapsed ? "none" : "block" }}>
@@ -333,6 +383,7 @@ export default function ProcessScrollSections() {
           ))}
         </section>
       )}
+      </div>
     </>
   );
 }
