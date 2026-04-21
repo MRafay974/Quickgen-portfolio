@@ -21,7 +21,7 @@ export function ImpactCarousel() {
   
   return (
     <section className="bg-white text-black">
-      <div className="   py-24 ">
+      <div className="py-24">
         <Swiper
   modules={[Autoplay]}
   onSwiper={(swiper) => (swiperRef.current = swiper)}
@@ -42,9 +42,9 @@ export function ImpactCarousel() {
   style={{ paddingLeft: "16px" }}
 >
           {[...slides, ...slides].map((slide, index) => (
-            <SwiperSlide key={`${slide.id}-${index}`} style={{ width: "40%" }}>
+            <SwiperSlide key={`${slide.id}-${index}`} className="!w-[80%] sm:!w-[55%] lg:!w-[40%]">
               <div className="flex-shrink-0 rounded-[2rem] bg-white group overflow-hidden cursor-default">
-                <div className="h-110 rounded-[1rem] overflow-hidden relative">
+                <div className="h-64 sm:h-80 lg:h-110 rounded-[1rem] overflow-hidden relative">
                   <Image
                     src={slide.src}
                     alt={slide.alt}
@@ -57,11 +57,10 @@ export function ImpactCarousel() {
           ))}
         </Swiper>
 
-        <div className="mt-16 grid gap-10 lg:grid-cols-[0.3fr_1fr] lg:items-start">
+        <div className="mt-16 px-4 sm:px-6 lg:px-10 grid gap-10 lg:grid-cols-[0.3fr_1fr] lg:items-start">
           <div className="flex items-start">
-            <span className="ml-10 text-sm font-bold uppercase tracking-[0.35em] text-[#ff1d1d]">
+            <span className="text-sm font-bold uppercase tracking-[0.35em] text-[#ff1d1d]">
               The QuickGen Difference
-
             </span>
           </div>
           <div className="space-y-8">
