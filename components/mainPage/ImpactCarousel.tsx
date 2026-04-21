@@ -5,13 +5,16 @@ import { Autoplay } from "swiper/modules";
 import type { Swiper as SwiperInstance } from "swiper";
 import { useRef } from "react";
 import Link from "next/link";
-
+import Image from "next/image";
 
 import "swiper/css";
 
-const slides = Array.from({ length: 5 }, (_, index) => ({
-  id: index + 1,
-}));
+const slides = [
+  { id: 1, src: "/images/landingPage/slider_1.png", alt: "Slide 1" },
+  { id: 2, src: "/images/landingPage/slider_2.png", alt: "Slide 2" },
+  { id: 3, src: "/images/landingPage/slider_3.png", alt: "Slide 3" },
+  { id: 4, src: "/images/landingPage/slider_4.png", alt: "Slide 4" },
+];
 
 export function ImpactCarousel() {
     const swiperRef = useRef<SwiperInstance | null>(null);
@@ -34,14 +37,21 @@ export function ImpactCarousel() {
     pauseOnMouseEnter: false,
   }}
   speed={10000}
-  grabCursor={true}
+  // grabCursor={true}
   className="hero-swiper h-full! w-full!"
   style={{ paddingLeft: "16px" }}
 >
           {[...slides, ...slides].map((slide, index) => (
             <SwiperSlide key={`${slide.id}-${index}`} style={{ width: "40%" }}>
-              <div className="flex-shrink-0 rounded-[2rem] bg-white">
-                <div className="h-110 rounded-[1rem] bg-zinc-200" />
+              <div className="flex-shrink-0 rounded-[2rem] bg-white group overflow-hidden cursor-default">
+                <div className="h-110 rounded-[1rem] overflow-hidden relative">
+                  <Image
+                    src={slide.src}
+                    alt={slide.alt}
+                    fill
+                    className="object-cover transition-all duration-500 grayscale-0 group-hover:grayscale"
+                  />
+                </div>
               </div>
             </SwiperSlide>
           ))}

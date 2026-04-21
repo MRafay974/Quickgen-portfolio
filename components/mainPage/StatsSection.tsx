@@ -32,18 +32,7 @@ export function StatsSection() {
             </p>
           </div>
 
-          <div className="overflow-hidden rounded-[2rem] bg-zinc-100 p-4">
-            <div className="flex w-[150%] animate-marquee gap-6" style={{ animationDuration: "18s" }}>
-              {[...logos, ...logos].map((logo, index) => (
-                <div
-                  key={`${logo}-${index}`}
-                  className="min-w-[18rem] flex-shrink-0 rounded-[1.75rem] bg-zinc-200/80 p-5"
-                >
-                  <div className="h-20 rounded-[1.25rem] bg-white/80" />
-                </div>
-              ))}
-            </div>
-          </div>
+         
         </div>
       </div>
     </section>
