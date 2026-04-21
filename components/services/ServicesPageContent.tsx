@@ -132,24 +132,11 @@ function ServiceBlock({ id, image, title, tags, description, caseStudies, bg, te
       </div>
 
       {/* Description */}
-      <div className="px-6 lg:px-16 pt-4 pb-4">
-        <p className={`text-base leading-7 max-w-4xl ${descColor}`}>{description}</p>
+      <div className="px-6 lg:px-16 pt-4 pb-20">
+        <p className={`text-base leading-7 max-w-4xl  ${descColor}`}>{description}</p>
       </div>
 
-      {/* Case Studies */}
-      <div className={`px-6 lg:px-16 pt-2 pb-16  `}>
-        <p className={`text-xs font-semibold uppercase tracking-widest mt-6 mb-5 ${caseHeaderColor}`}>
-          Case Studies
-        </p>
-        <div className="flex flex-col gap-3">
-          {caseStudies.map((cs) => (
-            <div key={cs.name} className="flex flex-wrap items-baseline gap-x-2">
-              <span className={`text-base font-black ${nameBold}`}>{cs.name}</span>
-              <span className={`text-sm ${caseDetailColor}`}>{cs.detail}</span>
-            </div>
-          ))}
-        </div>
-      </div>
+      
     </section>
   );
 }
@@ -256,7 +243,7 @@ export default function ServicesPageContent() {
 
       {/* ── "Whether you need..." intro + numbered list ── */}
       <section className="px-6 lg:px-16 pt-16 pb-10 bg-white">
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black leading-tight max-w-2xl mb-12">
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black leading-tight max-w-2xl mb-12 text-center">
           Whether you need niche expertise or full development, we&apos;ve got you covered.
         </h2>
 
