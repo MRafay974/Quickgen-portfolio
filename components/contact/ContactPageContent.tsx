@@ -42,7 +42,7 @@ export default function ContactPageContent() {
   return (
     <>
       {/* ── Hero image ─────────────────────────────────────────────────── */}
-      <div className="relative w-full h-[80vh] overflow-hidden">
+      <div className="relative w-full h-screen sm:h-[30vh] overflow-hidden">
         <Image
           src="/images/contact/contact.png"
           alt="QuickGen office"
@@ -53,13 +53,13 @@ export default function ContactPageContent() {
       </div>
 
       {/* ── Contact form ───────────────────────────────────────────────── */}
-      <section className="bg-white py-20 px-6">
+      <section className="bg-white py-12 px-4 sm:py-16 sm:px-6 lg:py-20">
         <div className="mx-auto max-w-2xl text-center">
-          <h1 className="text-5xl font-black tracking-tight text-zinc-950 sm:text-6xl">
+          <h1 className="text-3xl font-black tracking-tight text-zinc-950 sm:text-5xl lg:text-6xl">
             First chat is on us
             <span className="text-red-500">.</span>
           </h1>
-          <p className="mt-6 text-base leading-7 text-zinc-500">
+          <p className="mt-4 text-sm leading-7 text-zinc-500 sm:mt-6 sm:text-base">
             We know its important to understand if we are the right fit. Drop us a line for any questions or
             inquiries about your big idea. We&apos;ll put together a quote and discuss how we can meet your
             budget and timeline.
@@ -68,7 +68,7 @@ export default function ContactPageContent() {
 
         <form
           onSubmit={handleSubmit}
-          className="mx-auto mt-12 max-w-2xl space-y-4"
+          className="mx-auto mt-8 max-w-2xl space-y-3 sm:mt-12 sm:space-y-4"
         >
           <input
             type="text"
@@ -77,7 +77,7 @@ export default function ContactPageContent() {
             onChange={handleChange}
             placeholder="Your name"
             required
-            className="w-full rounded-2xl bg-zinc-100 px-6 py-4 text-base text-zinc-950 placeholder:text-zinc-400 outline-none focus:ring-2 focus:ring-zinc-300 transition"
+            className="w-full rounded-2xl bg-zinc-100 px-4 py-3 text-sm text-zinc-950 placeholder:text-zinc-400 outline-none focus:ring-2 focus:ring-zinc-300 transition sm:px-6 sm:py-4 sm:text-base"
           />
           <input
             type="email"
@@ -86,23 +86,23 @@ export default function ContactPageContent() {
             onChange={handleChange}
             placeholder="Your email"
             required
-            className="w-full rounded-2xl bg-zinc-100 px-6 py-4 text-base text-zinc-950 placeholder:text-zinc-400 outline-none focus:ring-2 focus:ring-zinc-300 transition"
+            className="w-full rounded-2xl bg-zinc-100 px-4 py-3 text-sm text-zinc-950 placeholder:text-zinc-400 outline-none focus:ring-2 focus:ring-zinc-300 transition sm:px-6 sm:py-4 sm:text-base"
           />
           <textarea
             name="message"
             value={form.message}
             onChange={handleChange}
             placeholder="Your message"
-            rows={8}
+            rows={6}
             required
-            className="w-full rounded-2xl bg-zinc-100 px-6 py-4 text-base text-zinc-950 placeholder:text-zinc-400 outline-none focus:ring-2 focus:ring-zinc-300 transition resize-none"
+            className="w-full rounded-2xl bg-zinc-100 px-4 py-3 text-sm text-zinc-950 placeholder:text-zinc-400 outline-none focus:ring-2 focus:ring-zinc-300 transition resize-none sm:px-6 sm:py-4 sm:text-base sm:rows-8"
           />
 
           <div className="flex flex-col items-center gap-6 pt-2">
             <button
               type="submit"
               disabled={status === "sending"}
-              className="inline-flex items-center gap-3 rounded-full bg-[#C0392B] px-10 py-4 text-base font-semibold text-white transition hover:bg-[#a93226] disabled:opacity-60"
+              className="inline-flex items-center gap-3 rounded-full bg-[#C0392B] px-8 py-3 text-sm font-semibold text-white transition hover:bg-[#a93226] disabled:opacity-60 sm:px-10 sm:py-4 sm:text-base"
             >
               {status === "sending" ? "Sending…" : "Submit"}
               {status !== "sending" && (
@@ -134,7 +134,7 @@ export default function ContactPageContent() {
 
             <a
               href="mailto:hello@quickgentech.com"
-              className="text-base font-semibold text-red-500 hover:text-red-600 transition"
+              className="text-sm font-semibold text-red-500 hover:text-red-600 transition sm:text-base"
             >
               hello@quickgentech.com
             </a>
