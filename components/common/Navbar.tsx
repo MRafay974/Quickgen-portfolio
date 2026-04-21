@@ -23,6 +23,7 @@ const navLinks: NavLink[] = [
 export function Navbar({ currentPage }: NavbarProps) {
   const pathname = usePathname();
   const [isVisible, setIsVisible] = useState(true);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const lastScrollY = useRef(0);
 
   useEffect(() => {
@@ -69,6 +70,8 @@ export function Navbar({ currentPage }: NavbarProps) {
     ? "flex h-12 w-12 items-center justify-center rounded-full bg-zinc-950 text-sm font-bold text-white"
     : "flex h-12 w-12 items-center justify-center rounded-full bg-white text-sm font-bold text-zinc-950";
 
+  const hamburgerColor = isWhiteBackground ? "text-zinc-950" : "text-white";
+
   const isActiveRoute = (href: string, label: string) => {
     if (pathname === href) return true;
     if (pathname.startsWith(`${href}/`)) return true;
@@ -81,13 +84,14 @@ export function Navbar({ currentPage }: NavbarProps) {
         isVisible ? "translate-y-0" : "-translate-y-full"
       } ${headerClasses}`}
     >
-      <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-6">
+      <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4 md:py-6">
         <div className="flex items-center gap-3">
           <Link href="/" className={logoClasses}>
             BRASH
           </Link>
         </div>
 
+        {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => {
             const isActive = isActiveRoute(link.href, link.label);
@@ -102,12 +106,67 @@ export function Navbar({ currentPage }: NavbarProps) {
             );
           })}
           <Link
-  href="/contact"
-  className="rounded px-6 py-2 text-sm font-semibold text-white bg-[#C0392B] transition hover:bg-[#a93226]"
->
-  Book Free Call
-</Link>
+            href="/contact"
+            className="rounded px-6 py-2 text-sm font-semibold text-white bg-[#C0392B] transition hover:bg-[#a93226]"
+          >
+            Book Free Call
+          </Link>
         </nav>
+
+        {/* Mobile hamburger */}
+        <button
+          className={`md:hidden flex flex-col justify-center gap-[5px] p-2 ${hamburgerColor}`}
+          onClick={() => setMobileOpen((prev) => !prev)}
+          aria-label={mobileOpen ? "Close menu" : "Open menu"}
+        >
+          <span
+            className={`block h-0.5 w-6 bg-current transition-all duration-300 ${
+              mobileOpen ? "translate-y-[7px] rotate-45" : ""
+            }`}
+          />
+          <span
+            className={`block h-0.5 w-6 bg-current transition-opacity duration-300 ${
+              mobileOpen ? "opacity-0" : ""
+            }`}
+          />
+          <span
+            className={`block h-0.5 w-6 bg-current transition-all duration-300 ${
+              mobileOpen ? "-translate-y-[7px] -rotate-45" : ""
+            }`}
+          />
+        </button>
+      </div>
+
+      {/* Mobile menu */}
+      <div
+        className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+          mobileOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+        } ${isWhiteBackground ? "bg-white/95" : "bg-black/95"}`}
+      >
+        <div className="flex flex-col gap-1 px-6 pb-6 pt-2">
+          {navLinks.map((link) => {
+            const isActive = isActiveRoute(link.href, link.label);
+            return (
+              <Link
+                key={link.label}
+                href={link.href}
+                className={`py-3 text-lg font-medium border-b ${
+                  isWhiteBackground ? "border-zinc-100" : "border-white/10"
+                } ${navLinkClasses(isActive)}`}
+                onClick={() => setMobileOpen(false)}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
+          <Link
+            href="/contact"
+            className="mt-4 self-start rounded px-6 py-2.5 text-sm font-semibold text-white bg-[#C0392B] transition hover:bg-[#a93226]"
+            onClick={() => setMobileOpen(false)}
+          >
+            Book Free Call
+          </Link>
+        </div>
       </div>
     </header>
   );

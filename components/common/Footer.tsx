@@ -15,7 +15,7 @@ export function Footer({ activeLink: _activeLink }: FooterProps) {
         </h2>
         <Link
           href="/contact"
-          className="mt-10 inline-flex items-center gap-2 rounded bg-[#C0392B] px-25 py-4 text-base font-semibold text-white transition hover:bg-[#a93226]"
+          className="mt-10 inline-flex items-center gap-2 rounded bg-[#C0392B] px-8 sm:px-16 py-4 text-base font-semibold text-white transition hover:bg-[#a93226]"
         >
           Book Your Free Discovery Call →
         </Link>

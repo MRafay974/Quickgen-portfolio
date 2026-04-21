@@ -6,7 +6,7 @@ export function Process() {
           <div className="relative">
             <div className="absolute inset-0 rounded-[3rem] bg-[radial-gradient(circle_at_top_left,_rgba(255,255,255,0.05),_transparent_35%),radial-gradient(circle_at_bottom_right,_rgba(255,255,255,0.03),_transparent_25%)]" />
             <div className="relative overflow-hidden rounded-[3rem] border border-white/10 bg-zinc-950 px-6 py-8 shadow-[0_60px_120px_-60px_rgba(0,0,0,0.8)] sm:px-8 sm:py-10">
-              <div className="relative mx-auto h-[28rem] w-full max-w-[44rem] rounded-[2.5rem] bg-gradient-to-br from-zinc-950 via-zinc-900 to-black shadow-[0_30px_80px_-30px_rgba(0,0,0,0.9)]">
+              <div className="relative mx-auto h-[28rem] w-full max-w-[44rem] rounded-[2.5rem] bg-gradient-to-br from-zinc-950 via-zinc-900 to-black shadow-[0_30px_80px_-30px_rgba(0,0,0,0.9)] overflow-hidden">
                 <div className="absolute left-8 top-8 h-20 w-20 rounded-full bg-white/10 blur-sm" />
                 <div className="absolute left-16 top-20 h-32 w-32 rounded-full bg-slate-700/70" />
                 <div className="absolute left-24 top-[7rem] h-24 w-24 rounded-[2.5rem] border border-white/10 bg-zinc-800/90 shadow-[0_20px_40px_-12px_rgba(0,0,0,0.8)]" />

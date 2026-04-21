@@ -98,8 +98,8 @@ export default function Home() {
         {/* ── Heading — centred vertically ── */}
         <div className="relative z-20 w-full flex flex-col items-center text-center px-4 select-none">
           <h1
-            className="font-black leading-none tracking-tight whitespace-nowrap"
-            style={{ fontSize: "clamp(3rem, 7vw, 6.5rem)" }}
+            className="font-black leading-none tracking-tight"
+            style={{ fontSize: "clamp(2.5rem, 8vw, 6.5rem)" }}
           >
             Build for Real
 <span className="text-red-500">.</span>
