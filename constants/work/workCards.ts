@@ -2,6 +2,7 @@ export const soft_prod=[
   {
     "id": "provectus",
     "name": "Provectus",
+    "image": "titlee.png",
     "category": "mobile",
     "tagline": "Seamless BLE Communication",
     "description": "An IoT-driven mobile app enabling seamless BLE communication with devices, real-time data visualization, and personalized insights.",
@@ -92,6 +93,7 @@ export const soft_prod=[
   },
   {
     "id": "giving_cube",
+    "folder": "The-Giving-Cube",
     "name": "The Giving Cube",
     "category": "mobile",
     "tagline": "Family-Friendly Charitable Giving",
@@ -113,6 +115,7 @@ export const soft_prod=[
   },
   {
     "id": "motion_track",
+    "folder": "Motion-Track",
     "name": "Motion Track",
     "category": "mobile",
     "tagline": "Human Gait Analysis Solution",
@@ -153,6 +156,7 @@ export const soft_prod=[
   },
   {
     "id": "scentix_app",
+    "folder": "Scentix-App",
     "name": "Scentix App",
     "category": "mobile",
     "tagline": "Smart Scent-Spraying System",
@@ -171,6 +175,7 @@ export const soft_prod=[
   },
   {
     "id": "fps",
+    "folder": "fps-(Front Parking Sensor)",
     "name": "FPS (Front Parking Sensor)",
     "category": "mobile",
     "tagline": "Smart Front-Parking Assist",
@@ -190,6 +195,7 @@ export const soft_prod=[
   },
   {
     "id": "lumevue",
+    "folder": "LumeVue",
     "name": "LumeVue",
     "category": "mobile",
     "tagline": "Smart Interactive iPhone Cover",
@@ -253,6 +259,7 @@ export const soft_prod=[
   },
   {
     "id": "quickcom",
+    "folder": "Quickcom",
     "name": "Quickcom",
     "category": "web",
     "tagline": "Real-Time Staff Communication Platform",
@@ -276,6 +283,7 @@ export const soft_prod=[
   },
   {
     "id": "matheddu",
+    "folder": "MathEdu",
     "name": "MathEdu",
     "category": "web",
     "tagline": "Adaptive SaaS Math Education Platform",
@@ -300,6 +308,7 @@ export const soft_prod=[
   },
   {
     "id": "motion_trak",
+    "folder": "Motion Trak",
     "name": "Motion Trak",
     "category": "web",
     "tagline": "IoT-Integrated Rehabilitation Platform",
@@ -324,6 +333,7 @@ export const soft_prod=[
   },
   {
     "id": "pulse_eda",
+    "folder": "Pulse - EDA Sensor",
     "name": "Pulse - EDA Sensor",
     "category": "health_tech_wearables",
     "tagline": "Non-Invasive Electrodermal Activity Monitor",
@@ -343,7 +353,8 @@ export const soft_prod=[
   },
   {
     "id": "scentix_hw",
-    "name": "Scentix - Wearable Hardware",
+    "folder": "Scentix - Wearable Hardware",
+    "name": "Scentix ",
     "category": "health_tech_wearables",
     "tagline": "PCB-Based Wearable Scent Diffuser",
     "description": "PCB layout design for an innovative wearable device combining a perfume diffuser, fan, and humidifier to eliminate odors and create a refreshing personal environment.",
@@ -362,6 +373,7 @@ export const soft_prod=[
   },
   {
     "id": "provectus_breath",
+    "folder": "Provectus Breath Analyser",
     "name": "Provectus Breath Analyser",
     "category": "health_tech_wearables",
     "tagline": "Advanced Handheld Breath Analysis Hardware",
@@ -381,6 +393,7 @@ export const soft_prod=[
   },
   {
     "id": "e_nose_analyzer",
+    "folder": "E-Nose Health Analyzer",
     "name": "E-Nose Health Analyzer",
     "category": "health_tech_wearables",
     "tagline": "Animal Health Monitoring via Urinalysis",
@@ -399,6 +412,7 @@ export const soft_prod=[
   },
   {
     "id": "iot_pillbox",
+    "folder": "IoT Pillbox",
     "name": "IoT Pillbox",
     "category": "health_tech_wearables",
     "tagline": "Smart Medication Management Device",
@@ -418,6 +432,7 @@ export const soft_prod=[
   },
   {
     "id": "smart_glucose",
+    "folder": "Smart Glucose Meter",
     "name": "Smart Glucose Meter",
     "category": "health_tech_wearables",
     "tagline": "Real-Time Blood Glucose Monitoring Hardware",
@@ -437,7 +452,8 @@ export const soft_prod=[
   },
   {
     "id": "microblower",
-    "name": "Microblower - UV Air Purifier",
+    "folder": "Microblower - UV Air Purifier",
+    "name": "UV Air Purifier",
     "category": "health_tech_wearables",
     "tagline": "Airflow + UV Disinfection for Public Spaces",
     "description": "Custom PCB powering the Murata Microblower MZB1001T02 at 25kHz with UV light disinfection, developed for COVID-19 pandemic air purification in hospitals and public spaces.",
@@ -456,6 +472,7 @@ export const soft_prod=[
   },
   {
     "id": "opta_tech",
+    "folder": "Opta Tech",
     "name": "Opta Tech",
     "category": "health_tech_wearables",
     "tagline": "GPS Golf Ball Tracking Wearable",
@@ -475,6 +492,7 @@ export const soft_prod=[
   },
   {
     "id": "punchnfit",
+    "folder": "PunchNFit",
     "name": "PunchNFit",
     "category": "health_tech_wearables",
     "tagline": "Boxing Training Biometric Wearable",
@@ -495,6 +513,7 @@ export const soft_prod=[
   },
   {
     "id": "speculum_light",
+    "folder": "Speculum Light",
     "name": "Speculum Light",
     "category": "health_tech_wearables",
     "tagline": "Veterinary Dental Illumination Device",
@@ -514,6 +533,7 @@ export const soft_prod=[
   },
   {
     "id": "medical_headlamps",
+    "folder": "Medical Headlamps",
     "name": "Medical Headlamps",
     "category": "health_tech_wearables",
     "tagline": "Surgical-Grade Wearable Illumination",
@@ -533,6 +553,7 @@ export const soft_prod=[
   },
   {
     "id": "smart_thermal_sensor",
+    "folder": "Smart Thermal Sensor",
     "name": "Smart Thermal Sensor",
     "category": "health_tech_wearables",
     "tagline": "Contactless Temperature Detection System",
@@ -550,10 +571,32 @@ export const soft_prod=[
       "Display module"
     ]
   },
+
+  {
+  "id": "ai_pendant",
+  "folder": "AI-Pendant",
+  "name": "AI PENDANT",
+  "category": "health_tech_wearables",
+  "tagline": "Discreet Wearable Companion for Focus, Routines, and Daily Wellbeing",
+  "description": "AI Pendant is a discreet wearable companion designed to support focus, routines, and daily wellbeing through private, low-friction guidance. It pairs with a companion app to deliver timely prompts, habit support, and gentle interventions—helping users stay on track without relying on constant screen time. This project demonstrates how a wearable can deliver practical, personalized support—combining behavior-aware prompts with simple device management like anti-loss and 'find my device' alerts.",
+  "features": [
+    "Focus & Attention Support: Provides nudges when inactivity or prolonged hyperfocus is detected, including optional focus-session timers and refocus cues to encourage healthier work rhythms",
+    "Smart Reminders & Routines: Supports calendar-linked preparation reminders, recurring tasks (like medication or daily routines), and simple completion check-ins to reduce missed commitments",
+    "Calm, Sleep & Sensory Tools: Enables optional breathing guidance, wind-down and bedtime support, and on-demand sound options for relaxation or concentration, with personalization controls in the app"
+  ],
+  "techStack": [
+    "Wearable hardware design",
+    "Companion app integration",
+    "Behavior-aware prompt engine",
+    "Calendar & routine sync",
+    "Anti-loss & device management",
+    "Biometric & inactivity detection"
+  ]
+},
   {
     "id": "aria_pendant",
     "name": "Aria Pendant",
-    "category": "iot_smart_devices",
+    "category": "health_tech_wearables",
     "tagline": "Wearable BLE Audio Capture Device",
     "description": "A wearable BLE audio pendant that captures voice interactions using dual microphones, streams LC3-compressed audio to a paired iOS app, and supports wake-word detection and OTA firmware updates.",
     "features": [
@@ -572,6 +615,7 @@ export const soft_prod=[
   },
   {
     "id": "iphone_case_lumevue",
+    "folder": "iphone-case",
     "name": "iPhone Case - LumeVue Hardware",
     "category": "iot_smart_devices",
     "tagline": "Smart iPhone Case with Interactive Display",
@@ -611,6 +655,7 @@ export const soft_prod=[
   },
   {
     "id": "microclimate_comms",
+    "folder": "microClimate-helmet",
     "name": "MicroClimate Helmet Comms System",
     "category": "iot_smart_devices",
     "tagline": "Bluetooth Hands-Free Helmet Communication",
@@ -650,6 +695,7 @@ export const soft_prod=[
   },
   {
     "id": "rpi_vending",
+    "folder": "raspberry-pi-hat",
     "name": "Raspberry Pi HAT - Smart Vending Machine",
     "category": "iot_smart_devices",
     "tagline": "Custom RPi HAT for Connected Vending",
@@ -689,8 +735,9 @@ export const soft_prod=[
   },
   {
     "id": "hybrid_inverter",
+    "folder": "3-Phase-8KW",
     "name": "3-Phase 8KW Hybrid Inverter",
-    "category": "ev_battery_power",
+    "category": "iot_smart_devices",
     "tagline": "High-Performance Solar Hybrid Inverter",
     "description": "A high-performance 3-phase 8KW hybrid inverter for residential and commercial solar applications, balancing grid, battery, and solar power with advanced MPPT charging and smart monitoring.",
     "features": [
@@ -709,6 +756,7 @@ export const soft_prod=[
   },
   {
     "id": "quickcomm_hotel",
+    "folder": "quickComm-hotel-ops",
     "name": "QuickComm Hotel Ops System",
     "category": "iot_smart_devices",
     "tagline": "Dedicated PTT Earpiece for Hotel Operations",
@@ -728,6 +776,7 @@ export const soft_prod=[
   },
   {
     "id": "microtracker",
+    "folder": "MicroTracker",
     "name": "MicroTracker",
     "category": "iot_smart_devices",
     "tagline": "Ultra-Thin BLE Item Tracking Sticker",
@@ -747,6 +796,7 @@ export const soft_prod=[
   },
   {
     "id": "cushion_hw",
+    "folder": "the-cushion",
     "name": "The Cushion",
     "category": "iot_smart_devices",
     "tagline": "App-Controlled Inflatable Seat Cushion",
@@ -767,6 +817,7 @@ export const soft_prod=[
   },
   {
     "id": "osmart_bms",
+    "folder": "OSmart",
     "name": "OSmart BMS for EV",
     "category": "ev_battery_power",
     "tagline": "Cloud-Connected Battery Management System",
@@ -787,6 +838,7 @@ export const soft_prod=[
   },
   {
     "id": "cell_balancing",
+    "folder": "Cell-Balancing-Circuit",
     "name": "Cell Balancing Circuit for EV Battery",
     "category": "ev_battery_power",
     "tagline": "Cost-Effective EV Battery Cell Balancer",
@@ -806,6 +858,7 @@ export const soft_prod=[
   },
   {
     "id": "lifepo_charger",
+    "folder": "LifePO-Battery-Charger",
     "name": "LiFePO Battery Charger with Flashlight Control",
     "category": "ev_battery_power",
     "tagline": "Dual-Function Battery Charger & Flashlight",
@@ -824,6 +877,7 @@ export const soft_prod=[
   },
   {
     "id": "zef_ecu",
+    "folder": "ZEF",
     "name": "ZEF - Vehicle ECU Board",
     "category": "ev_battery_power",
     "tagline": "EV Power Management ECU",
@@ -843,25 +897,28 @@ export const soft_prod=[
     ]
   },
   {
-    "id": "radar_reverse_eng",
-    "name": "Reverse Engineering - Vintage Radar PCBs",
+  "id": "ppg_cluster",
+  "folder": "ppg",
+  "name": "PPG CLUSTER",
     "category": "pcb_reverse_eng",
-    "tagline": "Modernization of 1960s Military Radar PCBs",
-    "description": "Reverse engineering of 1960s military radar PCBs for 505 Central Electronics Workshop (Pakistan), improving fault diagnosis, redesigning weak circuits, and applying modern engineering practices.",
-    "features": [
-      "Fault rectification and improved diagnostics",
-      "Full system redesign addressing original design weaknesses",
-      "Modernization of vintage technology with contemporary practices",
-      "Enhanced reliability and long-term operational efficiency"
-    ],
-    "techStack": [
-      "PCB reverse engineering",
-      "Legacy component mapping",
-      "Modern PCB redesign"
-    ]
-  },
+  "tagline": "Innovative Wearable for Physiological Signal Tracking During Athletic Activities",
+  "description": "Responsible for the PCB layout design of PPG Cluster, an innovative wearable device for tracking key physiological signals during athletic activities. This project underscores Quickgen's expertise in designing wearable technologies that enhance athletic training through advanced physiological data integration.",
+  "features": [
+    "Real-Time Biometric Monitoring: Equipped with 5-6 PPG sensors to measure heart rate and blood flow, and an EMG sensor for muscle activity insights",
+    "Comprehensive Performance Analysis: Provides a detailed understanding of cardiovascular and muscular responses to optimize training and recovery",
+    "Non-Invasive Wearable Design: Ensures continuous, comfortable monitoring for endurance, strength, and performance improvement"
+  ],
+  "techStack": [
+    "PCB layout design",
+    "PPG sensor integration",
+    "EMG sensor integration",
+    "Wearable device engineering",
+    "Biometric signal processing"
+  ]
+},
   {
     "id": "blc_pcb",
+    "folder": "Rev-Engineering",
     "name": "Rev Engineering Dual Layer BLC PCB",
     "category": "pcb_reverse_eng",
     "tagline": "Smart E-Tag & M-Tag Barrier Control PCB",
@@ -881,6 +938,7 @@ export const soft_prod=[
   },
   {
     "id": "safestep_hat",
+    "folder": "SafeStep-Motor-Control-hat",
     "name": "SafeStep Motor Control HAT",
     "category": "pcb_reverse_eng",
     "tagline": "Raspberry Pi Motor Control HAT for Automation",
@@ -901,6 +959,7 @@ export const soft_prod=[
   },
   {
     "id": "heatcontrol_scr",
+    "folder": "heatControl-Board",
     "name": "HeatControl SCR Board",
     "category": "pcb_reverse_eng",
     "tagline": "High-Power Heater Control PCB",
@@ -920,6 +979,7 @@ export const soft_prod=[
   },
   {
     "id": "ppg_cluster",
+    "folder": "PPG Cluster",
     "name": "PPG Cluster",
     "category": "health_tech_wearables",
     "tagline": "Wearable Physiological Signal Tracker",
@@ -940,6 +1000,7 @@ export const soft_prod=[
   },
   {
     "id": "mtrc",
+    "folder": "MTRC-Motion-Monitor",
     "name": "MTRC Motion Monitor",
     "category": "pcb_reverse_eng",
     "tagline": "IMU-Based RGB Motion State Indicator",
@@ -960,6 +1021,7 @@ export const soft_prod=[
   },
   {
     "id": "e_paper",
+    "folder": "e-paper-button",
     "name": "E Paper Button Device",
     "category": "pcb_reverse_eng",
     "tagline": "Wi-Fi Event Button with E-Paper Display",
@@ -980,6 +1042,7 @@ export const soft_prod=[
   },
   {
     "id": "sandviper",
+    "folder": "SandViper",
     "name": "SandViper",
     "category": "health_tech_wearables",
     "tagline": "Smart Athletic Training Footwear PCB",
@@ -1001,6 +1064,7 @@ export const soft_prod=[
   },
   {
     "id": "ugv_waypoint",
+    "folder": "Waypoint Guided VTAMP UGV",
     "name": "Waypoint Guided VTAMP UGV",
     "category": "robotics_drones",
     "tagline": "Autonomous Waypoint-Guided Ground Vehicle",
@@ -1021,6 +1085,7 @@ export const soft_prod=[
   },
   {
     "id": "indigenous_robots",
+    "folder": "Indigenous Robots - NERC",
     "name": "Indigenous Robots - NERC",
     "category": "robotics_drones",
     "tagline": "Multi-Function Competition Robots",
@@ -1040,6 +1105,7 @@ export const soft_prod=[
   },
   {
     "id": "esp_drone",
+    "folder": "ESP Drone - Palm Size Spy Drone",
     "name": "ESP Drone - Palm Size Spy Drone",
     "category": "robotics_drones",
     "tagline": "Palm-Sized Surveillance Drone",
@@ -1060,6 +1126,7 @@ export const soft_prod=[
   },
   {
     "id": "surveillance_quadcopter",
+    "folder": "Surveillance Quadcopter",
     "name": "Surveillance Quadcopter",
     "category": "robotics_drones",
     "tagline": "Security & Surveillance Drone",
@@ -1080,6 +1147,7 @@ export const soft_prod=[
   },
   {
     "id": "usbc_4layer_pcb",
+    "folder": "USB-C 4 Layer PCB",
     "name": "USB-C 4 Layer PCB",
     "category": "pcb_reverse_eng",
     "tagline": "High-Density 4-Layer PCB Design",
@@ -1099,6 +1167,7 @@ export const soft_prod=[
   },
   {
     "id": "mushroom_ecu",
+    "folder": "environmental-control-unit",
     "name": "Environmental Control Unit - Mushroom Harvesting",
     "category": "iot_smart_devices",
     "tagline": "Automated Mushroom Grow Environment Controller",
@@ -1149,15 +1218,11 @@ const CATEGORY_IMAGE_FOLDER: Record<string, string> = {
   robotics_drones: "robotic",
 };
 
-function buildProjectImagePath(category: string, projectName: string) {
+function buildProjectImagePath(category: string, projectFolder: string, imageFile = "title.png") {
   const categoryFolder = CATEGORY_IMAGE_FOLDER[category];
   if (!categoryFolder) return null;
 
-  // For now, only web project folders contain title.png files.
-  // Prevent broken requests for categories that don't have images yet.
-  if (category !== "web") return null;
-
-  return `/images/${categoryFolder}/${encodeURIComponent(projectName)}/title.png`;
+  return `/images/${categoryFolder}/${projectFolder}/${imageFile}`;
 }
 
 export const workCards = soft_prod.map((project) => ({
@@ -1165,7 +1230,11 @@ export const workCards = soft_prod.map((project) => ({
   title: project.name,
   tagline: project.tagline,
   category: project.category,
-  image: buildProjectImagePath(project.category, project.name),
+  image: buildProjectImagePath(
+    project.category,
+    (project as typeof project & { image?: string; folder?: string }).folder ?? project.id.replace(/_/g, "-"),
+    (project as typeof project & { image?: string; folder?: string }).image
+  ),
   techStack: project.techStack,
   description: project.description,
   overview: project.description,

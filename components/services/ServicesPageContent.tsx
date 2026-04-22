@@ -243,9 +243,9 @@ export default function ServicesPageContent() {
 
       {/* ── "Whether you need..." intro + numbered list ── */}
       <section className="px-6 lg:px-16 pt-16 pb-10 bg-white">
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black leading-tight max-w-2xl mb-12 text-center">
-          Whether you need niche expertise or full development, we&apos;ve got you covered.
-        </h2>
+       <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black leading-tight max-w-2xl mb-12 text-center lg:text-left">
+  Whether you need niche expertise or full development, we&apos;ve got you covered.
+</h2>
 
         <div className="flex flex-col divide-y divide-zinc-200 border-t border-zinc-200">
           {servicesList.map((s, i) => {
