@@ -6,8 +6,8 @@ import { workCards, CATEGORY_DISPLAY_NAMES } from "@/constants/work/workCards";
 
 const FEATURED_PROJECT_SPECS = [
   { slug: "motion_track", previewImage: "/images/landingPage/motion_trackk.png", background: "#1A1A1A", hoverBackground: "#3a3a3a" },
-  { slug: "provectus_breath", previewImage: "/images/landingPage/usb1.png", background: "#35a70f", hoverBackground: null },
-  { slug: "iphone_case_lumevue", previewImage: "/images/landingPage/iphone_case.png", background: "#4660d6", hoverBackground: null },
+  { slug: "provectus_breath", previewImage: "/images/landingPage/usb1.png", background: "#1C1C1E", hoverBackground: null },
+  { slug: "iphone_case_lumevue", previewImage: "/images/landingPage/iphone_case.png", background: "#F5F0E8", hoverBackground: null },
 ] as const;
 
 const FEATURED_PROJECTS = FEATURED_PROJECT_SPECS.map((spec) => {
