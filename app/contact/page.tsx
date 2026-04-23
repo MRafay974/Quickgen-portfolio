@@ -7,9 +7,9 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen bg-white font-sans">
       <Navbar currentPage="Contact" />
-      <ContactPageContent />
-      <RecipeSection />
-      <Footer activeLink="Contact" />
+      <div data-animate="fade-up"><ContactPageContent /></div>
+      <div data-animate="fade-up"><RecipeSection /></div>
+      <div data-animate="fade-up"><Footer activeLink="Contact" /></div>
     </div>
   );
 }

@@ -2,7 +2,7 @@ export const soft_prod=[
   {
     "id": "provectus",
     "name": "Provectus",
-    "image": "titlee.png",
+    "image": "title.png",
     "category": "mobile",
     "tagline": "Seamless BLE Communication",
     "description": "An IoT-driven mobile app enabling seamless BLE communication with devices, real-time data visualization, and personalized insights.",
@@ -105,42 +105,72 @@ export const soft_prod=[
     },
     "highlights": "With robust React Native development, advanced AI algorithms, and seamless Bluetooth integration, Apollo delivers an engaging, data-rich platform tailored for golfers of all skill levels."
   },
-  {
-    "id": "little_birdie",
-    "name": "Little Birdie",
-    "category": "mobile",
-    "tagline": "Real-Time Speech-to-Speech Translation",
-    "description": "A real-time speech translation mobile app integrated with custom hardware to break language barriers across 55+ languages.",
-    "features": [
-      "Real-Time Speech Translation",
-      "Bluetooth Hardware Integration",
-      "Cross-Platform iOS & Android",
-      "Web API Integration for scalability"
-    ],
-    "techStack": [
-      "React Native",
-      "Python",
-      "TensorFlow",
-      "SQL",
-      "BLE",
-      "Azure",
-      "GitHub Actions"
-    ],
-    "platform": "iOS & Android",
-    "detailedFeatures": {
-      "Cross-Platform App": "Built with React Native for smooth performance on iOS and Android.",
-      "User-Friendly Interface": "Intuitive single-page design for effortless navigation.",
-      "Real-Time Speech Translation": "Facilitates instant translation for seamless communication across 55+ languages.",
-      "Bluetooth Hardware Integration": "Connects reliably with custom hardware to enhance translation capabilities.",
-      "Web API Integration": "Ensures efficient data flow and scalability between the app and hardware."
-    },
-    "highlights": "Leveraging React Native, robust Bluetooth protocols, and scalable APIs, Little Birdie ensures real-time, reliable, and user-friendly cross-language communication with advanced hardware connectivity."
-  },
+  // {
+  //   "id": "little_birdie",
+  //   "name": "Little Birdie",
+  //   "category": "mobile",
+  //   "tagline": "Real-Time Speech-to-Speech Translation",
+  //   "description": "A real-time speech translation mobile app integrated with custom hardware to break language barriers across 55+ languages.",
+  //   "features": [
+  //     "Real-Time Speech Translation",
+  //     "Bluetooth Hardware Integration",
+  //     "Cross-Platform iOS & Android",
+  //     "Web API Integration for scalability"
+  //   ],
+  //   "techStack": [
+  //     "React Native",
+  //     "Python",
+  //     "TensorFlow",
+  //     "SQL",
+  //     "BLE",
+  //     "Azure",
+  //     "GitHub Actions"
+  //   ],
+  //   "platform": "iOS & Android",
+  //   "detailedFeatures": {
+  //     "Cross-Platform App": "Built with React Native for smooth performance on iOS and Android.",
+  //     "User-Friendly Interface": "Intuitive single-page design for effortless navigation.",
+  //     "Real-Time Speech Translation": "Facilitates instant translation for seamless communication across 55+ languages.",
+  //     "Bluetooth Hardware Integration": "Connects reliably with custom hardware to enhance translation capabilities.",
+  //     "Web API Integration": "Ensures efficient data flow and scalability between the app and hardware."
+  //   },
+  //   "highlights": "Leveraging React Native, robust Bluetooth protocols, and scalable APIs, Little Birdie ensures real-time, reliable, and user-friendly cross-language communication with advanced hardware connectivity."
+  // },
   {
     "id": "giving_cube",
     "folder": "The-Giving-Cube",
     "name": "The Giving Cube",
     "category": "mobile",
+    "tagline": "Family-Friendly Charitable Giving",
+    "description": "A smart hardware + mobile app solution for seamless charitable giving. A physical coin-drop cube syncs donations in real time to chosen charities.",
+    "features": [
+      "Smart Cube detects coin drops via Bluetooth/WiFi",
+      "Donation management & parental controls",
+      "Admin & Charities web panel",
+      "Real-time donation transaction processing"
+    ],
+    "techStack": [
+      "React Native",
+      "React.js",
+      "Flask",
+      "SQL",
+      "Stripe API",
+      "GitHub Actions"
+    ],
+    "detailedFeatures": {
+      "Smart Cube": "Detects coin drops, identifies users, and syncs data via Bluetooth/WiFi.",
+      "Mobile App": "User onboarding, donation management, parental controls, and analytics.",
+      "Web App (Admin Panel & Charities Panel)": "Tools for managing charities, campaigns, and donor interactions.",
+      "Transaction Flow": "Coin drop triggers real-time donation processing via Stripe API."
+    },
+    "highlights": "Delivered a seamless, interactive charitable giving platform integrating smart hardware, real-time processing, and user-friendly features."
+  },
+
+   {
+    "id": "giving_cubee",
+    "folder": "The-Giving-Cube",
+    "name": "The Giving Cube",
+    "category": "web",
     "tagline": "Family-Friendly Charitable Giving",
     "description": "A smart hardware + mobile app solution for seamless charitable giving. A physical coin-drop cube syncs donations in real time to chosen charities.",
     "features": [
@@ -422,45 +452,45 @@ export const soft_prod=[
     "networkTopology": "Intranet-based (Wi-Fi/Ethernet), star topology for reliability",
     "targetSectors": ["Hotels", "Restaurants", "Hospitality"]
   },
-  {
-    "id": "matheddu",
-    "folder": "MathEdu",
-    "name": "MathEdu",
-    "category": "web",
-    "tagline": "Adaptive SaaS Math Education Platform",
-    "description": "A scalable SaaS platform for math education supporting EQAO and CBSE/ICSE curricula, with adaptive learning, AR modules, live tutoring, and GDPR compliance.",
-    "features": [
-      "Adaptive ML-based learning engine",
-      "Gamification with achievements & rewards",
-      "Immersive AR Geometry Modules",
-      "Live 1:1 & group tutoring via WebRTC",
-      "WCAG 2.1 accessibility & multilingual support",
-      "D3.js performance analytics dashboards"
-    ],
-    "techStack": [
-      "React 18 + Next.js",
-      "Flutter",
-      "NestJS / Django REST",
-      "Docker",
-      "Kubernetes",
-      "PostgreSQL",
-      "AWS / GCP"
-    ],
-    "detailedFeatures": {
-      "Adaptive Learning Engine": "Combines rule-based systems and machine learning to deliver tailored learning experiences.",
-      "Interactive Content Player": "Engages students with real-time hints and dynamic math exercises.",
-      "Gamification & Dashboards": "Offers personalized progress tracking and achievement rewards.",
-      "Mobile-First Experience": "Built with Flutter for a responsive mobile app, complete with offline mode.",
-      "Immersive AR Geometry Modules": "Brings mathematical concepts to life through augmented reality.",
-      "Live Tutoring": "Enables 1:1 and group tutoring sessions powered by WebRTC for real-time interaction.",
-      "Accessibility First": "Designed to meet WCAG 2.1 standards, with multilingual support for inclusive education.",
-      "Advanced Analytics & Reporting": "Visualizes performance and progress through interactive D3.js dashboards."
-    },
-    "supportedCurricula": ["EQAO (Canada)", "CBSE/ICSE (India)"],
-    "compliance": ["GDPR", "PIPEDA", "PHIPA"],
-    "security": "OAuth 2.0, JWT, TLS 1.3, AES-256 encryption",
-    "infrastructure": "AWS/GCP, Terraform, CI/CD via GitHub Actions"
-  },
+  // {
+  //   "id": "matheddu",
+  //   "folder": "MathEdu",
+  //   "name": "MathEdu",
+  //   "category": "web",
+  //   "tagline": "Adaptive SaaS Math Education Platform",
+  //   "description": "A scalable SaaS platform for math education supporting EQAO and CBSE/ICSE curricula, with adaptive learning, AR modules, live tutoring, and GDPR compliance.",
+  //   "features": [
+  //     "Adaptive ML-based learning engine",
+  //     "Gamification with achievements & rewards",
+  //     "Immersive AR Geometry Modules",
+  //     "Live 1:1 & group tutoring via WebRTC",
+  //     "WCAG 2.1 accessibility & multilingual support",
+  //     "D3.js performance analytics dashboards"
+  //   ],
+  //   "techStack": [
+  //     "React 18 + Next.js",
+  //     "Flutter",
+  //     "NestJS / Django REST",
+  //     "Docker",
+  //     "Kubernetes",
+  //     "PostgreSQL",
+  //     "AWS / GCP"
+  //   ],
+  //   "detailedFeatures": {
+  //     "Adaptive Learning Engine": "Combines rule-based systems and machine learning to deliver tailored learning experiences.",
+  //     "Interactive Content Player": "Engages students with real-time hints and dynamic math exercises.",
+  //     "Gamification & Dashboards": "Offers personalized progress tracking and achievement rewards.",
+  //     "Mobile-First Experience": "Built with Flutter for a responsive mobile app, complete with offline mode.",
+  //     "Immersive AR Geometry Modules": "Brings mathematical concepts to life through augmented reality.",
+  //     "Live Tutoring": "Enables 1:1 and group tutoring sessions powered by WebRTC for real-time interaction.",
+  //     "Accessibility First": "Designed to meet WCAG 2.1 standards, with multilingual support for inclusive education.",
+  //     "Advanced Analytics & Reporting": "Visualizes performance and progress through interactive D3.js dashboards."
+  //   },
+  //   "supportedCurricula": ["EQAO (Canada)", "CBSE/ICSE (India)"],
+  //   "compliance": ["GDPR", "PIPEDA", "PHIPA"],
+  //   "security": "OAuth 2.0, JWT, TLS 1.3, AES-256 encryption",
+  //   "infrastructure": "AWS/GCP, Terraform, CI/CD via GitHub Actions"
+  // },
   {
     "id": "motion_trak",
     "folder": "Motion Trak",
@@ -580,32 +610,32 @@ export const soft_prod=[
     },
     "highlights": "This collaboration with Simplifi Automation highlights Quickgen's expertise in creating cutting-edge hardware solutions that advance the fields of telehealth and medical diagnostics."
   },
-  {
-    "id": "e_nose_analyzer",
-    "folder": "E-Nose Health Analyzer",
-    "name": "E-Nose Health Analyzer",
-    "category": "health_tech_wearables",
-    "tagline": "Animal Health Monitoring via Urinalysis",
-    "description": "PCB layout and electronics for an E-Nose Health Analyzer assessing animal health through urinal tests, developed in collaboration with Micrux using IDA Sensors (D-IDA6-Au).",
-    "features": [
-      "Health monitoring by detecting urinary biomarkers",
-      "IDA (Interdigitated Array) sensors for high-sensitivity detection",
-      "Medical-grade design for veterinary diagnostics",
-      "Precise chemical analysis of urine samples"
-    ],
-    "techStack": [
-      "IDA Sensors (D-IDA6-Au)",
-      "Custom PCB",
-      "Analog signal processing"
-    ],
-    "client": "Micrux (Collaboration)",
-    "detailedFeatures": {
-      "Health Monitoring by Urinalysis": "Accurately detects and analyzes health markers in animal urine samples.",
-      "IDA Sensor Integration": "Features advanced IDA (Interdigitated Array) sensors for high sensitivity detection.",
-      "Medical-Grade Design": "Developed to meet the standards of veterinary health diagnostics."
-    },
-    "highlights": "This project highlights Quickgen's expertise in the design and development of medical electronics, focusing on accurate health assessment through cutting-edge sensor technology."
-  },
+  // {
+  //   "id": "e_nose_analyzer",
+  //   "folder": "E-Nose Health Analyzer",
+  //   "name": "E-Nose Health Analyzer",
+  //   "category": "health_tech_wearables",
+  //   "tagline": "Animal Health Monitoring via Urinalysis",
+  //   "description": "PCB layout and electronics for an E-Nose Health Analyzer assessing animal health through urinal tests, developed in collaboration with Micrux using IDA Sensors (D-IDA6-Au).",
+  //   "features": [
+  //     "Health monitoring by detecting urinary biomarkers",
+  //     "IDA (Interdigitated Array) sensors for high-sensitivity detection",
+  //     "Medical-grade design for veterinary diagnostics",
+  //     "Precise chemical analysis of urine samples"
+  //   ],
+  //   "techStack": [
+  //     "IDA Sensors (D-IDA6-Au)",
+  //     "Custom PCB",
+  //     "Analog signal processing"
+  //   ],
+  //   "client": "Micrux (Collaboration)",
+  //   "detailedFeatures": {
+  //     "Health Monitoring by Urinalysis": "Accurately detects and analyzes health markers in animal urine samples.",
+  //     "IDA Sensor Integration": "Features advanced IDA (Interdigitated Array) sensors for high sensitivity detection.",
+  //     "Medical-Grade Design": "Developed to meet the standards of veterinary health diagnostics."
+  //   },
+  //   "highlights": "This project highlights Quickgen's expertise in the design and development of medical electronics, focusing on accurate health assessment through cutting-edge sensor technology."
+  // },
   {
     "id": "iot_pillbox",
     "folder": "IoT Pillbox",
@@ -1463,34 +1493,34 @@ export const soft_prod=[
     },
     "highlights": "This project highlights Quickgen's expertise in creating robust, autonomous systems for challenging applications."
   },
-  {
-    "id": "indigenous_robots",
-    "folder": "Indigenous Robots - NERC",
-    "name": "Indigenous Robots - NERC",
-    "category": "robotics_drones",
-    "tagline": "Multi-Function Competition Robots",
-    "description": "Indigenous robots developed for the National Engineering Robotics Contest (CEME NUST, Pakistan), winning multiple trophies from 2017–2020 with line following, ball potting, fruit harvesting, and trash maintenance capabilities.",
-    "features": [
-      "Line following, ball potting, and fruit harvesting capabilities",
-      "Trash maintenance and multi-function task handling",
-      "Award-winning designs across national competitions 2017-2020",
-      "Versatile design for both industrial and academic applications"
-    ],
-    "techStack": [
-      "Custom robotics PCB",
-      "Microcontrollers",
-      "Motor drivers",
-      "Sensors array"
-    ],
-    "client": "National Engineering Robotics Contest, CEME NUST (Pakistan)",
-    "competitionYears": "2017–2020",
-    "detailedFeatures": {
-      "Multi-Functional Capabilities": "Equipped with line following, ball potting, fruit harvesting, and trash maintenance facilities.",
-      "Robotics Competitions": "Showcased advanced robotics designs in competitions across Pakistan, winning multiple trophies from 2017 to 2020.",
-      "Versatile Design": "Robotics are designed for a range of applications, from industrial use to academic projects."
-    },
-    "highlights": "This project highlights Quickgen's expertise in robotics innovation, delivering solutions for diverse operational needs."
-  },
+  // {
+  //   "id": "indigenous_robots",
+  //   "folder": "Indigenous Robots - NERC",
+  //   "name": "Indigenous Robots - NERC",
+  //   "category": "robotics_drones",
+  //   "tagline": "Multi-Function Competition Robots",
+  //   "description": "Indigenous robots developed for the National Engineering Robotics Contest (CEME NUST, Pakistan), winning multiple trophies from 2017–2020 with line following, ball potting, fruit harvesting, and trash maintenance capabilities.",
+  //   "features": [
+  //     "Line following, ball potting, and fruit harvesting capabilities",
+  //     "Trash maintenance and multi-function task handling",
+  //     "Award-winning designs across national competitions 2017-2020",
+  //     "Versatile design for both industrial and academic applications"
+  //   ],
+  //   "techStack": [
+  //     "Custom robotics PCB",
+  //     "Microcontrollers",
+  //     "Motor drivers",
+  //     "Sensors array"
+  //   ],
+  //   "client": "National Engineering Robotics Contest, CEME NUST (Pakistan)",
+  //   "competitionYears": "2017–2020",
+  //   "detailedFeatures": {
+  //     "Multi-Functional Capabilities": "Equipped with line following, ball potting, fruit harvesting, and trash maintenance facilities.",
+  //     "Robotics Competitions": "Showcased advanced robotics designs in competitions across Pakistan, winning multiple trophies from 2017 to 2020.",
+  //     "Versatile Design": "Robotics are designed for a range of applications, from industrial use to academic projects."
+  //   },
+  //   "highlights": "This project highlights Quickgen's expertise in robotics innovation, delivering solutions for diverse operational needs."
+  // },
   {
     "id": "esp_drone",
     "folder": "ESP Drone - Palm Size Spy Drone",
@@ -1666,6 +1696,7 @@ function buildProjectImagePath(category: string, projectFolder: string, imageFil
 }
 
 export const workCards = soft_prod.map((project) => ({
+  ...(project as typeof project & { image?: string; folder?: string }),
   slug: project.id,
   title: project.name,
   tagline: project.tagline,

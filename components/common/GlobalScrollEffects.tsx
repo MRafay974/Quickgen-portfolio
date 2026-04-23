@@ -62,11 +62,11 @@ export function GlobalScrollEffects({ children }: GlobalScrollEffectsProps) {
     const ctx = gsap.context(() => {
       const animatedItems = gsap.utils.toArray<HTMLElement>("[data-animate='fade-up']");
 
-      animatedItems.forEach((item) => {
+      animatedItems.forEach((item, index) => {
         gsap.fromTo(
           item,
           {
-            y: 36,
+            y: 60,
             opacity: 0,
           },
           {
@@ -74,10 +74,11 @@ export function GlobalScrollEffects({ children }: GlobalScrollEffectsProps) {
             opacity: 1,
             duration: 0.9,
             ease: "power2.out",
+            delay: index * 0.08,
             scrollTrigger: {
               trigger: item,
-              start: "top 88%",
-              once: true,
+              start: "top 85%",
+              toggleActions: "play none none none",
             },
           }
         );

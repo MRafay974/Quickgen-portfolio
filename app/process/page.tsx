@@ -10,10 +10,10 @@ export default function ProcessPage() {
   return (
     <div className="min-h-screen bg-white text-zinc-950 font-sans">
       <Navbar currentPage="Process" />
-      <ProcessPageContent />
-      <ProcessScrollSections/>
-      <RecipeSection />
-      <Footer activeLink="Process" />
+      <div data-animate="fade-up"><ProcessPageContent /></div>
+      <div data-animate="fade-up"><ProcessScrollSections /></div>
+      <div data-animate="fade-up"><RecipeSection /></div>
+      <div data-animate="fade-up"><Footer activeLink="Process" /></div>
     </div>
   );
 }

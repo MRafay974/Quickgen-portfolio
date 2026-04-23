@@ -8,9 +8,9 @@ export default function ServicesPage() {
   return (
     <div>
       <Navbar currentPage="Services" />
-      <ServicesPageContent />
-      <RecipeSection />
-      <Footer activeLink="Services" />
+      <div data-animate="fade-up"><ServicesPageContent /></div>
+      <div data-animate="fade-up"><RecipeSection /></div>
+      <div data-animate="fade-up"><Footer activeLink="Services" /></div>
     </div>
   );
 }

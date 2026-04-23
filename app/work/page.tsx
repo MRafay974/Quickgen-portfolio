@@ -23,10 +23,18 @@ export default function WorkPage() {
   const [activeFilter, setActiveFilter] = useState<Filter>("All");
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
 
-  const filteredCards =
-    activeFilter === "All"
-      ? workCards
-      : workCards.filter((c) => c.category === activeFilter);
+  const filteredCards = (() => {
+    if (activeFilter !== "All") {
+      return workCards.filter((c) => c.category === activeFilter);
+    }
+    const reversed = [...workCards].reverse();
+    const seen = new Set<string>();
+    return reversed.filter((c) => {
+      if (seen.has(c.title)) return false;
+      seen.add(c.title);
+      return true;
+    });
+  })();
 
   const visibleCards = filteredCards.slice(0, visibleCount);
   const hasMore = visibleCount < filteredCards.length;
@@ -41,7 +49,7 @@ export default function WorkPage() {
       <Navbar currentPage="Work" />
 
       <main className="max-w-7xl mx-auto px-6 py-12 lg:px-8 lg:py-16">
-        <section className="border-b border-zinc-200 pb-10">
+        <section data-animate="fade-up" className="border-b border-zinc-200 pb-10">
           <div className="mb-8 max-w-3xl">
             <h1 className="text-4xl font-black tracking-tight sm:text-6xl lg:text-7xl">Work</h1>
             <p className="mt-4 max-w-2xl text-base sm:text-xl leading-8 text-zinc-600">
@@ -75,7 +83,7 @@ export default function WorkPage() {
           </div>
         </section>
 
-        <section className="mt-12">
+        <section data-animate="fade-up" className="mt-12">
           {visibleCards.length === 0 ? (
             <p className="py-16 text-center text-zinc-500">No projects found.</p>
           ) : (
@@ -192,8 +200,8 @@ export default function WorkPage() {
         </section>
       </main>
 
-      <RecipeSection />
-      <Footer activeLink="Work" />
+      <div data-animate="fade-up"><RecipeSection /></div>
+      <div data-animate="fade-up"><Footer activeLink="Work" /></div>
     </div>
   );
 }

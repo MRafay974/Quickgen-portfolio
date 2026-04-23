@@ -1,11 +1,12 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useLayoutEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import type { Swiper as SwiperInstance } from "swiper";
 import Link from "next/link";
 import "swiper/css";
+import gsap from "gsap";
 
 import { Featured } from "@/components/mainPage/Featured";
 import { Process } from "@/components/mainPage/Process";
@@ -30,6 +31,30 @@ const CARDS = [
 
 export default function Home() {
   const swiperRef = useRef<SwiperInstance | null>(null);
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const headingRef = useRef<HTMLDivElement>(null);
+  const subtitleRef = useRef<HTMLDivElement>(null);
+
+  useLayoutEffect(() => {
+    if (typeof window === "undefined") return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const targets = [carouselRef.current, headingRef.current, subtitleRef.current].filter(Boolean);
+
+    targets.forEach((el, i) => {
+      gsap.fromTo(
+        el,
+        { opacity: 0, y: 60 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.9,
+          ease: "power2.out",
+          delay: 0.1 + i * 0.15,
+        }
+      );
+    });
+  }, []);
 
   return (
     <div className="min-h-screen bg-black text-white font-sans">
@@ -40,28 +65,29 @@ export default function Home() {
 
         {/* ── Swiper carousel ── */}
         <div
+          ref={carouselRef}
           className="absolute inset-0 z-0"
         >
-          
-         <Swiper
-  modules={[Autoplay]}
-  onSwiper={(swiper) => (swiperRef.current = swiper)}
-  slidesPerView="auto"
-  spaceBetween={16}
-  loop={true}
-  freeMode={true}
-  centeredSlides={false}
-  allowTouchMove={true}
-  autoplay={{
-    delay: 0,
-    disableOnInteraction: false,
-    pauseOnMouseEnter: false,
-  }}
-  speed={10000}
-  grabCursor={true}
-  className="hero-swiper h-full! w-full!"
-  style={{ paddingLeft: "16px" }}
->
+
+          <Swiper
+            modules={[Autoplay]}
+            onSwiper={(swiper) => (swiperRef.current = swiper)}
+            slidesPerView="auto"
+            spaceBetween={16}
+            loop={true}
+            freeMode={true}
+            centeredSlides={false}
+            allowTouchMove={true}
+            autoplay={{
+              delay: 0,
+              disableOnInteraction: false,
+              pauseOnMouseEnter: false,
+            }}
+            speed={10000}
+            grabCursor={true}
+            className="hero-swiper h-full! w-full!"
+            style={{ paddingLeft: "16px" }}
+          >
             {[...CARDS, ...CARDS, ...CARDS].map((card, i) => (
               <SwiperSlide key={i} style={{ width: 420 }} className="h-full!">
                 <div className="relative w-full h-full flex items-center py-10">
@@ -96,28 +122,28 @@ export default function Home() {
         />
 
         {/* ── Heading — centred vertically ── */}
-        <div className="relative z-20 w-full flex flex-col items-center text-center px-4 select-none">
+        <div ref={headingRef} className="relative z-20 w-full flex flex-col items-center text-center px-4 select-none">
           <h1
             className="font-black leading-none tracking-tight"
             style={{ fontSize: "clamp(2.5rem, 8vw, 6.5rem)" }}
           >
             Build for Real
-<span className="text-red-500">.</span>
+            <span className="text-red-500">.</span>
           </h1>
           <Link
-  href="/contact"
-  className="mt-3 rounded px-8 py-4 text-m font-semibold text-white bg-[#C0392B] transition hover:bg-[#a93226] inline-flex items-center gap-2"
->
-  Book Your Free Discovery Call →
-</Link>
+            href="/contact"
+            className="mt-3 rounded px-8 py-4 text-m font-semibold text-white bg-[#C0392B] transition hover:bg-[#a93226] inline-flex items-center gap-2"
+          >
+            Book Your Free Discovery Call →
+          </Link>
         </div>
 
         {/* ── Subtitle — pinned to bottom ── */}
-        <div className="absolute bottom-10 left-0 right-0 z-20 flex justify-center px-6 pointer-events-none">
+        <div ref={subtitleRef} className="absolute bottom-10 left-0 right-0 z-20 flex justify-center px-6 pointer-events-none">
           <p className="text-lg md:text-xl text-zinc-400  text-center max-w-xl font-bold leading-tight">
-           We turn what exists
-in your mind into what
-exists in the market.
+            We turn what exists
+            in your mind into what
+            exists in the market.
           </p>
         </div>
 
@@ -134,15 +160,15 @@ exists in the market.
       </section>
 
       {/* ── Rest of page ── */}
-      <Featured />
-      <Process />
-      <ProjectCards />
-      <Testimonials />
-      <ImpactCarousel />
-            <MoreWork />
-      <StatsSection />
-      <RecipeSection />
-      <Footer />
+      <div data-animate="fade-up"><Featured /></div>
+      <div data-animate="fade-up"><Process /></div>
+      <div data-animate="fade-up"><ProjectCards /></div>
+      <div data-animate="fade-up"><Testimonials /></div>
+      <div data-animate="fade-up"><ImpactCarousel /></div>
+      <div data-animate="fade-up"><MoreWork /></div>
+      <div data-animate="fade-up"><StatsSection /></div>
+      <div data-animate="fade-up"><RecipeSection /></div>
+      <div data-animate="fade-up"><Footer /></div>
     </div>
   );
 }

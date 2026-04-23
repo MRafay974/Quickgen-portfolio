@@ -42,7 +42,7 @@ export default function ContactPageContent() {
   return (
     <>
       {/* ── Hero image ─────────────────────────────────────────────────── */}
-      <div className="relative w-full h-screen sm:h-[30vh] overflow-hidden">
+      <div className="relative w-full h-[50vh] sm:h-[65vh] overflow-hidden">
         <Image
           src="/images/contact/contact.png"
           alt="QuickGen office"
