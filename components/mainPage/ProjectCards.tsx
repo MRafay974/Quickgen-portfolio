@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { workCards } from "@/constants/work/workCards";
+import { workCards, CATEGORY_DISPLAY_NAMES } from "@/constants/work/workCards";
 
 const FEATURED_PROJECT_SPECS = [
   { slug: "motion_track", previewImage: "/images/landingPage/motion_trackk.png", background: "#1A1A1A", hoverBackground: "#3a3a3a" },
@@ -17,7 +17,7 @@ const FEATURED_PROJECTS = FEATURED_PROJECT_SPECS.map((spec) => {
 }).filter((project): project is NonNullable<typeof project> => Boolean(project));
 
 function formatCategoryLabel(category: string) {
-  return category.replace(/_/g, " ").replace(/\b\w/g, (char) => char.toUpperCase());
+  return CATEGORY_DISPLAY_NAMES[category] ?? category.replace(/_/g, " ").replace(/\b\w/g, (char) => char.toUpperCase());
 }
 
 export function ProjectCards() {

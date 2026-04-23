@@ -8,7 +8,7 @@ const FEATURED_SPECS = [
   { slug: "pulse_eda",         displayCategory: "HEALTH TECH", image: "/images/landingPage/pulse.png" },
   { slug: "osmart_bms",        displayCategory: "EV & POWER",  image: "/images/landingPage/bms.png" },
   { slug: "ai_pendant",        displayCategory: "WEARABLE",    image: "/images/landingPage/box.png" },
-  { slug: "radar_reverse_eng", displayCategory: "DEFENCE",     image: "/images/landingPage/vintage_pcb.png" },
+  { slug: "esp_drone", displayCategory: "DEFENCE",     image: "/images/landingPage/DRONE 2.png" },
 ];
 
 export function MoreWork() {

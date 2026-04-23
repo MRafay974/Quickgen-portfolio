@@ -22,7 +22,24 @@ export const soft_prod=[
       "Chart.js",
       "Azure",
       "GitHub Actions"
-    ]
+    ],
+    "client": "Simplifi Automation (USA)",
+    "platform": "iOS & Android",
+    "detailedFeatures": {
+      "BLE Communication": "Real-time, low-power data exchange with firmware devices. Ideal for IoT and health monitoring.",
+      "Local Cache Storage": "Fast, secure data access, automatically cleared on app uninstallation.",
+      "Interactive Data Visualizations": "Intuitive graphs for real-time health trends and metrics analysis.",
+      "Profile Management": "Customizable user profiles with instant updates for a tailored experience.",
+      "Smart Recommendations": "Personalized wellness tips based on real-time data insights.",
+      "Hydration and Wellness Insights": "Real-time, low-power data exchange with firmware devices.",
+      "Comprehensive Testing Suite": {
+        "Breath Analysis": "Tracks acetone, CO2, and hydrogen levels.",
+        "ECG Monitoring": "Monitors cardiac rhythms.",
+        "Pulse Oximeter Test": "Measures blood oxygen and heart rate.",
+        "Temperature Tests": "Provides physical condition insights."
+      }
+    },
+    "highlights": "Innovative BLE integration, streamlined caching, and user-centric design ensure peak performance and an exceptional user experience."
   },
   {
     "id": "flex_step",
@@ -43,7 +60,16 @@ export const soft_prod=[
       "Firebase",
       "BLE",
       "GitHub Actions"
-    ]
+    ],
+    "platform": "iOS & Android",
+    "detailedFeatures": {
+      "Step Tracking": "Logs daily step count for activity monitoring.",
+      "Calorie Tracking": "Estimates calories burned based on movement.",
+      "Distance Monitoring": "Tracks daily distance traveled.",
+      "Foot Pressure Analysis": "Monitors pressure distribution across the foot to identify stress points.",
+      "Foot Bend Detection": "Captures foot bending angles for gait and posture analysis."
+    },
+    "highlights": "Sand Viper employs a seamless Flutter framework, sensor integration, and real-time analytics, ensuring a high-performance app with a user-friendly interface tailored for impactful health and activity tracking."
   },
   {
     "id": "apollo_golf",
@@ -67,7 +93,17 @@ export const soft_prod=[
       "BLE",
       "Azure",
       "GitHub Actions"
-    ]
+    ],
+    "platform": "iOS & Android",
+    "detailedFeatures": {
+      "Club, Course, Tee & Hole Selection": "Easy selection of preferred golf settings directly within the app.",
+      "Map Integration & Location Tracking": "Tracks user location on golf courses and calculates real-time distances to improve gameplay strategy.",
+      "Game Performance Analysis": "Logs shots, scores, and provides detailed post-game performance insights.",
+      "AI Coach": "Offers swing analysis and posture feedback through video uploads or real-time recordings.",
+      "Weather Insights": "Provides real-time course-specific weather data to guide club and strategy choices.",
+      "Smart Sunglasses Integration": "Bluetooth connectivity to smart sunglasses for real-time movement tracking and data analysis."
+    },
+    "highlights": "With robust React Native development, advanced AI algorithms, and seamless Bluetooth integration, Apollo delivers an engaging, data-rich platform tailored for golfers of all skill levels."
   },
   {
     "id": "little_birdie",
@@ -89,7 +125,16 @@ export const soft_prod=[
       "BLE",
       "Azure",
       "GitHub Actions"
-    ]
+    ],
+    "platform": "iOS & Android",
+    "detailedFeatures": {
+      "Cross-Platform App": "Built with React Native for smooth performance on iOS and Android.",
+      "User-Friendly Interface": "Intuitive single-page design for effortless navigation.",
+      "Real-Time Speech Translation": "Facilitates instant translation for seamless communication across 55+ languages.",
+      "Bluetooth Hardware Integration": "Connects reliably with custom hardware to enhance translation capabilities.",
+      "Web API Integration": "Ensures efficient data flow and scalability between the app and hardware."
+    },
+    "highlights": "Leveraging React Native, robust Bluetooth protocols, and scalable APIs, Little Birdie ensures real-time, reliable, and user-friendly cross-language communication with advanced hardware connectivity."
   },
   {
     "id": "giving_cube",
@@ -111,7 +156,14 @@ export const soft_prod=[
       "SQL",
       "Stripe API",
       "GitHub Actions"
-    ]
+    ],
+    "detailedFeatures": {
+      "Smart Cube": "Detects coin drops, identifies users, and syncs data via Bluetooth/WiFi.",
+      "Mobile App": "User onboarding, donation management, parental controls, and analytics.",
+      "Web App (Admin Panel & Charities Panel)": "Tools for managing charities, campaigns, and donor interactions.",
+      "Transaction Flow": "Coin drop triggers real-time donation processing via Stripe API."
+    },
+    "highlights": "Delivered a seamless, interactive charitable giving platform integrating smart hardware, real-time processing, and user-friendly features."
   },
   {
     "id": "motion_track",
@@ -132,7 +184,20 @@ export const soft_prod=[
       "TensorFlow",
       "Azure",
       "GitHub Actions"
-    ]
+    ],
+    "detailedFeatures": {
+      "Wearable Integration": "Real-time data capture from multiple IMUs, wireless data transmission.",
+      "Machine Learning Models": "Custom models for gait analysis, real-time stick figure visualization in the app.",
+      "Cloud-Based Processing": "Data streaming, advanced processing, and visualization as analytics and graphs.",
+      "Mobile Application": "Cross-platform app with live IMU graphs, user customization, and activity tracking.",
+      "DevOps & Deployment": "CI/CD pipelines, scalable Azure cloud infrastructure for efficient processing and storage."
+    },
+    "achievements": [
+      "Designed and developed a complete system from hardware to app deployment.",
+      "Trained accurate machine learning models for gait analysis and visualization.",
+      "Delivered a scalable, user-friendly solution with real-time capabilities."
+    ],
+    "highlights": "Motion Track combines hardware, software and AI to transform human gait analysis. This innovative solution underscores expertise in end-to-end development."
   },
   {
     "id": "ai_wardrobe",
@@ -152,7 +217,15 @@ export const soft_prod=[
       "LLMs",
       "Google Calendar API",
       "Weather API"
-    ]
+    ],
+    "detailedFeatures": {
+      "Event-Based Outfit Planning": "Syncs with Google Calendar to recommend outfits tailored to upcoming events.",
+      "Weather-Aware Clothing Suggestions": "Fetches real-time weather forecasts and adjusts outfit recommendations accordingly.",
+      "AI-Powered Personalization": "Uses large language models to provide context-aware styling suggestions based on lifestyle, events, and user preferences.",
+      "Adaptive Learning": "Refines recommendations over time through user feedback and evolving style choices.",
+      "Cross-Platform Accessibility": "Lightweight, fast, and accessible across devices with a responsive web-based interface.",
+      "Smart Integrations": "Seamless integration with Google Calendar and Weather APIs for accurate, event-specific guidance."
+    }
   },
   {
     "id": "scentix_app",
@@ -171,7 +244,21 @@ export const soft_prod=[
       "Flutter",
       "Real-time ppm analysis",
       "Sensor-integrated spray system"
-    ]
+    ],
+    "detailedFeatures": {
+      "Real-Time Odor Monitoring": "Continuously tracks air quality with TVOC sensors to detect odor levels.",
+      "Dynamic Spray Control": "Adjusts spray cycles and intensity based on ppm thresholds for optimal freshness.",
+      "Personalized Scent Selection": "Controlled via a Flutter mobile app, allowing users to choose and customize scent preferences.",
+      "Smart Distribution Analysis": "Uses data-driven thresholds (P50–P99) to trigger precise spray responses for different odor intensities.",
+      "Odor Categories & Automated Actions": {
+        "Clean Air (0–20 ppm)": "No spray",
+        "Mild Odor (21–40 ppm)": "Delay cycle",
+        "Moderate Odor (41–70 ppm)": "Spray after short delay",
+        "Strong Odor (71–120 ppm)": "Immediate spray",
+        "Extreme Odor (121+ ppm)": "Immediate + cooldown lock"
+      }
+    },
+    "targetEnvironments": ["Restaurants", "Gyms", "Markets", "Indoor public spaces"]
   },
   {
     "id": "fps",
@@ -191,7 +278,20 @@ export const soft_prod=[
       "Arduino / ESP32",
       "Flutter",
       "Bluetooth / Wi-Fi"
-    ]
+    ],
+    "detailedFeatures": {
+      "Real-Time Obstacle Detection": "Uses ultrasonic and IR sensors to detect objects ahead with high precision.",
+      "Proximity Alerts": "Provides both visual and audio signals to warn drivers as they approach obstacles.",
+      "Safe Distance Zones": "Displays green, yellow, and red indicators for intuitive feedback on distance.",
+      "Compact & Affordable Hardware": "Engineered for easy installation without adding bulk or cost.",
+      "Mobile App Integration": "A Flutter-based app enables configuration, monitoring, and parking logs."
+    },
+    "hardwareStack": {
+      "Sensors": "IR proximity sensors",
+      "Microcontroller": "Arduino / ESP32 for signal processing",
+      "Communication": "Bluetooth / Wi-Fi link between sensor & app",
+      "Data Handling": "Real-time processing of distance thresholds"
+    }
   },
   {
     "id": "lumevue",
@@ -211,7 +311,15 @@ export const soft_prod=[
       "Lightning/USB-C bridge",
       "iOS companion app",
       "E-ink/OLED"
-    ]
+    ],
+    "detailedFeatures": {
+      "Real-Time Screen Mirroring": "Projects the iPhone's screen directly onto the cover surface.",
+      "Interactive Display Layer": "Enables glance-based interaction with apps, media, and notifications.",
+      "Quick Notifications & Media Preview": "Lets users check alerts or playbacks without unlocking their device.",
+      "Stylish & Functional Design": "Provides both durable protection and modern utility.",
+      "Energy-Efficient Technology": "Uses low-power e-ink or OLED displays to balance performance with battery efficiency."
+    },
+    "highlights": "LumeVue redefines the role of a smartphone cover — combining style, utility, and energy-efficient technology into a single intelligent accessory."
   },
   {
     "id": "ergonematics",
@@ -231,7 +339,17 @@ export const soft_prod=[
       "BLE",
       "Wi-Fi",
       "Real-time telemetry"
-    ]
+    ],
+    "detailedFeatures": {
+      "Customizable Pressure Profiles": "Choose between three distinct operating modes, including dynamic patterns and static pressure support.",
+      "Precision Cycle Timing": "Adjust movement sequences with discrete 5, 10, or 15-minute cycle options for tailored support.",
+      "Module-Level Control": "A visual grid interface allows users to override individual air modules, adjusting duty cycles or inverting pressurization patterns.",
+      "Persistent Config States": "Save and switch between up to 5 custom presets that store your favorite profile, timing, and module overrides.",
+      "Device Maintenance": "Integrated tools for OTA firmware updates, battery monitoring, and factory resets to ensure peak performance."
+    },
+    "hardwareCompatibility": "Smart Cushion with ~18 air modules, dual pumps, and pressure sensors",
+    "connectivity": "Bluetooth Low Energy (BLE) for primary control and Wi-Fi for configuration and updates",
+    "dataHandling": "Real-time telemetry and status synchronization within 5 seconds of app launch"
   },
   {
     "id": "ai_pendant",
@@ -255,7 +373,18 @@ export const soft_prod=[
       "BLE 5.x",
       "WebSockets",
       "JWT"
-    ]
+    ],
+    "detailedFeatures": {
+      "Intelligent Focus Management": "Features Pomodoro sessions, refocus cues for drifting attention, and haptic nudges to detect conversation domination.",
+      "Routine & Task Automation": "Create scheduled sequences for morning, workday, or bedtime with step-by-step voice prompts and task verification.",
+      "Emotional & Sensory Support": "Includes a haptic-guided breathing pacer, stress-triggered relaxation prompts, and a library of soothing soundscapes and white noise.",
+      "Mission Mode for Kids": "A motivational system where parents log tasks that trigger 'missions' and rewards on the child's wearable.",
+      "Proactive Monitoring": "Alerts for hyperfocus (stillness over 2 hours), sedentary behavior, and excessive phone usage.",
+      "Smart Safety & Management": "Includes battery monitoring, 'Find My Device' beeping, and anti-loss alerts if the pendant is left behind."
+    },
+    "hardware": "Wearable pendant featuring a Nordic nRF BLE SoC, BNO-series IMU for motion sensing, a microphone for activity detection, and haptic motors.",
+    "security": "GDPR and COPPA aligned, featuring TLS 1.3 encryption, JWT-based authentication, and strict parent-only access to child data.",
+    "communication": "BLE 5.x with encrypted pairing and token exchange; backend sync utilizes WebSockets for 30-second live updates."
   },
   {
     "id": "quickcom",
@@ -279,7 +408,19 @@ export const soft_prod=[
       "MongoDB",
       "TLS 1.3",
       "OAuth 2.0 / JWT"
-    ]
+    ],
+    "detailedFeatures": {
+      "Real-Time Audio & Text Communication": "Instant team communication that works like walkie-talkies but smarter and more secure.",
+      "Channel-Based Messaging": "Organize staff communication into dedicated team channels with broadcast options for urgent updates.",
+      "Super Admin Dashboard": "Provides full oversight to monitor staff, manage roles, and send announcements across teams.",
+      "Automatic Reconnection": "Devices auto-reconnect within range, ensuring no communication gaps during operations.",
+      "AI-Powered Assistance": "Integrates with local LLMs to provide transcription, note-taking, and intelligent task tracking.",
+      "Role-Based Access Control (RBAC)": "Secure role-based privileges for staff, managers, and admins.",
+      "End-to-End Security": "TLS encryption and OAuth/JWT authentication ensure safe and private communication.",
+      "Multi-Floor Scalability": "Optimized for large buildings with multiple floors, maintaining reliable real-time connectivity."
+    },
+    "networkTopology": "Intranet-based (Wi-Fi/Ethernet), star topology for reliability",
+    "targetSectors": ["Hotels", "Restaurants", "Hospitality"]
   },
   {
     "id": "matheddu",
@@ -304,7 +445,21 @@ export const soft_prod=[
       "Kubernetes",
       "PostgreSQL",
       "AWS / GCP"
-    ]
+    ],
+    "detailedFeatures": {
+      "Adaptive Learning Engine": "Combines rule-based systems and machine learning to deliver tailored learning experiences.",
+      "Interactive Content Player": "Engages students with real-time hints and dynamic math exercises.",
+      "Gamification & Dashboards": "Offers personalized progress tracking and achievement rewards.",
+      "Mobile-First Experience": "Built with Flutter for a responsive mobile app, complete with offline mode.",
+      "Immersive AR Geometry Modules": "Brings mathematical concepts to life through augmented reality.",
+      "Live Tutoring": "Enables 1:1 and group tutoring sessions powered by WebRTC for real-time interaction.",
+      "Accessibility First": "Designed to meet WCAG 2.1 standards, with multilingual support for inclusive education.",
+      "Advanced Analytics & Reporting": "Visualizes performance and progress through interactive D3.js dashboards."
+    },
+    "supportedCurricula": ["EQAO (Canada)", "CBSE/ICSE (India)"],
+    "compliance": ["GDPR", "PIPEDA", "PHIPA"],
+    "security": "OAuth 2.0, JWT, TLS 1.3, AES-256 encryption",
+    "infrastructure": "AWS/GCP, Terraform, CI/CD via GitHub Actions"
   },
   {
     "id": "motion_trak",
@@ -329,7 +484,18 @@ export const soft_prod=[
       "JWT",
       "RBAC",
       "HTTPS"
-    ]
+    ],
+    "detailedFeatures": {
+      "Clinician Prescription Portal": "Empowers medical professionals to manage patient recovery through a drag-and-drop calendar interface, allowing for precise adjustment of repetitions, thresholds, and dates.",
+      "Interactive Patient Dashboard": "Provides patients with a structured daily routine, locking future dates to ensure compliance and offering real-time status updates on exercise completion.",
+      "Gamified Exercise Engine": "Transforms standard rehab into an engaging experience by presenting exercises as interactive games, such as the 'Flappy Bird' proof-of-concept, to drive patient motivation.",
+      "IoT & Wearable Integration": "Connects directly to Track M1 leggings via Bluetooth and WebSockets to capture real-time motion data, ensuring exercises are performed with clinical accuracy.",
+      "Advanced Recovery Analytics": "Visualizes patient progress through longitudinal data, tracking critical metrics such as Power, Symmetry, Loading, and Stability via automated charts and reports.",
+      "Real-Time Validation & Feedback": "Utilizes sensor telemetry to provide immediate validation of exercise correctness, flagging sessions as completed correctly (green) or attempted incorrectly (orange).",
+      "Secure & Scalable Architecture": "Built with a modular backend and encrypted communication protocols (HTTPS/JWT) to support multi-hospital expansion and maintain 99.5% uptime."
+    },
+    "iotLayer": "Bluetooth to WebSocket (TCP/UDP) for Track M1 leggings integration",
+    "uptime": "99.5%"
   },
   {
     "id": "pulse_eda",
@@ -349,7 +515,16 @@ export const soft_prod=[
       "BLE",
       "Wearable hardware",
       "Cloud integration"
-    ]
+    ],
+    "client": "Quickgen Technologies (In-house)",
+    "detailedFeatures": {
+      "Non-Invasive Monitoring": "Tracks real-time skin conductance changes for insights into stress and emotional responses.",
+      "Clinical Accuracy": "Ensures medical-grade precision in detecting physiological responses.",
+      "Wearable Integration": "Compact design for seamless use with wearables, enabling continuous monitoring.",
+      "Remote Patient Management": "Allows healthcare providers to track patient data remotely."
+    },
+    "medicalApplications": ["Mental health monitoring", "Chronic disease management", "Rehabilitation", "Personalized care"],
+    "highlights": "This sensor aids in mental health monitoring, chronic disease management, and rehabilitation, enhancing personalized care and patient outcomes."
   },
   {
     "id": "scentix_hw",
@@ -369,7 +544,14 @@ export const soft_prod=[
       "TVOC sensors",
       "BLE",
       "Embedded firmware"
-    ]
+    ],
+    "client": "Quickgen Technologies (In-house)",
+    "detailedFeatures": {
+      "Odor Elimination": "Neutralizes unwanted smells with integrated scent and humidity control.",
+      "Versatile Wearable": "Available as a watch, collar accessory, or other styles for on-the-go freshness.",
+      "Smart Environmental Control": "Sensors optimize scent diffusion for a consistent, pleasant atmosphere."
+    },
+    "highlights": "This project highlights Quickgen's expertise in wearable tech, enhancing daily comfort through seamless, advanced integration."
   },
   {
     "id": "provectus_breath",
@@ -389,7 +571,14 @@ export const soft_prod=[
       "Custom PCB",
       "WiFi",
       "IoT firmware"
-    ]
+    ],
+    "client": "Simplifi Automation (USA)",
+    "detailedFeatures": {
+      "Provectus Diagnostic Device": "The hardware is integral to the Provectus handheld breath analysis system, which enables comprehensive metabolic analysis typically requiring expensive equipment and skilled technicians.",
+      "Integration with NASA Technology": "The hardware integrates NASA's electronic nose (e-nose) sensor, adapted for medical diagnostics. This innovation allows for real-time, accurate health monitoring and diagnostic capabilities.",
+      "IoT-Enabled Systems": "The hardware is designed to work seamlessly with Simplifi's IoT-based healthcare automation systems, communicated over WiFi to a host mobile device that has a custom built app."
+    },
+    "highlights": "This collaboration with Simplifi Automation highlights Quickgen's expertise in creating cutting-edge hardware solutions that advance the fields of telehealth and medical diagnostics."
   },
   {
     "id": "e_nose_analyzer",
@@ -408,7 +597,14 @@ export const soft_prod=[
       "IDA Sensors (D-IDA6-Au)",
       "Custom PCB",
       "Analog signal processing"
-    ]
+    ],
+    "client": "Micrux (Collaboration)",
+    "detailedFeatures": {
+      "Health Monitoring by Urinalysis": "Accurately detects and analyzes health markers in animal urine samples.",
+      "IDA Sensor Integration": "Features advanced IDA (Interdigitated Array) sensors for high sensitivity detection.",
+      "Medical-Grade Design": "Developed to meet the standards of veterinary health diagnostics."
+    },
+    "highlights": "This project highlights Quickgen's expertise in the design and development of medical electronics, focusing on accurate health assessment through cutting-edge sensor technology."
   },
   {
     "id": "iot_pillbox",
@@ -428,7 +624,14 @@ export const soft_prod=[
       "IoT firmware",
       "BLE / WiFi",
       "Cloud notifications"
-    ]
+    ],
+    "client": "NAK Technologies (USA)",
+    "detailedFeatures": {
+      "Pill Measurement and Tracking": "Ensures correct dosage with accurate pill tracking.",
+      "Daily Organization": "7 Compartments for easy weekly medication management.",
+      "IoT Connectivity": "Real-time monitoring and notifications to support medication adherence."
+    },
+    "highlights": "This project highlights Quickgen's expertise in developing IoT-based medical devices that improve patient compliance and health outcomes through advanced technology integration."
   },
   {
     "id": "smart_glucose",
@@ -448,7 +651,15 @@ export const soft_prod=[
       "4-layer PCB",
       "BLE",
       "Cloud integration"
-    ]
+    ],
+    "client": "Adele Health (USA)",
+    "detailedFeatures": {
+      "Real-Time Glucose Monitoring": "Accurate real-time blood glucose readings for effective diabetes management.",
+      "Connectivity and Data Integration": "Seamless data syncing with health apps and cloud platforms for continuous monitoring.",
+      "User-Friendly Design": "Compact and intuitive for easy daily use.",
+      "Stage-1 Prototype Development": "Developed a 4-layer PCB with the u-Blox BMD-330 module as the foundation."
+    },
+    "highlights": "This project highlights Quickgen's expertise in developing advanced, user-friendly medical devices for improved patient care."
   },
   {
     "id": "microblower",
@@ -468,7 +679,15 @@ export const soft_prod=[
       "Custom PCB",
       "UV LEDs",
       "25kHz driver circuit"
-    ]
+    ],
+    "client": "UK Client",
+    "context": "Developed during the COVID-19 pandemic for use in hospitals and public spaces",
+    "detailedFeatures": {
+      "Airflow + UV Disinfection": "Purified air while killing bacteria and viruses.",
+      "Portable and Efficient": "Compact design allowed for deployment in critical environments.",
+      "Continuous Protection": "Designed for long-term, energy efficient operation."
+    },
+    "highlights": "This project helped create safer environments during a global health crisis."
   },
   {
     "id": "opta_tech",
@@ -488,7 +707,14 @@ export const soft_prod=[
       "MEMS sensors",
       "Custom PCB",
       "BLE audio"
-    ]
+    ],
+    "client": "Quickgen Technologies (In-house)",
+    "detailedFeatures": {
+      "Precise Ball Tracking": "GPS and MEMS sensors deliver real-time updates on ball location and movement.",
+      "Hands-Free Communication": "Integrated microphone and speaker offer clear, audible guidance during play.",
+      "Seamless Integration": "Discreetly attaches to glasses, providing effortless use without interrupting gameplay."
+    },
+    "highlights": "This project highlights Quickgen's expertise in creating innovative wearable tech for sports, offering intuitive solutions that enhance performance and simplify the game."
   },
   {
     "id": "punchnfit",
@@ -509,7 +735,14 @@ export const soft_prod=[
       "Haptic motor",
       "Custom PCB",
       "BLE"
-    ]
+    ],
+    "client": "Quickgen Technologies (In-house)",
+    "detailedFeatures": {
+      "Punch Analysis": "IMU tracks punch speed, power, and technique for precise performance details.",
+      "Health Monitoring": "Oximeter and heart rate tracking ensure optimal training intensity and endurance.",
+      "Haptic Feedback": "Real-time tactile responses guide technique improvement and efficient movement."
+    },
+    "highlights": "This project demonstrates Quickgen's expertise in wearable fitness tech, providing boxers with actionable insights to optimize their training and achieve better results."
   },
   {
     "id": "speculum_light",
@@ -529,7 +762,14 @@ export const soft_prod=[
       "Custom PCB",
       "Rechargeable battery circuit",
       "Veterinary-grade enclosure"
-    ]
+    ],
+    "detailedFeatures": {
+      "Focused Illumination for Dental Exams": "Attaches to the dental speculum to direct concentrated, high-CRI LED lighting into the horse's oral cavity providing clear visibility during intricate procedures.",
+      "Rugged and Sterilizable Design": "Built with veterinary-grade materials, the device is water-resistant, shock-proof, and can withstand frequent sterilization in field or clinic environments.",
+      "Battery-Powered for Field Use": "Rechargeable and long-lasting, the light supports veterinarians during off-site procedures where power access is limited."
+    },
+    "targetAnimals": ["Horses", "Large animals"],
+    "highlights": "This innovation underscores Quickgen's role in advancing veterinary care by delivering practical, high-impact tools for large-animal healthcare."
   },
   {
     "id": "medical_headlamps",
@@ -549,29 +789,15 @@ export const soft_prod=[
       "Custom PCB",
       "Battery management circuit",
       "Adjustable driver"
-    ]
-  },
-  {
-    "id": "smart_thermal_sensor",
-    "folder": "Smart Thermal Sensor",
-    "name": "Smart Thermal Sensor",
-    "category": "health_tech_wearables",
-    "tagline": "Contactless Temperature Detection System",
-    "description": "Designed for Innotech International (USA) during COVID-19, this smart thermal sensor measures body temperature contactlessly from 2 meters with real-time display and cloud data storage.",
-    "features": [
-      "Contactless temperature detection from 2 meters",
-      "Real-time on-device display of results",
-      "Cloud integration for centralized monitoring and logging",
-      "Reduces infection risk in public and clinical settings"
     ],
-    "techStack": [
-      "IR thermal sensor",
-      "Custom PCB",
-      "WiFi / Cloud",
-      "Display module"
-    ]
+    "detailedFeatures": {
+      "High-Intensity Illumination": "Delivers focused, adjustable brightness with uniform light distribution minimizing eye fatigue and enhancing visibility in surgical settings.",
+      "Ergonomic Wearability": "Lightweight, adjustable head straps and balanced design for extended wear without discomfort, even during prolonged operations.",
+      "Battery-Powered Portability": "Long-lasting rechargeable battery pack ensures uninterrupted lighting across multiple use cases, including fieldwork and emergency response."
+    },
+    "targetUsers": ["Surgeons", "Healthcare professionals", "Emergency responders"],
+    "highlights": "This project reinforces Quickgen's expertise in wearable med-tech solutions, advancing surgical precision through user-centric illumination systems."
   },
-
   {
   "id": "ai_pendant",
   "folder": "AI-Pendant",
@@ -591,8 +817,14 @@ export const soft_prod=[
     "Calendar & routine sync",
     "Anti-loss & device management",
     "Biometric & inactivity detection"
-  ]
-},
+  ],
+  "detailedFeatures": {
+    "Focus & Attention Support": "Provides nudges when inactivity or prolonged hyperfocus is detected, including optional focus-session timers and refocus cues to encourage healthier work rhythms.",
+    "Smart Reminders & Routines": "Supports calendar-linked preparation reminders, recurring tasks (like medication or daily routines), and simple completion check-ins to reduce missed commitments.",
+    "Calm, Sleep & Sensory Tools": "Enables optional breathing guidance, wind-down and bedtime support, and on-demand sound options for relaxation or concentration, with personalization controls in the app."
+  },
+  "highlights": "This project demonstrates how a wearable can deliver practical, personalized support—combining behavior-aware prompts with simple device management like anti-loss and 'find my device' alerts."
+  },
   {
     "id": "aria_pendant",
     "name": "Aria Pendant",
@@ -611,7 +843,14 @@ export const soft_prod=[
       "LC3 audio codec",
       "BLE DFU",
       "Custom PCB"
-    ]
+    ],
+    "detailedFeatures": {
+      "BLE Audio Capture & Streaming": "Captures high-quality audio using dual microphones and streams LC3-compressed frames to iOS over BLE for low-latency voice experiences.",
+      "Wake Word & User Feedback": "Supports continuous wake-word detection ('Hey Aria') and uses LED patterns plus button actions to communicate state and trigger common actions.",
+      "Offline Storage & OTA Updates": "Records audio to onboard flash when disconnected, syncs when reconnected, and supports secure over-the-air firmware updates via BLE DFU."
+    },
+    "pairedPlatform": "iOS companion app",
+    "highlights": "This project highlights a robust wearable audio platform—optimized for reliable BLE performance, power-aware modes, and seamless app integration."
   },
   {
     "id": "iphone_case_lumevue",
@@ -632,7 +871,14 @@ export const soft_prod=[
       "Li-ion battery",
       "Custom PCB",
       "MagSafe-compatible"
-    ]
+    ],
+    "compatibleDevice": "iPhone 16 Pro Max",
+    "detailedFeatures": {
+      "Interactive Display Integration": "Features a built-in LCD screen on the back of the case that delivers notifications, battery stats, personalized visuals, and more without turning on your phone.",
+      "Battery & Wireless Charging": "Equipped with a dedicated battery module and wireless charging coil to extend phone usage and support seamless charging on-the-go.",
+      "Tactical Build & Aesthetic Appeal": "A durable shell wrapped in a premium gloss finish ensures both ruggedness and style, elevating everyday smartphone use."
+    },
+    "highlights": "This project showcases Quickgen's leadership in premium accessory innovation—blending industrial design and electronics to redefine what a smartphone case can do."
   },
   {
     "id": "all_brew",
@@ -651,7 +897,14 @@ export const soft_prod=[
       "Dual power supply circuit",
       "Embedded firmware",
       "Motor control"
-    ]
+    ],
+    "client": "Kiyash Rahman (Bangladesh)",
+    "detailedFeatures": {
+      "Dual Power Compatibility": "Operates on both 16VDC and 220VAC, offering complete mobility and adaptability for various power sources.",
+      "French Press Integration": "Utilizes the French Press method for quick and high quality brewing, ensuring a rich coffee experience.",
+      "Mobile and Efficient": "Designed for seamless mobility without compromising on brewing performance."
+    },
+    "highlights": "This project highlights Quickgen's ability to integrate AI-driven functionality into everyday appliances for enhanced user convenience."
   },
   {
     "id": "microclimate_comms",
@@ -671,7 +924,15 @@ export const soft_prod=[
       "Audio amplifier",
       "Microphone array",
       "Custom PCB"
-    ]
+    ],
+    "client": "Hall Labs, MicroClimate (United States)",
+    "detailedFeatures": {
+      "Multi-User Connectivity": "Connects up to 4 users internally with additional capability for external broadcasting to larger audiences.",
+      "Smartphone Integration": "Supports music playback control, call management, and volume adjustment directly from the helmet.",
+      "Enhanced Audio System": "Features a built-in microphone array and premium stereo speakers for clear, immersive audio.",
+      "BM20 BLE 4.0 Technology": "Ensures stable Bluetooth performance, supported by external audio amplifiers for robust sound quality."
+    },
+    "highlights": "This system delivers reliable, contactless communication and audio control, ideal for safe, convenient use in varied environments."
   },
   {
     "id": "naly1_speaker",
@@ -691,7 +952,14 @@ export const soft_prod=[
       "Custom PCB",
       "Speech recognition module",
       "WiFi / 4G"
-    ]
+    ],
+    "client": "Xiao U (South Korea)",
+    "detailedFeatures": {
+      "GPT-4 Integration": "Provides cutting-edge natural language understanding and conversational intelligence for dynamic user interactions.",
+      "Snapdragon Processor": "Ensures efficient AI processing, enabling real-time, contextually relevant responses with minimal latency.",
+      "Speech Recognition": "Advanced technology for accurate, intuitive voice commands, enhancing the user experience."
+    },
+    "highlights": "This project underscores Quickgen Technologies' expertise in creating advanced, scalable AI-powered conversational devices."
   },
   {
     "id": "rpi_vending",
@@ -711,7 +979,14 @@ export const soft_prod=[
       "4G LTE module",
       "Custom PCB",
       "Cloud APIs"
-    ]
+    ],
+    "client": "Livello GmbH",
+    "detailedFeatures": {
+      "4G LTE Connectivity": "Enables real-time data transfer and remote monitoring.",
+      "Integrated Sensor Control": "Manages sensors and actuators for efficient vending operations.",
+      "Cloud-Connected": "Supports secure payment processing and data management."
+    },
+    "highlights": "This design enables streamlined, connected vending operations with robust control and network capabilities."
   },
   {
     "id": "holly_phone",
@@ -731,7 +1006,14 @@ export const soft_prod=[
       "Noise-cancelling mics",
       "AI processing module",
       "BLE / WiFi"
-    ]
+    ],
+    "detailedFeatures": {
+      "Voice-Activated Assistance": "With dual noise-cancelling microphones and a built-in AI engine, Holly listens to your voice—even in noisy spaces—and delivers instant spoken answers.",
+      "Vivid AMOLED Display": "A 4-inch Full HD AMOLED screen provides visual feedback for answers, reminders, directions, and more. Clear, crisp, and always-on.",
+      "Snap-On MagSafe Design": "Attaches magnetically to the back of your iPhone, combining utility with elegance—no cables, no clutter.",
+      "Always-Ready Utility": "Use Holly to ask questions, set reminders, get directions, or control routines. It's voice-first, screen-smart, and made to simplify your day."
+    },
+    "highlights": "This AI companion keeps you connected and in control—without unlocking your phone or breaking your flow."
   },
   {
     "id": "hybrid_inverter",
@@ -752,7 +1034,15 @@ export const soft_prod=[
       "DSP microcontroller",
       "CAN / RS485",
       "Wi-Fi module"
-    ]
+    ],
+    "detailedFeatures": {
+      "8KW Pure Sine Output": "Delivers clean, stable 3-phase power suitable for sensitive electronics and heavy-duty equipment alike.",
+      "Hybrid Power Management": "Seamlessly switches between grid, solar, and battery sources to ensure optimal power delivery, even during outages.",
+      "High-Efficiency MPPT Charging": "Advanced Maximum Power Point Tracking (MPPT) boosts solar input efficiency, maximizing energy harvest in all light conditions.",
+      "Smart Control & Monitoring": "Supports app-based configuration, real-time data logging, and remote diagnostics via Wi-Fi, RS485, or CAN interfaces."
+    },
+    "targetApplications": ["Smart homes", "Microgrids", "Solar-powered facilities", "Residential", "Commercial"],
+    "highlights": "Ideal for smart homes, microgrids, and solar-powered facilities—this inverter provides dependable energy independence with industrial-grade reliability."
   },
   {
     "id": "quickcomm_hotel",
@@ -772,7 +1062,14 @@ export const soft_prod=[
       "BLE / WiFi",
       "Microphone + speaker",
       "Embedded firmware"
-    ]
+    ],
+    "client": "Quickgen Technologies (In-house)",
+    "detailedFeatures": {
+      "Dedicated Hospitality PTT Device": "The QuickComm earpiece is purpose-built for hotel teams, enabling clear, secure push-to-talk over local WiFi. Its comfortable form factor, focused channels, and all-day battery life keep staff connected across front office, housekeeping, and engineering without distraction.",
+      "Voice-to-Task Intelligence": "QuickComm converts spoken requests into structured tasks with room, category, and priority captured automatically. Tasks route to the right team, timers start, and shift handover logs update in the background.",
+      "Analytics-Ready Platform": "The system feeds live dashboards that show busy hours, repeat issues, and performance by team or shift. Designed to integrate with existing hotel systems, giving decision-makers a single operational view."
+    },
+    "highlights": "This project demonstrates a manufacturable, practical approach that combines custom hardware PTT audio with intelligent software for modern hotel operations."
   },
   {
     "id": "microtracker",
@@ -792,7 +1089,13 @@ export const soft_prod=[
       "Custom PCB",
       "Coin cell battery",
       "BLE advertising firmware"
-    ]
+    ],
+    "detailedFeatures": {
+      "Precision Find Experience": "Supports an app-driven 'Find Mode' that updates proximity in real time (e.g., far → close → very close), enabling quiet, directional searching without disturbance.",
+      "Left-Behind & Last-Seen Support": "Triggers alerts when an item exits a safe range and supports 'last seen' history (time and location) to improve real-world recovery workflows.",
+      "Ultra-Low-Power BLE Hardware": "Designed for periodic BLE advertising with aggressive sleep modes, regulated power delivery, and a thin battery target—aiming for approximately 1.5 months typical operation and 10–15 m line-of-sight range."
+    },
+    "highlights": "This project demonstrates a manufacturable, low-cost tracking approach that balances size, battery constraints, and practical everyday usability."
   },
   {
     "id": "cushion_hw",
@@ -813,7 +1116,13 @@ export const soft_prod=[
       "Pressure sensors",
       "Custom PCB",
       "Mobile app"
-    ]
+    ],
+    "detailedFeatures": {
+      "App-Controlled Comfort Tuning": "Users can raise or lower cushion pressure in small steps until the seat feels right, with the ability to save preferred settings for different chairs or activities.",
+      "Targeted Hip-Area Support": "Inflation is focused beneath the hips to reduce pressure points and improve weight distribution, supporting longer sitting periods with less discomfort.",
+      "Portable, Everyday Use": "Designed as a lightweight add-on that can move between home, office, and travel seating. Power can be implemented via rechargeable battery or wired supply depending on the final product configuration."
+    },
+    "highlights": "This project demonstrates a practical approach to comfort personalization—combining simple pneumatic control with app-based adjustment to match individual preference rather than fixed firmness levels."
   },
   {
     "id": "osmart_bms",
@@ -834,7 +1143,16 @@ export const soft_prod=[
       "LiTrek Mezzanine",
       "Cloud backend",
       "BMS firmware"
-    ]
+    ],
+    "client": "LiTrek (Australia)",
+    "detailedFeatures": {
+      "LiTrek Mezzanine Integration": "Enhanced with a custom-built LiTrek Mezzanine to expand the capabilities of an off-the-shelf (OTS) BMS and FET board.",
+      "Advanced Communication": "Utilizes CAN and RS485 protocols for robust communication between batteries, allowing for large array installations and intelligent monitoring.",
+      "Cloud Computation": "Enables real-time remote management and data processing, improving battery performance and system oversight.",
+      "TrekNet System": "Provides standardized connectors for seamless expansion, communication with end devices, and limited power distribution to displays and controls."
+    },
+    "maxBatteryPacks": 16,
+    "highlights": "This project underscores Quickgen Technologies' expertise in creating advanced, scalable battery management systems for future-ready energy solutions."
   },
   {
     "id": "cell_balancing",
@@ -854,7 +1172,17 @@ export const soft_prod=[
       "ADC",
       "Custom PCB",
       "LiFePO4 compatible circuitry"
-    ]
+    ],
+    "client": "USPCASE NUST (Pakistan)",
+    "detailedFeatures": {
+      "Component Efficiency": "Utilizes locally available components to reduce costs and reliance on imported parts.",
+      "Voltage Measurement": "Integrates Op-Amps and ADCs to measure and compare voltage levels across up to 16 cells.",
+      "Cell Balancing": "Utilizes locally available components to reduce costs and reliance on imported parts.",
+      "Adaptability": "Designed for use in LiFePO4 battery packs, demonstrating flexibility and wide applicability.",
+      "Cost-Effective Solution": "Provides an affordable solution for EV battery management without compromising on functionality."
+    },
+    "maxCells": 16,
+    "batteryChemistry": "LiFePO4"
   },
   {
     "id": "lifepo_charger",
@@ -873,7 +1201,14 @@ export const soft_prod=[
       "LiFePO charge IC",
       "Flashlight driver",
       "Custom PCB"
-    ]
+    ],
+    "client": "Jared Tennant (USA)",
+    "detailedFeatures": {
+      "LiFePO Battery Charger": "Engineered for fast and efficient charging, optimizing battery performance and lifespan.",
+      "Flashlight Control Integration": "Included a long-lasting flashlight control feature, providing reliable illumination for extended periods.",
+      "Dual Functionality": "Combined battery charging and flashlight control in one compact, efficient design, enhancing user convenience."
+    },
+    "highlights": "This project highlights Quickgen's expertise in designing multifunctional battery systems for enhanced user experience and performance."
   },
   {
     "id": "zef_ecu",
@@ -894,13 +1229,20 @@ export const soft_prod=[
       "Relay drivers",
       "Current sense ICs",
       "Automotive-grade components"
-    ]
+    ],
+    "detailedFeatures": {
+      "Multi-Channel Power Distribution": "Handles high-current outputs across multiple loads, enabling structured control for motors, batteries, lighting, and accessories.",
+      "Smart Monitoring & Control": "Integrates current sensing, fault protection, and relay switching for real-time diagnostics and safety enforcement.",
+      "Automotive-Grade Design": "Built for vibration, heat, and power surges, ZEF meets demanding vehicular standards and environmental conditions.",
+      "Flexible Integration": "Compatible with various EV architectures, the board includes isolated inputs and standard communication interfaces for easy system-level coordination."
+    },
+    "highlights": "This ECU serves as the electrical backbone for EVs—ensuring efficient, safe, and scalable power control in mobility platforms."
   },
   {
   "id": "ppg_cluster",
   "folder": "ppg",
   "name": "PPG CLUSTER",
-    "category": "pcb_reverse_eng",
+  "category": "pcb_reverse_eng",
   "tagline": "Innovative Wearable for Physiological Signal Tracking During Athletic Activities",
   "description": "Responsible for the PCB layout design of PPG Cluster, an innovative wearable device for tracking key physiological signals during athletic activities. This project underscores Quickgen's expertise in designing wearable technologies that enhance athletic training through advanced physiological data integration.",
   "features": [
@@ -914,8 +1256,16 @@ export const soft_prod=[
     "EMG sensor integration",
     "Wearable device engineering",
     "Biometric signal processing"
-  ]
-},
+  ],
+  "client": "Quickgen Technologies (In-house)",
+  "detailedFeatures": {
+    "Real-Time Biometric Monitoring": "Equipped with 5-6 PPG sensors to measure heart rate and blood flow, and an EMG sensor for muscle activity insights.",
+    "Comprehensive Performance Analysis": "Provides a detailed understanding of cardiovascular and muscular responses to optimize training and recovery.",
+    "Non-Invasive Wearable Design": "Ensures continuous, comfortable monitoring for endurance, strength, and performance improvement."
+  },
+  "sensorCount": "5-6 PPG sensors + 1 EMG sensor",
+  "highlights": "This project underscores Quickgen's expertise in designing wearable technologies that enhance athletic training through advanced physiological data integration."
+  },
   {
     "id": "blc_pcb",
     "folder": "Rev-Engineering",
@@ -934,7 +1284,16 @@ export const soft_prod=[
       "Relay drivers",
       "Dual-layer PCB",
       "Multi-sensor input"
-    ]
+    ],
+    "client": "AlNoor Technologies (UK)",
+    "detailedFeatures": {
+      "PIC Microcontroller": "Central to the design, enabling efficient processing and control of system operations.",
+      "Relay Switches": "Four integrated relays to manage and control the barrier lifting mechanisms.",
+      "Multi-Sensor Input": "Capable of handling five sensor inputs for accurate and responsive traffic barrier control.",
+      "Dual-Layer PCB": "Engineered for enhanced performance and compact design in barrier control applications."
+    },
+    "relayCount": 4,
+    "sensorInputs": 5
   },
   {
     "id": "safestep_hat",
@@ -955,7 +1314,15 @@ export const soft_prod=[
       "Servo driver",
       "Protection ICs",
       "Custom PCB"
-    ]
+    ],
+    "client": "Rtech",
+    "compatibleHardware": "Raspberry Pi 4B",
+    "detailedFeatures": {
+      "Dual Stepper Motor Control": "Supports two stepper motors with 1.23A current protection.",
+      "Servo Motor Control": "Capable of controlling one servo motor with up to 2A current.",
+      "Built-in Safety Protections": "Over-voltage, over-current, and reverse polarity protection ensure safe operation."
+    },
+    "highlights": "This project highlights Quickgen's ability to develop motor control solutions with safety features, tailored for Raspberry Pi-based automation projects."
   },
   {
     "id": "heatcontrol_scr",
@@ -975,28 +1342,13 @@ export const soft_prod=[
       "Thermistor input",
       "Custom PCB",
       "Zero-crossing detection"
-    ]
-  },
-  {
-    "id": "ppg_cluster",
-    "folder": "PPG Cluster",
-    "name": "PPG Cluster",
-    "category": "health_tech_wearables",
-    "tagline": "Wearable Physiological Signal Tracker",
-    "description": "PCB layout design for PPG Cluster, a wearable device for tracking key physiological signals during athletic activities using 5-6 PPG sensors and an EMG sensor.",
-    "features": [
-      "5-6 PPG sensors for heart rate and blood flow monitoring",
-      "EMG sensor for muscle activity insights",
-      "Comprehensive cardiovascular and muscular performance analysis",
-      "Non-invasive continuous wearable monitoring"
     ],
-    "techStack": [
-      "PPG sensors",
-      "EMG sensor",
-      "Custom PCB",
-      "BLE",
-      "Signal processing"
-    ]
+    "client": "Rtech",
+    "detailedFeatures": {
+      "SCR-Based Heater Control": "Efficiently controls high-power heaters using Silicon Controlled Rectifier (SCR) technology.",
+      "Onboard Temperature Monitoring": "Integrated thermistor for precise, real-time temperature feedback.",
+      "Industrial Reliability": "Designed for reliable long-term industrial heating applications with proper thermal management."
+    }
   },
   {
     "id": "mtrc",
@@ -1017,7 +1369,13 @@ export const soft_prod=[
       "Microcontroller",
       "Custom PCB",
       "Embedded C firmware"
-    ]
+    ],
+    "detailedFeatures": {
+      "Custom Hardware & PCB Design": "Designed and developed a custom PCB integrating the IMU sensor, microcontroller, RGB LED, and supporting circuitry to enable compact motion sensing and visual feedback functionality.",
+      "Motion Detection Using IMU": "Integrated and configured the IMU sensor to detect different motion states by processing accelerometer and gyroscope data from the sensor.",
+      "Embedded Firmware Development": "Developed embedded firmware to read motion data from the IMU sensor, analyze the motion state, and control the RGB LED accordingly.",
+      "Visual Motion State Indication": "Implemented logic to dynamically change the RGB LED color based on detected motion states, providing real-time visual feedback of device movement or activity."
+    }
   },
   {
     "id": "e_paper",
@@ -1038,13 +1396,21 @@ export const soft_prod=[
       "Custom PCB",
       "Li-ion battery",
       "3D-printed enclosure"
-    ]
+    ],
+    "displaySize": "2.13 inch e-paper",
+    "buttonCount": 9,
+    "detailedFeatures": {
+      "Wireless Communication": "ESP32-S3 provides Wi-Fi connectivity to send button-triggered HTTP requests to a backend server and retrieve event data.",
+      "Event Display System": "Displays the last ten server events on a low-power e-paper display, enabling clear visibility with minimal energy consumption.",
+      "Multi-Button Interface": "Implements a reliable 9-button input system with optimized GPIO usage and proper debouncing for accurate input detection.",
+      "Custom PCB & Enclosure Design": "Development of a compact PCB integrating ESP32-S3, display interface, power circuitry, and buttons."
+    }
   },
   {
     "id": "sandviper",
     "folder": "SandViper",
     "name": "SandViper",
-    "category": "health_tech_wearables",
+    "category": "pcb_reverse_eng",
     "tagline": "Smart Athletic Training Footwear PCB",
     "description": "PCB layout design for SandViper, an athletic training device embedding IMUs, flex sensors, FSRs, and piezoelectric sensors in flexible PCBs in shoe soles for comprehensive movement and pressure tracking.",
     "features": [
@@ -1060,7 +1426,13 @@ export const soft_prod=[
       "FSR sensors",
       "RF antenna",
       "USB-C power"
-    ]
+    ],
+    "detailedFeatures": {
+      "Comprehensive Movement Tracking": "Flexible PCBs in the soles integrate IMUs, flex sensors, FSRs, and piezoelectric sensors to monitor foot movement, pressure, and impact.",
+      "Robust Core System": "Rigid PCB with STM32 microcontroller, battery, USB-C power supply, and RF antenna ensures reliable data collection and transmission.",
+      "Actionable Insights": "Delivers precise analytics to optimize athletic training and improve performance."
+    },
+    "highlights": "This project highlights Quickgen's ability to design advanced wearable systems for sports, combining cutting-edge technology with durable, performance-driven engineering."
   },
   {
     "id": "ugv_waypoint",
@@ -1081,7 +1453,15 @@ export const soft_prod=[
       "Dual motor drivers",
       "Flipper mechanism",
       "Embedded firmware"
-    ]
+    ],
+    "client": "NUST College of EME (Pakistan)",
+    "projectType": "Academic / Final Year Project",
+    "detailedFeatures": {
+      "Autonomous Navigation": "Guided by Google Maps, the UGV follows assigned waypoints for mission execution.",
+      "Advanced Mobility": "Dual motor drive and flipper mechanism allow the UGV to navigate rocky terrains and climb stairs.",
+      "Adaptive Design": "Built for future Mars exploration and extreme environments, making it versatile for various missions."
+    },
+    "highlights": "This project highlights Quickgen's expertise in creating robust, autonomous systems for challenging applications."
   },
   {
     "id": "indigenous_robots",
@@ -1089,7 +1469,7 @@ export const soft_prod=[
     "name": "Indigenous Robots - NERC",
     "category": "robotics_drones",
     "tagline": "Multi-Function Competition Robots",
-    "description": "Indigenous robots developed for the National Engineering Robotics Contest (CEME NUST, Pakistan), winning multiple trophies from 2017\u20132020 with line following, ball potting, fruit harvesting, and trash maintenance capabilities.",
+    "description": "Indigenous robots developed for the National Engineering Robotics Contest (CEME NUST, Pakistan), winning multiple trophies from 2017–2020 with line following, ball potting, fruit harvesting, and trash maintenance capabilities.",
     "features": [
       "Line following, ball potting, and fruit harvesting capabilities",
       "Trash maintenance and multi-function task handling",
@@ -1101,12 +1481,20 @@ export const soft_prod=[
       "Microcontrollers",
       "Motor drivers",
       "Sensors array"
-    ]
+    ],
+    "client": "National Engineering Robotics Contest, CEME NUST (Pakistan)",
+    "competitionYears": "2017–2020",
+    "detailedFeatures": {
+      "Multi-Functional Capabilities": "Equipped with line following, ball potting, fruit harvesting, and trash maintenance facilities.",
+      "Robotics Competitions": "Showcased advanced robotics designs in competitions across Pakistan, winning multiple trophies from 2017 to 2020.",
+      "Versatile Design": "Robotics are designed for a range of applications, from industrial use to academic projects."
+    },
+    "highlights": "This project highlights Quickgen's expertise in robotics innovation, delivering solutions for diverse operational needs."
   },
   {
     "id": "esp_drone",
     "folder": "ESP Drone - Palm Size Spy Drone",
-    "name": "ESP Drone - Palm Size Spy Drone",
+    "name": "ESP Drone ",
     "category": "robotics_drones",
     "tagline": "Palm-Sized Surveillance Drone",
     "description": "Palm-sized ESP Drone developed for Seagit (USA) for surveillance, security, and recreational use, featuring real-time video streaming, stable flight, and mobile app control.",
@@ -1122,7 +1510,15 @@ export const soft_prod=[
       "Flight controller",
       "Custom PCB",
       "BLE / WiFi"
-    ]
+    ],
+    "client": "Seagit (USA)",
+    "detailedFeatures": {
+      "Real-Time Video Streaming": "Integrated spy camera delivers real-time video and high-resolution image capture.",
+      "User-Friendly Control": "The drone can be easily controlled via a mobile app, offering intuitive operation.",
+      "Stable Flight & Extended Battery": "Provides reliable flight performance with an extended battery life for prolonged use."
+    },
+    "useCases": ["Surveillance", "Security", "Recreational"],
+    "highlights": "This compact drone highlights Quickgen's expertise in creating small efficient devices for surveillance and recreational purposes."
   },
   {
     "id": "surveillance_quadcopter",
@@ -1143,7 +1539,16 @@ export const soft_prod=[
       "ESCs",
       "LiPo battery",
       "Mobile app integration"
-    ]
+    ],
+    "client": "Rising Sun (Pakistan)",
+    "detailedFeatures": {
+      "Advanced Camera": "Equipped with a high-resolution camera for real-time video streaming and image capture.",
+      "Stable Flight Performance": "Ensures reliable flight even in challenging environments, making it ideal for discreet surveillance.",
+      "Extended Battery Life": "Supports prolonged missions with long-lasting battery power.",
+      "Intuitive Mobile Control": "Operated via a user-friendly app, offering seamless navigation, live video feeds, and customizable flight paths."
+    },
+    "useCases": ["Security", "Law enforcement", "Monitoring"],
+    "highlights": "This project exemplifies Quickgen's ability to develop innovative solutions for security and surveillance through advanced sensor technology and IoT integration."
   },
   {
     "id": "usbc_4layer_pcb",
@@ -1163,7 +1568,16 @@ export const soft_prod=[
       "USB-C",
       "High-density component placement",
       "Precision routing"
-    ]
+    ],
+    "client": "Bravo Team (USA)",
+    "componentCount": "65+",
+    "completionTime": "Under 3 hours",
+    "detailedFeatures": {
+      "High-Component Density": "Over 65 components were strategically placed within a compact 3cm area on both sides of the PCB.",
+      "Precision PCB Placement and Routing": "The project required meticulous control over placement and routing to meet the space and time constraints.",
+      "Rapid Development": "The entire design, from component placement to routing, was completed within an extremely short timeframe, showcasing advanced PCB design capabilities."
+    },
+    "highlights": "This project highlights Quickgen's expertise in cutting-edge electronics, pushing the boundaries of high-density PCB design."
   },
   {
     "id": "mushroom_ecu",
@@ -1184,7 +1598,15 @@ export const soft_prod=[
       "Pump control",
       "Custom PCB",
       "Sensors"
-    ]
+    ],
+    "client": "Aarom Spjut (USA)",
+    "detailedFeatures": {
+      "Photon Controller Integration": "Central to managing and automating temperature and humidity levels essential for mushroom growth.",
+      "Temperature and Humidity Control": "The ECU regulated Peltier devices for precise temperature control and pumps to maintain ideal humidity levels.",
+      "Custom Environmental Management": "Designed to meet specific environmental requirements critical for efficient and successful mushroom cultivation."
+    },
+    "application": "Agricultural - Mushroom cultivation",
+    "highlights": "This project highlights Quickgen's ability to design advanced environmental control systems tailored to specialized agricultural applications."
   },
   {
     "id": "good_assik",
@@ -1204,7 +1626,15 @@ export const soft_prod=[
       "Custom PCB",
       "Wi-Fi / USB",
       "Barcode recognition firmware"
-    ]
+    ],
+    "client": "Quickgen Technologies (In-house)",
+    "detailedFeatures": {
+      "AI Barcode Reading for Exam Papers": "Equipped with a precision camera and onboard processing, Good Assik scans unique barcodes on each exam paper to instantly identify students and link results.",
+      "Optimized for Classroom Speed": "Designed to handle bulk paper scanning rapidly, reducing teacher workload and enabling faster feedback cycles for better academic support.",
+      "Compact and Teacher-Friendly": "Portable, easy to use, and compatible with standard classroom tools. The device works seamlessly with school data systems through Wi-Fi or USB."
+    },
+    "targetSector": "Education",
+    "highlights": "This project demonstrates Quickgen's commitment to transforming education through automation—simplifying assessment while ensuring accuracy and speed at scale."
   }
 ]
 
@@ -1216,6 +1646,16 @@ const CATEGORY_IMAGE_FOLDER: Record<string, string> = {
   ev_battery_power: "battery",
   pcb_reverse_eng: "pcb",
   robotics_drones: "robotic",
+};
+
+export const CATEGORY_DISPLAY_NAMES: Record<string, string> = {
+  mobile: "Mobile",
+  web: "Web",
+  health_tech_wearables: "Health Tech and Wearables",
+  iot_smart_devices: "IoT, Smart Devices and Electronics",
+  ev_battery_power: "Battery Systems",
+  pcb_reverse_eng: "PCB Design and Control Systems",
+  robotics_drones: "Robotics, Drones and Autonomous Systems",
 };
 
 function buildProjectImagePath(category: string, projectFolder: string, imageFile = "title.png") {

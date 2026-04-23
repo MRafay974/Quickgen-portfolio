@@ -17,7 +17,7 @@ const navLinks: NavLink[] = [
   { label: "Work", href: "/work" },
   { label: "Services", href: "/services" },
   { label: "Process", href: "/process" },
-  { label: "Media", href: "/media" },
+  // { label: "Media", href: "/media" },
 ];
 
 export function Navbar({ currentPage }: NavbarProps) {
