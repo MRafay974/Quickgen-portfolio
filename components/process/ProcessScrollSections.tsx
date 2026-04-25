@@ -98,7 +98,6 @@ function TimelineTrack({
         <div className="relative w-full flex justify-between">
           {phases.map((phase, i) => {
             const active = i <= activePhase;
-
             return (
               <div key={phase.id}>
                 <div
@@ -139,8 +138,6 @@ function TimelineTrack({
   );
 }
 
-// ─── Expanded Roadmap Component ──────────────────────────────────────────────
-
 function RoadmapExpanded({ activePhase, progressPct }: SharedRoadmapProps) {
   return (
     <div className="px-16 py-16">
@@ -159,19 +156,24 @@ function RoadmapExpanded({ activePhase, progressPct }: SharedRoadmapProps) {
         />
       </div>
 
-      <div className="grid grid-cols-4 gap-6" style={{ paddingTop: 24, paddingBottom: 16 }}>
+      <div
+        className="grid grid-cols-4 gap-6"
+        style={{ paddingTop: 24, paddingBottom: 16 }}
+      >
         {phases.map((phase) => (
           <div key={phase.id}>
-            <h3 className="text-xl font-black text-zinc-950 mb-1.5">{phase.label}</h3>
-            <p className="text-xs leading-relaxed text-zinc-500">{phase.description}</p>
+            <h3 className="text-xl font-black text-zinc-950 mb-1.5">
+              {phase.label}
+            </h3>
+            <p className="text-xs leading-relaxed text-zinc-500">
+              {phase.description}
+            </p>
           </div>
         ))}
       </div>
     </div>
   );
 }
-
-// ─── Collapsed Roadmap Component ─────────────────────────────────────────────
 
 function RoadmapCollapsed({ activePhase, progressPct }: SharedRoadmapProps) {
   return (
@@ -199,38 +201,50 @@ function RoadmapCollapsed({ activePhase, progressPct }: SharedRoadmapProps) {
   );
 }
 
-// ─── Phase Cards Map (2 cards per phase = 2 cards per fill segment) ─────────
+// ─── Phase card content ───────────────────────────────────────────────────────
 //
-// 5 dots / 4 segments:
-//  Phase 0 (Discover) → segment 1: DiscoverCard + CreateCard1
-//  Phase 1 (Create)   → segment 2: CreateCard2  + CreateCard3
-//  Phase 2 (Refine)   → segment 3: RefineCard1  + RefineCard2
-//  Phase 3 (Launch)   → segment 4: LaunchCard1  + LaunchCard2
+// CRITICAL: Cards must be DIRECT siblings with NO wrapper div between them
+// and the scroll container. `position: sticky` is relative to the nearest
+// scrolling ancestor — any intervening block (like a `space-y` div) breaks
+// the stacking because sticky elements inside that wrapper stack relative to
+// the wrapper, not the viewport.
+//
+// Wrong ✗:  <div className="space-y-6"><Card0 /><Card1 /></div>
+// Right ✓:  <><Card0 /><Card1 /></>   (React fragment, no DOM node)
+//
+// Each card also needs the correct index/total so ScrollRevealCard knows:
+//   - which sticky `top` offset to use  (index 0 → 100px, index 1 → 120px)
+//   - which z-index to use             (index 0 → z-20,  index 1 → z-21)
+//   - whether to apply the scale-down  (only index < total-1)
 
 const phaseCardContent: Record<number, React.ReactNode> = {
+  // Phase 0 — Discover + CreateCard1 stack together
   0: (
-    <div className="space-y-6 md:space-y-6">
-      <DiscoverCard />
-      <CreateCard1 />
-    </div>
+    <>
+      <DiscoverCard index={0} total={2} />
+      <CreateCard1 index={1} total={2} />
+    </>
   ),
+  // Phase 1 — CreateCard2 + CreateCard3 stack together
   1: (
-    <div className="space-y-6 md:space-y-6">
-      <CreateCard2 />
-      <CreateCard3 />
-    </div>
+    <>
+      <CreateCard2 index={0} total={2} />
+      <CreateCard3 index={1} total={2} />
+    </>
   ),
+  // Phase 2 — RefineCard1 + RefineCard2 stack together
   2: (
-    <div className="space-y-6 md:space-y-6">
-      <RefineCard1 />
-      <RefineCard2 />
-    </div>
+    <>
+      <RefineCard1 index={0} total={2} />
+      <RefineCard2 index={1} total={2} />
+    </>
   ),
+  // Phase 3 — LaunchCard1 + LaunchCard2 stack together
   3: (
-    <div className="space-y-6 md:space-y-6">
-      <LaunchCard1 />
-      <LaunchCard2 />
-    </div>
+    <>
+      <LaunchCard1 index={0} total={2} />
+      <LaunchCard2 index={1} total={2} />
+    </>
   ),
 };
 
@@ -240,19 +254,14 @@ export default function ProcessScrollSections() {
   const [activePhase, setActivePhase] = useState(0);
   const [blendProgress, setBlendProgress] = useState(0);
 
-  // Section 1 ref: drives the expand→collapse animation only
   const animSectionRef = useRef<HTMLDivElement>(null);
-  // Section 2 ref: for scroll position
   const section2Ref = useRef<HTMLElement>(null);
-  // Section 2 refs: one per phase, drives phase indicator via IntersectionObserver
   const phaseRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  // blendProgress reaches exactly 1 when collapse is complete
   const isCollapsed = blendProgress >= 1;
-  // 5-dot track: each phase fills to its segment end-dot (25%, 50%, 75%, 100%)
   const collapsedStepPct = ((activePhase + 1) / phases.length) * 100;
 
-  // ── Collapse animation (Section 1 only) ────────────────────────────────────
+  // ── Collapse animation ────────────────────────────────────────────────────
   useEffect(() => {
     const el = animSectionRef.current;
     if (!el) return;
@@ -265,7 +274,10 @@ export default function ProcessScrollSections() {
         const p = Math.max(0, Math.min(1, self.progress));
         const blendStart = SWITCH_POINT - BLEND_RANGE / 2;
         const blendEnd = SWITCH_POINT + BLEND_RANGE / 2;
-        const next = Math.max(0, Math.min(1, (p - blendStart) / (blendEnd - blendStart)));
+        const next = Math.max(
+          0,
+          Math.min(1, (p - blendStart) / (blendEnd - blendStart))
+        );
         setBlendProgress((prev) => (prev === next ? prev : next));
       },
     });
@@ -273,7 +285,7 @@ export default function ProcessScrollSections() {
     return () => trigger.kill();
   }, []);
 
-  // ── Phase tracking (Section 2: IntersectionObserver on each phase section) ─
+  // ── Phase tracking via IntersectionObserver ───────────────────────────────
   useEffect(() => {
     if (!isCollapsed) return;
 
@@ -286,7 +298,6 @@ export default function ProcessScrollSections() {
           }
         });
       },
-      // trigger when the phase section is at least 30% in the viewport center
       { threshold: 0.15, rootMargin: "-10% 0px -50% 0px" }
     );
 
@@ -300,36 +311,30 @@ export default function ProcessScrollSections() {
   return (
     <>
       {/* ═══════════════════════════════════════════════════════════════════
-          MOBILE LAYOUT — vertical roadmap then phases with cards
+          MOBILE LAYOUT
       ══════════════════════════════════════════════════════════════════════ */}
       <div className="md:hidden w-full px-6 py-12">
-        {/* Heading */}
         <p className="text-sm font-semibold text-zinc-400 mb-2">The roadmap</p>
         <h2 className="text-3xl font-black leading-tight text-zinc-950 mb-10">
           Timelines that are <br /> tailored to you.
         </h2>
 
-        {/* Vertical roadmap */}
         <div className="relative mb-14 pl-6">
-          {/* Vertical line */}
           <div className="absolute left-[5px] top-2 bottom-2 w-px bg-zinc-200" />
-
-          {phases.map((phase, i) => (
+          {phases.map((phase) => (
             <div key={phase.id} className="relative mb-8 last:mb-0">
-              {/* Dot */}
               <div
                 className="absolute -left-6 top-1 w-3 h-3 rounded-full border-2 z-10"
                 style={{ backgroundColor: "black", borderColor: "black" }}
               />
               <h3 className="text-base font-black text-zinc-950">{phase.label}</h3>
-              <p className="text-sm text-zinc-500 mt-1 leading-relaxed">{phase.description}</p>
+              <p className="text-sm text-zinc-500 mt-1 leading-relaxed">
+                {phase.description}
+              </p>
             </div>
           ))}
-
-         
         </div>
 
-        {/* Phase cards */}
         {phases.map((phase, i) => (
           <div key={phase.id} className="mb-14">
             <div className="flex items-center gap-3 mb-5">
@@ -337,52 +342,59 @@ export default function ProcessScrollSections() {
                 className="w-3 h-3 rounded-full shrink-0"
                 style={{ backgroundColor: phase.color }}
               />
-              <h3 className="text-xl font-black text-zinc-950 ">{phase.label}</h3>
+              <h3 className="text-xl font-black text-zinc-950">{phase.label}</h3>
             </div>
-            {/* <p className="text-sm text-zinc-500 mb-6 pl-6">{phase.description}</p> */}
             <div>{phaseCardContent[i]}</div>
           </div>
         ))}
       </div>
 
       {/* ═══════════════════════════════════════════════════════════════════
-          DESKTOP LAYOUT — animated scroll sections (hidden on mobile)
+          DESKTOP LAYOUT
       ══════════════════════════════════════════════════════════════════════ */}
       <div className="hidden md:block">
-      {/* ═══════════════════════════════════════════════════════════════════
-          SECTION 1 — Shows expanded roadmap, 300vh drives the GSAP trigger
-      ══════════════════════════════════════════════════════════════════════ */}
-      <div ref={animSectionRef} className="w-full" style={{ display: isCollapsed ? "none" : "block" }}>
-        <RoadmapExpanded activePhase={0} progressPct={0} />
-      </div>
+        {/* Section 1 — expanded roadmap, drives collapse trigger */}
+        <div
+          ref={animSectionRef}
+          className="w-full"
+          style={{ display: isCollapsed ? "none" : "block" }}
+        >
+          <RoadmapExpanded activePhase={0} progressPct={0} />
+        </div>
 
-      {/* ═══════════════════════════════════════════════════════════════════
-          SECTION 2 — Cards in normal document flow (only after collapse)
-          Sticky roadmap header updates as user scrolls through phases.
-      ══════════════════════════════════════════════════════════════════════ */}
-      {isCollapsed && (
-        <section ref={section2Ref} className="mt-70">
-          {/* Sticky collapsed roadmap — stays at top while reading cards */}
-          <div className="sticky top-0 z-40 bg-white/97 backdrop-blur-sm  border-zinc-100">
-            <RoadmapCollapsed
-              activePhase={activePhase}
-              progressPct={collapsedStepPct}
-            />
-          </div>
-
-          {/* One section per phase — IntersectionObserver updates activePhase */}
-          {phases.map((phase, i) => (
-            <div
-              key={phase.id}
-              ref={(el) => { phaseRefs.current[i] = el; }}
-              data-phase-idx={i}
-              className="w-full px-4 md:px-8 lg:px-16 py-16 md:py-20 lg:py-24"
-            >
-              {phaseCardContent[i]}
+        {/* Section 2 — sticky roadmap header + stacking phase cards */}
+        {isCollapsed && (
+          <section ref={section2Ref} className="mt-70">
+            {/* Sticky collapsed roadmap */}
+            <div className="sticky top-0 z-40 bg-white/97 backdrop-blur-sm border-zinc-100">
+              <RoadmapCollapsed
+                activePhase={activePhase}
+                progressPct={collapsedStepPct}
+              />
             </div>
-          ))}
-        </section>
-      )}
+
+            {/* Phase sections — each is a stacking pair of cards */}
+            {phases.map((phase, i) => (
+              <div
+                key={phase.id}
+                ref={(el) => {
+                  phaseRefs.current[i] = el;
+                }}
+                data-phase-idx={i}
+                className="w-full px-4 md:px-8 lg:px-16"
+                style={{
+                  // Each phase section needs enough scroll height for both cards
+                  // to fully play out their sticky animation before the next phase.
+                  // paddingBottom gives that breathing room.
+                  paddingTop: "5rem",
+                  paddingBottom: "30vh",
+                }}
+              >
+                {phaseCardContent[i]}
+              </div>
+            ))}
+          </section>
+        )}
       </div>
     </>
   );

@@ -1,84 +1,82 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, ReactNode } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface ScrollRevealCardProps {
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
+  /** 0-based index of this card in the stack */
+  index?: number;
+  /** Total number of cards in the stack */
+  total?: number;
 }
+
+// Card 0 sticks near the top of the viewport.
+// Card 1 starts further DOWN the viewport so it scrolls UP and covers card 0.
+//
+// Mental model:
+//   - lower `top`  → sticks higher → stays visible UNDERNEATH (bottom of stack)
+//   - higher `top` → arrives later from below → ends up ON TOP
+//
+// Card 0 → top: 100px  (sticks early, becomes the base of the stack)
+// Card 1 → top: 120px  (sticks later, slides in from below, lands on top)
+const STICKY_TOP_BASE = 100;
+const STICKY_TOP_STEP = 20;
 
 export default function ScrollRevealCard({
   children,
   className = "",
+  index = 0,
+  total = 1,
 }: ScrollRevealCardProps) {
-  const cardRef = useRef<HTMLDivElement>(null);
+  const cardRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("reveal-active");
-            observer.unobserve(entry.target);
-          }
+    const el = cardRef.current;
+    if (!el) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const ctx = gsap.context(() => {
+      // Only the card(s) beneath get scaled down as the next card covers them
+      if (index < total - 1) {
+        gsap.to(el, {
+          scale: 0.95,
+          transformOrigin: "center top",
+          ease: "none",
+          scrollTrigger: {
+            trigger: el,
+            start: `top top+=${STICKY_TOP_BASE + index * STICKY_TOP_STEP}px`,
+            end: `+=${el.offsetHeight * 0.7}`,
+            scrub: 0.6,
+          },
         });
-      },
-      {
-        threshold: 0.05,
-        rootMargin: "50px 0px",
       }
-    );
+    }, cardRef);
 
-    if (cardRef.current) {
-      observer.observe(cardRef.current);
-    }
+    return () => ctx.revert();
+  }, [index, total]);
 
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
+  const stickyTop = STICKY_TOP_BASE + index * STICKY_TOP_STEP;
 
   return (
     <div
       ref={cardRef}
-      className={`scroll-reveal-card ${className}`}
+      className={`card ${className}`}
       style={{
-        opacity: 0,
-        transform: "translateY(48px)",
-        transition:
-          "opacity 0.7s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1)",
+        position: "sticky",
+        top: `${stickyTop}px`,
+        // CRITICAL: higher index = higher z-index = visually on top
+        zIndex: 20 + index,
+        willChange: "transform",
+        boxShadow: `0 ${8 + index * 6}px ${24 + index * 12}px rgba(0,0,0,${0.07 + index * 0.04})`,
+        borderRadius: "1rem",
       }}
     >
-      <style>{`
-        @media (max-width: 640px) {
-          .scroll-reveal-card {
-            transition:
-              opacity 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
-              transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
-            transform: translateY(24px) !important;
-          }
-          
-          .scroll-reveal-card.reveal-active {
-            transform: translateY(0) !important;
-          }
-        }
-      `}</style>
       {children}
     </div>
   );
-}
-
-// Add reveal-active styles globally
-if (typeof window !== "undefined") {
-  const style = document.createElement("style");
-  style.textContent = `
-    .scroll-reveal-card.reveal-active {
-      opacity: 1 !important;
-      transform: translateY(0) !important;
-    }
-  `;
-  if (!document.head.querySelector("style[data-scroll-reveal]")) {
-    style.setAttribute("data-scroll-reveal", "true");
-    document.head.appendChild(style);
-  }
 }

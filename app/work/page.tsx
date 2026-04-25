@@ -1,7 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useLayoutEffect } from "react";
 import Link from "next/link";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Footer } from "@/components/common/Footer";
 import { Navbar } from "@/components/common/Navbar";
 import { RecipeSection } from "@/components/common/RecipeSection";
@@ -14,7 +16,10 @@ const FILTERS = [
 type Filter = (typeof FILTERS)[number];
 
 function formatCategoryLabel(category: string) {
-  return CATEGORY_DISPLAY_NAMES[category] ?? category.replace(/_/g, " ").replace(/\b\w/g, (char) => char.toUpperCase());
+  return (
+    CATEGORY_DISPLAY_NAMES[category] ??
+    category.replace(/_/g, " ").replace(/\b\w/g, (char) => char.toUpperCase())
+  );
 }
 
 const PAGE_SIZE = 6;
@@ -22,6 +27,90 @@ const PAGE_SIZE = 6;
 export default function WorkPage() {
   const [activeFilter, setActiveFilter] = useState<Filter>("All");
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
+
+  const headingRef = useRef<HTMLHeadingElement>(null);
+  const descRef = useRef<HTMLParagraphElement>(null);
+  const filterBarRef = useRef<HTMLDivElement>(null);
+
+  // ── Hero + filter bar: animate once on mount ──────────────────────────────
+  useLayoutEffect(() => {
+    if (typeof window === "undefined") return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Set initial states immediately (before paint) so there's no flash
+    gsap.set([headingRef.current, descRef.current], {
+      opacity: 0,
+      y: 50,
+      willChange: "transform, opacity",
+    });
+
+    const filterBtns = filterBarRef.current
+      ? Array.from(filterBarRef.current.children)
+      : [];
+    gsap.set(filterBtns, { opacity: 0, y: 16, willChange: "transform, opacity" });
+
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+      tl.to(headingRef.current, { opacity: 1, y: 0, duration: 0.85 })
+        .to(descRef.current, { opacity: 1, y: 0, duration: 0.75 }, "-=0.55")
+        .to(
+          filterBtns,
+          { opacity: 1, y: 0, duration: 0.55, stagger: 0.06 },
+          "-=0.45"
+        );
+    });
+
+    return () => ctx.revert();
+  }, []);
+
+  // ── Cards: scroll-triggered reveal for newly rendered cards ──────────────
+  useLayoutEffect(() => {
+    if (typeof window === "undefined") return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const allCards = gsap.utils.toArray<HTMLElement>(".work-card");
+    const newCards = allCards.filter(
+      (el) => !el.hasAttribute("data-gsap-animated")
+    );
+    if (newCards.length === 0) return;
+
+    // Mark & hide before any paint so there's no jitter
+    newCards.forEach((card) => {
+      card.setAttribute("data-gsap-animated", "true");
+      // Set invisible immediately — CSS handles the initial hidden state,
+      // but we also force it here as a safety net.
+      gsap.set(card, { opacity: 0, y: 48, willChange: "transform, opacity" });
+    });
+
+    const triggers: ScrollTrigger[] = [];
+
+    newCards.forEach((card, i) => {
+      const st = ScrollTrigger.create({
+        trigger: card,
+        start: "top 90%", // fire when card top crosses 90% of viewport height
+        once: true,
+        onEnter: () => {
+          gsap.to(card, {
+            opacity: 1,
+            y: 0,
+            duration: 0.65,
+            ease: "power3.out",
+            // small stagger offset based on column position within a batch
+            delay: (i % 2) * 0.08,
+          });
+        },
+      });
+      triggers.push(st);
+    });
+
+    return () => {
+      triggers.forEach((t) => t.kill());
+    };
+  }, [activeFilter, visibleCount]);
 
   const filteredCards = (() => {
     if (activeFilter !== "All") {
@@ -46,19 +135,42 @@ export default function WorkPage() {
 
   return (
     <div className="min-h-screen bg-white text-zinc-950 font-sans">
+      {/*
+        Global style: cards start invisible via CSS so the very first paint
+        never shows a visible card that then flashes to invisible.
+        GSAP will override opacity/transform once it runs.
+      */}
+      <style>{`
+        .work-card {
+          opacity: 0;
+          transform: translateY(48px);
+        }
+      `}</style>
+
       <Navbar currentPage="Work" />
 
       <main className="max-w-7xl mx-auto px-6 py-12 lg:px-8 lg:py-16">
         <section data-animate="fade-up" className="border-b border-zinc-200 pb-10">
           <div className="mb-8 max-w-3xl">
-            <h1 className="text-4xl font-black tracking-tight sm:text-6xl lg:text-7xl">Work</h1>
-            <p className="mt-4 max-w-2xl text-base sm:text-xl leading-8 text-zinc-600">
+            <h1
+              ref={headingRef}
+              className="text-4xl font-black tracking-tight sm:text-6xl lg:text-7xl"
+            >
+              Work
+            </h1>
+            <p
+              ref={descRef}
+              className="mt-4 max-w-2xl text-base sm:text-xl leading-8 text-zinc-600"
+            >
               We love what we do, and it shows.
             </p>
           </div>
 
           <div className="flex flex-col gap-6 border-t border-zinc-200 pt-8 sm:flex-row sm:items-center sm:justify-between">
-            <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+            <div
+              ref={filterBarRef}
+              className="flex flex-wrap items-center gap-2 sm:gap-3"
+            >
               {FILTERS.map((filter) => (
                 <button
                   key={filter}
@@ -73,13 +185,6 @@ export default function WorkPage() {
                 </button>
               ))}
             </div>
-
-            {/* <div className="flex items-center gap-2 text-sm font-semibold text-zinc-500">
-              <span>Sort by</span>
-              <span className="inline-flex h-10 items-center rounded-full border border-zinc-200 px-4 text-zinc-700">
-                Latest
-              </span>
-            </div> */}
           </div>
         </section>
 
@@ -94,13 +199,11 @@ export default function WorkPage() {
                   <Link
                     key={project.slug}
                     href={`/work/${project.slug}`}
-                    className="group mb-3 block break-inside-avoid cursor-pointer"
+                    className="work-card group mb-3 block break-inside-avoid cursor-pointer"
                   >
                     <article className="rounded-2xl bg-zinc-100 overflow-hidden">
-                      {/* position:relative on the wrapper so overlays sit on top */}
                       <div className="relative">
                         {project.image ? (
-                          // plain <img> — no Next.js magic, renders at true natural size
                           // eslint-disable-next-line @next/next/no-img-element
                           <img
                             src={project.image}
@@ -126,14 +229,14 @@ export default function WorkPage() {
                 ))}
               </div>
 
-              {/* ── Desktop: masonry grid (all cards including first) ── */}
+              {/* ── Desktop: masonry grid ── */}
               <div className="hidden sm:block">
                 <div className="columns-2 gap-6">
                   {visibleCards.map((project) => (
                     <Link
                       key={project.slug}
                       href={`/work/${project.slug}`}
-                      className="group mb-6 block break-inside-avoid cursor-pointer"
+                      className="work-card group mb-6 block break-inside-avoid cursor-pointer"
                     >
                       <article className="rounded-2xl border border-zinc-200 bg-zinc-50 shadow-sm transition hover:shadow-lg overflow-hidden">
                         <div className="relative">
@@ -200,8 +303,12 @@ export default function WorkPage() {
         </section>
       </main>
 
-      <div data-animate="fade-up"><RecipeSection /></div>
-      <div data-animate="fade-up"><Footer activeLink="Work" /></div>
+      <div >
+        <RecipeSection />
+      </div>
+      <div >
+        <Footer activeLink="Work" />
+      </div>
     </div>
   );
 }
