@@ -1,6 +1,8 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useLayoutEffect } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
@@ -97,14 +99,11 @@ function ServiceBlock({ id, image, title, tags, description, caseStudies, bg, te
   const tagColor = isLight ? "text-zinc-950" : "text-white";
   const descColor = isLight ? "text-zinc-700" : "text-zinc-300";
   const caseHeaderColor = isLight ? "text-zinc-400" : "text-zinc-500";
-  const caseDetailColor = isLight ? "text-zinc-500" : "text-zinc-400";
-  const dividerColor = isLight ? "border-zinc-200" : "border-zinc-800";
-  const nameBold = isLight ? "text-zinc-950" : "text-white";
 
   return (
     <section id={id} className={`${bg} ${textColor} w-full`}>
       {/* Hero image */}
-      <div className="w-full px-6 lg:px-16 pt-10 pb-0">
+      <div className="sb-image w-full px-6 lg:px-16 pt-10 pb-0">
         <div className="rounded-2xl overflow-hidden w-full">
           <img
             src={image}
@@ -114,29 +113,29 @@ function ServiceBlock({ id, image, title, tags, description, caseStudies, bg, te
         </div>
       </div>
 
-      {/* Title */}
-      <div className="px-6 lg:px-16 pt-8 pb-2">
-        <h2 className="text-4xl lg:text-5xl font-black tracking-tight">{title}</h2>
-      </div>
+      <div className="sb-content">
+        {/* Title */}
+        <div className="px-6 lg:px-16 pt-8 pb-2">
+          <h2 className="text-4xl lg:text-5xl font-black tracking-tight">{title}</h2>
+        </div>
 
-      {/* Tags row */}
-      <div className="px-6 lg:px-16 pt-4 pb-2 flex flex-wrap gap-x-2 gap-y-1 items-center">
-        {tags.map((tag, i) => (
-          <span key={tag} className={`text-sm font-bold ${tagColor}`}>
-            {tag}
-            {i < tags.length - 1 && (
-              <span className={`mx-2 font-normal ${caseHeaderColor}`}>·</span>
-            )}
-          </span>
-        ))}
-      </div>
+        {/* Tags row */}
+        <div className="px-6 lg:px-16 pt-4 pb-2 flex flex-wrap gap-x-2 gap-y-1 items-center">
+          {tags.map((tag, i) => (
+            <span key={tag} className={`text-sm font-bold ${tagColor}`}>
+              {tag}
+              {i < tags.length - 1 && (
+                <span className={`mx-2 font-normal ${caseHeaderColor}`}>·</span>
+              )}
+            </span>
+          ))}
+        </div>
 
-      {/* Description */}
-      <div className="px-6 lg:px-16 pt-4 pb-20">
-        <p className={`text-base leading-7 max-w-4xl  ${descColor}`}>{description}</p>
+        {/* Description */}
+        <div className="px-6 lg:px-16 pt-4 pb-20">
+          <p className={`text-base leading-7 max-w-4xl ${descColor}`}>{description}</p>
+        </div>
       </div>
-
-      
     </section>
   );
 }
@@ -155,7 +154,6 @@ function WhatWeDoSection() {
           alt="What we do video"
           className="w-full object-cover"
         />
-        {/* Play button overlay */}
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="w-16 h-16 rounded-xl bg-zinc-900/80 flex items-center justify-center cursor-pointer hover:bg-zinc-900 transition-colors">
             <svg viewBox="0 0 24 24" className="w-7 h-7 fill-white ml-1">
@@ -163,19 +161,13 @@ function WhatWeDoSection() {
             </svg>
           </div>
         </div>
-        {/* BRASH badge */}
         <div className="absolute top-5 left-5 w-14 h-14 rounded-full bg-red-500 flex items-center justify-center">
           <span className="text-white text-xs font-black tracking-wider">BRASH</span>
         </div>
       </div>
-      
     </section>
   );
 }
-
-// ─── Main export ──────────────────────────────────────────────────────────────
-
-const serviceIds = ["design", "engineering", "software", "manufacturing"];
 
 // ─── Cursor follower ─────────────────────────────────────────────────────────
 
@@ -213,8 +205,74 @@ function CursorFollower({ src, visible }: { src: string; visible: boolean }) {
   );
 }
 
+// ─── Main export ──────────────────────────────────────────────────────────────
+
+const serviceIds = ["design", "engineering", "software", "manufacturing"];
+
 export default function ServicesPageContent() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const mainRef = useRef<HTMLElement>(null);
+  const heroImgRef = useRef<HTMLDivElement>(null);
+  const introRef = useRef<HTMLElement>(null);
+  const listRef = useRef<HTMLDivElement>(null);
+
+  useLayoutEffect(() => {
+    if (typeof window === "undefined") return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const listItems = gsap.utils.toArray<HTMLElement>(".service-list-item");
+    const sbImages  = gsap.utils.toArray<HTMLElement>(".sb-image");
+    const sbContents = gsap.utils.toArray<HTMLElement>(".sb-content");
+
+    // Lock ALL initial states synchronously before first paint
+    gsap.set(heroImgRef.current,  { opacity: 0, y: 60,  willChange: "transform, opacity" });
+    gsap.set(introRef.current,    { opacity: 0, y: 60,  willChange: "transform, opacity" });
+    gsap.set(listItems,           { opacity: 0, y: 30,  willChange: "transform, opacity" });
+    gsap.set(sbImages,            { opacity: 0, y: 60,  willChange: "transform, opacity" });
+    gsap.set(sbContents,          { opacity: 0, y: 50,  willChange: "transform, opacity" });
+
+    const ctx = gsap.context(() => {
+
+      // Hero image
+      gsap.to(heroImgRef.current, {
+        opacity: 1, y: 0, duration: 1.1, ease: "expo.out",
+        scrollTrigger: { trigger: heroImgRef.current, start: "top 85%", toggleActions: "play none none none", once: true },
+      });
+
+      // Intro section
+      gsap.to(introRef.current, {
+        opacity: 1, y: 0, duration: 1.1, ease: "expo.out",
+        scrollTrigger: { trigger: introRef.current, start: "top 85%", toggleActions: "play none none none", once: true },
+      });
+
+      // Service list items — single timeline on the list container
+      const listTl = gsap.timeline({
+        scrollTrigger: { trigger: listRef.current, start: "top 90%", toggleActions: "play none none none", once: true },
+      });
+      listTl.to(listItems, { opacity: 1, y: 0, duration: 1.0, ease: "expo.out", stagger: 0.1 });
+
+      // Service block images — each triggers on itself (different scroll positions)
+      sbImages.forEach((el) => {
+        gsap.to(el, {
+          opacity: 1, y: 0, duration: 1.1, ease: "expo.out",
+          scrollTrigger: { trigger: el, start: "top 85%", toggleActions: "play none none none", once: true },
+        });
+      });
+
+      // Service block text content
+      sbContents.forEach((el) => {
+        gsap.to(el, {
+          opacity: 1, y: 0, duration: 1.1, ease: "expo.out",
+          scrollTrigger: { trigger: el, start: "top 75%", toggleActions: "play none none none", once: true },
+        });
+      });
+
+    }, mainRef);
+
+    return () => ctx.revert();
+  }, []);
 
   const scrollToSection = (id: string) => {
     const el = document.getElementById(id);
@@ -222,7 +280,7 @@ export default function ServicesPageContent() {
   };
 
   return (
-    <main className="w-full font-sans bg-white text-zinc-950">
+    <main ref={mainRef} className="w-full font-sans bg-white text-zinc-950">
 
       {/* ── Hero ── */}
       <section className="px-6 lg:px-16 pt-12 pb-6">
@@ -233,7 +291,7 @@ export default function ServicesPageContent() {
       </section>
 
       {/* ── Full-width hero image ── */}
-      <div className="w-full px-0">
+      <div ref={heroImgRef} className="w-full px-0">
         <img
           src="/images/service/top.png"
           alt="Services hero"
@@ -242,18 +300,18 @@ export default function ServicesPageContent() {
       </div>
 
       {/* ── "Whether you need..." intro + numbered list ── */}
-      <section className="px-6 lg:px-16 pt-16 pb-10 bg-white">
-       <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black leading-tight max-w-2xl mb-12 text-center lg:text-left">
-  Whether you need niche expertise or full development, we&apos;ve got you covered.
-</h2>
+      <section ref={introRef} className="px-6 lg:px-16 pt-16 pb-10 bg-white">
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black leading-tight max-w-2xl mb-12 text-center lg:text-left">
+          Whether you need niche expertise or full development, we&apos;ve got you covered.
+        </h2>
 
-        <div className="flex flex-col divide-y divide-zinc-200 border-t border-zinc-200">
+        <div ref={listRef} className="flex flex-col divide-y divide-zinc-200 border-t border-zinc-200">
           {servicesList.map((s, i) => {
             const isHovered = hoveredIndex === i;
             return (
               <div
                 key={s.id}
-                className="flex items-center justify-between py-6 cursor-pointer md:cursor-none group"
+                className="service-list-item flex items-center justify-between py-6 cursor-pointer md:cursor-none group"
                 onClick={() => scrollToSection(serviceIds[i])}
                 onMouseEnter={() => setHoveredIndex(i)}
                 onMouseLeave={() => setHoveredIndex(null)}
@@ -297,17 +355,11 @@ export default function ServicesPageContent() {
         </div>
       </section>
 
-      {/* ── Design Section ── */}
-      <ServiceBlock id="design" {...designSection} />
-
-      {/* ── Engineering Section ── */}
-      <ServiceBlock id="engineering" {...engineeringSection} />
-
-      {/* ── Software Section ── */}
-      <ServiceBlock id="software" {...softwareSection} />
-
-      {/* ── Manufacturing Section ── */}
-      <ServiceBlock id="manufacturing" {...manufacturingSection} />
+      {/* ── Service Sections ── */}
+      <ServiceBlock id="design"         {...designSection} />
+      <ServiceBlock id="engineering"    {...engineeringSection} />
+      <ServiceBlock id="software"       {...softwareSection} />
+      <ServiceBlock id="manufacturing"  {...manufacturingSection} />
 
       {/* ── What we do video ── */}
       {/* <WhatWeDoSection /> */}

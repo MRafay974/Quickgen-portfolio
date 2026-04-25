@@ -3,9 +3,11 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import type { Swiper as SwiperInstance } from "swiper";
-import { useRef } from "react";
+import { useRef, useLayoutEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import "swiper/css";
 
@@ -17,8 +19,36 @@ const slides = [
 ];
 
 export function ImpactCarousel() {
-    const swiperRef = useRef<SwiperInstance | null>(null);
-  
+  const swiperRef = useRef<SwiperInstance | null>(null);
+  const textRef = useRef<HTMLDivElement>(null);
+
+  useLayoutEffect(() => {
+    if (typeof window === "undefined") return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        textRef.current,
+        { opacity: 0, y: 60 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.9,
+          ease: "back.out",
+          scrollTrigger: {
+            trigger: textRef.current,
+            start: "top 70%",
+            toggleActions: "play none none none",
+          },
+        }
+      );
+    });
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <section className="bg-white text-black">
       <div className="py-24">
@@ -57,7 +87,7 @@ export function ImpactCarousel() {
           ))}
         </Swiper>
 
-        <div className="mt-16 px-4 sm:px-6 lg:px-10 grid gap-10 lg:grid-cols-[0.3fr_1fr] lg:items-start">
+        <div ref={textRef} className="mt-16 px-4 sm:px-6 lg:px-10 grid gap-10 lg:grid-cols-[0.3fr_1fr] lg:items-start">
           <div className="flex items-start">
             <span className="text-sm font-bold uppercase tracking-[0.35em] text-[#ff1d1d]">
               The QuickGen Difference

@@ -1,7 +1,10 @@
 "use client";
 
+import { useRef, useLayoutEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { workCards, CATEGORY_DISPLAY_NAMES } from "@/constants/work/workCards";
 
 const FEATURED_PROJECT_SPECS = [
@@ -21,16 +24,76 @@ function formatCategoryLabel(category: string) {
 }
 
 export function ProjectCards() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const cardsRef = useRef<HTMLDivElement>(null);
+  const textRef = useRef<HTMLDivElement>(null);
+
+  useLayoutEffect(() => {
+    if (typeof window === "undefined") return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Lock ALL initial states synchronously before first paint
+    const cards = gsap.utils.toArray<HTMLElement>(".project-card");
+    gsap.set(cards, { opacity: 0, y: 50, willChange: "transform, opacity" });
+    gsap.set(textRef.current, { opacity: 0, y: 35, willChange: "transform, opacity" });
+
+    const ctx = gsap.context(() => {
+
+      // Cards: single shared timeline with stagger
+      const cardsTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: cardsRef.current,
+          start: "top 55%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+        onComplete: () => {
+          gsap.set(cards, { willChange: "auto" });
+        },
+      });
+
+      cardsTl.to(cards, {
+        opacity: 1,
+        y: 0,
+        duration: 1.1,
+        ease: "power1.out",
+        stagger: 0.12,
+      });
+
+      // Text section
+      gsap.to(textRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 1.1,
+        ease: "power1.out",
+        scrollTrigger: {
+          trigger: textRef.current,
+          start: "top 85%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+        onComplete: () => {
+          gsap.set(textRef.current, { willChange: "auto" });
+        },
+      });
+
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="bg-black text-white">
+    <section ref={sectionRef} className="bg-black text-white">
       <div className="mx-auto max-w-7xl px-6 py-24 lg:px-8">
         <div className="space-y-12">
-          <div className="grid gap-3 md:grid-cols-3">
+          <div ref={cardsRef} className="grid gap-3 md:grid-cols-3">
             {FEATURED_PROJECTS.map((project) => (
               <Link
                 key={project.slug}
                 href={`/work/${project.slug}`}
-                className="group block overflow-hidden rounded-4xl"
+                className="project-card group block overflow-hidden rounded-4xl"
                 style={{ backgroundColor: project.background }}
               >
                 <div
@@ -41,7 +104,6 @@ export function ProjectCards() {
                       : undefined
                   }
                 >
-                  {/* Background color transition for card 1 */}
                   {project.hoverBackground && (
                     <div
                       className="absolute inset-0 rounded-4xl opacity-0 transition-opacity duration-500 group-hover:opacity-100"
@@ -55,13 +117,12 @@ export function ProjectCards() {
                       alt={project.title}
                       fill
                       sizes="(min-width: 768px) 33vw, 100vw"
-                      className="object-contain object-center p-6 transition-[filter,transform] duration-500 ease-out group-hover:grayscale group-hover:scale-[1.01] "
+                      className="object-contain object-center p-6 transition-[filter,transform] duration-500 ease-out group-hover:grayscale group-hover:scale-[1.01]"
                     />
                   ) : null}
 
                   <div className="absolute inset-0 bg-black/0 transition-colors duration-500 group-hover:bg-black/55" />
 
-                 
                   {/* Arrow button */}
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                     <span className="flex h-13 w-13 items-center justify-center rounded-full bg-[#ff4646] text-white shadow-xl">
@@ -91,7 +152,7 @@ export function ProjectCards() {
             ))}
           </div>
 
-          <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
+          <div ref={textRef} className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
             <div className="self-start">
               <h2 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
                 We make sure our projects pack a punch.

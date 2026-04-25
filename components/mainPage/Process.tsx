@@ -1,8 +1,49 @@
+"use client";
+
+import { useRef, useLayoutEffect } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
 export function Process() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const textRef = useRef<HTMLDivElement>(null);
+
+  useLayoutEffect(() => {
+    if (typeof window === "undefined") return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Lock initial state synchronously before first paint
+    gsap.set(textRef.current, { opacity: 0, y: 35, willChange: "transform, opacity" });
+
+    const ctx = gsap.context(() => {
+      gsap.to(textRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 1.1,
+        ease: "power1.in",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 10%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+        onComplete: () => {
+          gsap.set(textRef.current, { willChange: "auto" });
+        },
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="bg-black text-white">
+    <section ref={sectionRef} className="bg-black text-white">
       <div className="mx-auto max-w-7xl px-6 py-24 lg:px-8">
         <div className="grid gap-16">
+
+          {/* Card — no animation, renders immediately */}
           <div className="relative">
             <div className="absolute inset-0 rounded-[3rem] bg-[radial-gradient(circle_at_top_left,_rgba(255,255,255,0.05),_transparent_35%),radial-gradient(circle_at_bottom_right,_rgba(255,255,255,0.03),_transparent_25%)]" />
             <div className="relative overflow-hidden rounded-[3rem] border border-white/10 bg-zinc-950 px-6 py-8 shadow-[0_60px_120px_-60px_rgba(0,0,0,0.8)] sm:px-8 sm:py-10">
@@ -19,17 +60,21 @@ export function Process() {
             </div>
           </div>
 
-          <div className="mx-auto flex max-w-3xl flex-col items-center space-y-8 text-center">
+          {/* Text — only animated element */}
+          <div ref={textRef} className="mx-auto flex max-w-3xl flex-col items-center space-y-8 text-center">
             <h2 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
-Every layer, Every discipline.            </h2>
+              Every layer, Every discipline.
+            </h2>
             <p className="max-w-2xl text-lg leading-8 text-zinc-400">
-A product is not just what you see. It is the board inside it, the code running on that board, the system connecting it to the world            </p>
+              A product is not just what you see. It is the board inside it, the code running on that board, the system connecting it to the world
+            </p>
             <div>
               <button className="inline-flex rounded-full border border-white/10 bg-white/5 px-8 py-3 text-base font-semibold text-white transition hover:border-white/20 hover:bg-white/10">
                 How We Work
               </button>
             </div>
           </div>
+
         </div>
       </div>
     </section>

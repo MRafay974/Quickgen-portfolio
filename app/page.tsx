@@ -160,15 +160,15 @@ export default function Home() {
       </section>
 
       {/* ── Rest of page ── */}
-      <div data-animate="fade-up"><Featured /></div>
-      <div data-animate="fade-up"><Process /></div>
-      <div data-animate="fade-up"><ProjectCards /></div>
-      <div data-animate="fade-up"><Testimonials /></div>
-      <div data-animate="fade-up"><ImpactCarousel /></div>
-      <div data-animate="fade-up"><MoreWork /></div>
-      <div data-animate="fade-up"><StatsSection /></div>
-      <div data-animate="fade-up"><RecipeSection /></div>
-      <div data-animate="fade-up"><Footer /></div>
+      <Featured />
+      <Process />
+      <ProjectCards />
+      <Testimonials />
+      <ImpactCarousel />
+      <MoreWork />
+      <StatsSection />
+      <RecipeSection />
+      <Footer />
     </div>
   );
 }

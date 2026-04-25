@@ -1,6 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const testimonials = [
   {
@@ -25,17 +27,52 @@ const testimonials = [
     ],
     name: "Co-Founder, UK",
   },
-  
-  
 ];
 
 export function Testimonials() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
 
+  const sectionRef = useRef<HTMLElement>(null);
+  const badgeRef = useRef<HTMLParagraphElement>(null);
+  const quoteRef = useRef<HTMLDivElement>(null);
+  const authorRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLDivElement>(null);
+
+  // Scroll-in animation on mount
   useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const targets = [badgeRef.current, quoteRef.current, authorRef.current, buttonRef.current];
+
+    // Lock initial states before first paint
+    gsap.set(targets, { opacity: 0, y: 35, willChange: "transform, opacity" });
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top 55%",
+        toggleActions: "play none none none",
+        once: true,
+      },
+      onComplete: () => {
+        gsap.set(targets, { willChange: "auto" });
+      },
+    });
+
+    tl.to(targets, {
+      opacity: 1,
+      y: 0,
+      duration: 1.3,
+      ease: "power1.out",
+      stagger: 0.1,
+    });
+
     return () => {
-      // no cleanup needed beyond state updates
+      ScrollTrigger.getAll().forEach((t) => t.kill());
     };
   }, []);
 
@@ -50,22 +87,29 @@ export function Testimonials() {
   const activeTestimonial = testimonials[activeIndex];
 
   return (
-    <section className="bg-black text-white">
+    <section ref={sectionRef} className="bg-black text-white">
       <div className="mx-auto max-w-7xl px-6 py-24 lg:px-8">
         <div className="rounded-[3rem] bg-zinc-950/80 p-8 shadow-[0_40px_120px_-60px_rgba(0,0,0,0.75)] sm:p-12">
           <div className="grid gap-10 lg:grid-cols-[1.35fr_auto] lg:items-start">
             <div className="space-y-8">
-              <p className="inline-flex rounded-full bg-white/10 px-4 py-2 text-sm font-semibold uppercase tracking-[0.35em] text-white">
+
+              {/* Badge */}
+              <p
+                ref={badgeRef}
+                className="inline-flex rounded-full bg-white/10 px-4 py-2 text-sm font-semibold uppercase tracking-[0.35em] text-white"
+              >
                 Our clients say it better
               </p>
-              <div className="min-h-[16rem]">
+
+              {/* Quote */}
+              <div ref={quoteRef} className="min-h-[16rem]">
                 <div
                   className={`transition duration-300 ease-in-out ${
                     isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                   }`}
                 >
                   <p className="text-4xl font-semibold leading-tight text-white sm:text-5xl">
-                    “
+                    
                     {activeTestimonial.quote.map((segment, index) => (
                       <span
                         key={index}
@@ -74,21 +118,21 @@ export function Testimonials() {
                         {segment.text}
                       </span>
                     ))}
-                    ”
+                    
                   </p>
                 </div>
               </div>
-              <div className="mt-8 flex flex-col gap-1 text-left">
+
+              {/* Author */}
+              <div ref={authorRef} className="mt-8 flex flex-col gap-1 text-left">
                 <span className="text-xl font-medium text-white">
                   {activeTestimonial.name}
                 </span>
-                {/* <span className="text-sm text-zinc-400">
-                  {activeTestimonial.title}
-                </span> */}
               </div>
             </div>
 
-            <div className="flex items-start justify-end">
+            {/* Button */}
+            <div ref={buttonRef} className="flex items-start justify-end">
               <button
                 onClick={handleNext}
                 className="inline-flex h-16 w-16 items-center justify-center rounded-full bg-white/5 text-white transition hover:bg-white/10"

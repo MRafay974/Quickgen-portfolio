@@ -1,11 +1,75 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useLayoutEffect } from "react";
 import Image from "next/image";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export default function ContactPageContent() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const heroRef = useRef<HTMLDivElement>(null);
+  const textRef = useRef<HTMLDivElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
+
+  useLayoutEffect(() => {
+    if (typeof window === "undefined") return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const ctx = gsap.context(() => {
+      // Hero image
+      gsap.fromTo(
+        heroRef.current,
+        { opacity: 0, y: 60 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.9,
+          ease: "power2.out",
+        }
+      );
+
+      // Text block
+      gsap.fromTo(
+        textRef.current,
+        { opacity: 0, y: 60 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.9,
+          ease: "power2.out",
+          delay: 0.15,
+          scrollTrigger: {
+            trigger: textRef.current,
+            start: "top 60%",
+            toggleActions: "play none none none",
+          },
+        }
+      );
+
+      // Form
+      gsap.fromTo(
+        formRef.current,
+        { opacity: 0, y: 60 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.9,
+          ease: "power2.out",
+          delay: 0.25,
+          scrollTrigger: {
+            trigger: formRef.current,
+            start: "top 60%",
+            toggleActions: "play none none none",
+          },
+        }
+      );
+    });
+
+    return () => ctx.revert();
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -42,7 +106,7 @@ export default function ContactPageContent() {
   return (
     <>
       {/* ── Hero image ─────────────────────────────────────────────────── */}
-      <div className="relative w-full h-[50vh] sm:h-[65vh] overflow-hidden">
+      <div ref={heroRef} className="relative w-full h-[50vh] sm:h-[65vh] overflow-hidden">
         <Image
           src="/images/contact/contact.png"
           alt="QuickGen office"
@@ -54,7 +118,7 @@ export default function ContactPageContent() {
 
       {/* ── Contact form ───────────────────────────────────────────────── */}
       <section className="bg-white py-12 px-4 sm:py-16 sm:px-6 lg:py-20">
-        <div className="mx-auto max-w-2xl text-center">
+        <div ref={textRef} className="mx-auto max-w-2xl text-center">
           <h1 className="text-3xl font-black tracking-tight text-zinc-950 sm:text-5xl lg:text-6xl">
             First chat is on us
             <span className="text-red-500">.</span>
@@ -67,6 +131,7 @@ export default function ContactPageContent() {
         </div>
 
         <form
+          ref={formRef}
           onSubmit={handleSubmit}
           className="mx-auto mt-8 max-w-2xl space-y-3 sm:mt-12 sm:space-y-4"
         >
