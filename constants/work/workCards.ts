@@ -1521,35 +1521,35 @@ export const soft_prod=[
   //   },
   //   "highlights": "This project highlights Quickgen's expertise in robotics innovation, delivering solutions for diverse operational needs."
   // },
-  {
-    "id": "esp_drone",
-    "folder": "ESP Drone - Palm Size Spy Drone",
-    "name": "ESP Drone ",
-    "category": "robotics_drones",
-    "tagline": "Palm-Sized Surveillance Drone",
-    "description": "Palm-sized ESP Drone developed for Seagit (USA) for surveillance, security, and recreational use, featuring real-time video streaming, stable flight, and mobile app control.",
-    "features": [
-      "Real-time video streaming with high-resolution image capture",
-      "Mobile app control with intuitive operation",
-      "Stable flight and extended battery life",
-      "Compact palm-sized form factor"
-    ],
-    "techStack": [
-      "ESP32",
-      "Camera module",
-      "Flight controller",
-      "Custom PCB",
-      "BLE / WiFi"
-    ],
-    "client": "Seagit (USA)",
-    "detailedFeatures": {
-      "Real-Time Video Streaming": "Integrated spy camera delivers real-time video and high-resolution image capture.",
-      "User-Friendly Control": "The drone can be easily controlled via a mobile app, offering intuitive operation.",
-      "Stable Flight & Extended Battery": "Provides reliable flight performance with an extended battery life for prolonged use."
-    },
-    "useCases": ["Surveillance", "Security", "Recreational"],
-    "highlights": "This compact drone highlights Quickgen's expertise in creating small efficient devices for surveillance and recreational purposes."
-  },
+  // {
+  //   "id": "esp_drone",
+  //   "folder": "ESP Drone - Palm Size Spy Drone",
+  //   "name": "ESP Drone ",
+  //   "category": "robotics_drones",
+  //   "tagline": "Palm-Sized Surveillance Drone",
+  //   "description": "Palm-sized ESP Drone developed for Seagit (USA) for surveillance, security, and recreational use, featuring real-time video streaming, stable flight, and mobile app control.",
+  //   "features": [
+  //     "Real-time video streaming with high-resolution image capture",
+  //     "Mobile app control with intuitive operation",
+  //     "Stable flight and extended battery life",
+  //     "Compact palm-sized form factor"
+  //   ],
+  //   "techStack": [
+  //     "ESP32",
+  //     "Camera module",
+  //     "Flight controller",
+  //     "Custom PCB",
+  //     "BLE / WiFi"
+  //   ],
+  //   "client": "Seagit (USA)",
+  //   "detailedFeatures": {
+  //     "Real-Time Video Streaming": "Integrated spy camera delivers real-time video and high-resolution image capture.",
+  //     "User-Friendly Control": "The drone can be easily controlled via a mobile app, offering intuitive operation.",
+  //     "Stable Flight & Extended Battery": "Provides reliable flight performance with an extended battery life for prolonged use."
+  //   },
+  //   "useCases": ["Surveillance", "Security", "Recreational"],
+  //   "highlights": "This compact drone highlights Quickgen's expertise in creating small efficient devices for surveillance and recreational purposes."
+  // },
   {
     "id": "surveillance_quadcopter",
     "folder": "Surveillance Quadcopter",

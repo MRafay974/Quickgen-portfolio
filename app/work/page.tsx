@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useRef, useLayoutEffect } from "react";
+import { useState, useRef, useLayoutEffect, useEffect } from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -9,11 +10,40 @@ import { Navbar } from "@/components/common/Navbar";
 import { RecipeSection } from "@/components/common/RecipeSection";
 import { workCards, CATEGORY_DISPLAY_NAMES } from "@/constants/work/workCards";
 
-const FILTERS = [
-  "All",
-  ...Array.from(new Set(workCards.map((card) => card.category))),
-] as const;
-type Filter = (typeof FILTERS)[number];
+// ── Filter taxonomy ──────────────────────────────────────────────────────────
+type MainFilter = "All" | "Software" | "Hardware";
+const MAIN_FILTERS: MainFilter[] = ["All", "Software", "Hardware"];
+
+type SubCategory = { id: string; label: string; categories: string[] };
+
+const SOFTWARE_SUBS: SubCategory[] = [
+  { id: "web", label: "Web", categories: ["web"] },
+  { id: "mobile", label: "Mobile", categories: ["mobile"] },
+];
+
+const HARDWARE_SUBS: SubCategory[] = [
+  { id: "health_tech_wearables", label: "Health Tech and Wearables", categories: ["health_tech_wearables"] },
+  { id: "iot_smart_devices", label: "IoT, Smart Devices and Electronics", categories: ["iot_smart_devices"] },
+  { id: "battery_systems", label: "Battery Systems", categories: ["ev_battery_power"] },
+  { id: "pcb_design", label: "PCB Design and Control Systems", categories: ["pcb_reverse_eng"] },
+  { id: "robotics", label: "Robotics, Drones and Autonomous Systems", categories: ["robotics_drones"] },
+];
+
+const ALL_SUBS: SubCategory[] = [...SOFTWARE_SUBS, ...HARDWARE_SUBS];
+const SOFTWARE_CATEGORIES = ["web", "mobile"];
+const HARDWARE_CATEGORIES = [
+  "health_tech_wearables",
+  "iot_smart_devices",
+  "ev_battery_power",
+  "pcb_reverse_eng",
+  "robotics_drones",
+];
+
+function getSubsForMainFilter(main: MainFilter): SubCategory[] {
+  if (main === "Software") return SOFTWARE_SUBS;
+  if (main === "Hardware") return HARDWARE_SUBS;
+  return ALL_SUBS;
+}
 
 function formatCategoryLabel(category: string) {
   return (
@@ -25,12 +55,38 @@ function formatCategoryLabel(category: string) {
 const PAGE_SIZE = 6;
 
 export default function WorkPage() {
-  const [activeFilter, setActiveFilter] = useState<Filter>("All");
+  const [activeMainFilter, setActiveMainFilter] = useState<MainFilter>("All");
+  const [activeSubFilter, setActiveSubFilter] = useState<string>("");
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [dropdownRect, setDropdownRect] = useState<DOMRect | null>(null);
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
 
   const headingRef = useRef<HTMLHeadingElement>(null);
   const descRef = useRef<HTMLParagraphElement>(null);
   const filterBarRef = useRef<HTMLDivElement>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+
+  // ── Close dropdown on outside click / resize ─────────────────────────────
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      const panel = document.getElementById("work-sub-dropdown");
+      if (
+        triggerRef.current && !triggerRef.current.contains(e.target as Node) &&
+        (!panel || !panel.contains(e.target as Node))
+      ) {
+        setDropdownOpen(false);
+      }
+    }
+    function handleResize() { setDropdownOpen(false); }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    window.addEventListener("resize", handleResize);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   // ── Hero + filter bar: animate once on mount ──────────────────────────────
   useLayoutEffect(() => {
@@ -110,26 +166,65 @@ export default function WorkPage() {
     return () => {
       triggers.forEach((t) => t.kill());
     };
-  }, [activeFilter, visibleCount]);
+  }, [activeMainFilter, activeSubFilter, visibleCount]);
 
+  // ── Computed filtered cards ───────────────────────────────────────────────
   const filteredCards = (() => {
-    if (activeFilter !== "All") {
-      return workCards.filter((c) => c.category === activeFilter);
+    // Sub filter active → filter to its categories, then dedup within that set
+    if (activeSubFilter) {
+      const sub = ALL_SUBS.find((s) => s.id === activeSubFilter);
+      if (sub) {
+        const byCategory = workCards.filter((c) => sub.categories.includes(c.category));
+        const seen = new Set<string>();
+        return byCategory.filter((c) => {
+          if (seen.has(c.title)) return false;
+          seen.add(c.title);
+          return true;
+        });
+      }
     }
+
+    // No sub filter → dedup all, then apply main filter
     const reversed = [...workCards].reverse();
     const seen = new Set<string>();
-    return reversed.filter((c) => {
+    const deduped = reversed.filter((c) => {
       if (seen.has(c.title)) return false;
       seen.add(c.title);
       return true;
     });
+
+    if (activeMainFilter === "Software") {
+      return deduped.filter((c) => SOFTWARE_CATEGORIES.includes(c.category));
+    }
+    if (activeMainFilter === "Hardware") {
+      return deduped.filter((c) => HARDWARE_CATEGORIES.includes(c.category));
+    }
+    return deduped;
   })();
 
   const visibleCards = filteredCards.slice(0, visibleCount);
   const hasMore = visibleCount < filteredCards.length;
 
-  function handleFilterChange(filter: Filter) {
-    setActiveFilter(filter);
+  const currentSubs = getSubsForMainFilter(activeMainFilter);
+  const activeSubLabel = currentSubs.find((s) => s.id === activeSubFilter)?.label;
+  const dropdownLabel =
+    activeSubLabel ??
+    (activeMainFilter === "Software"
+      ? "All Software"
+      : activeMainFilter === "Hardware"
+      ? "All Hardware"
+      : "All Categories");
+
+  function handleMainFilterChange(filter: MainFilter) {
+    setActiveMainFilter(filter);
+    setActiveSubFilter("");
+    setDropdownOpen(false);
+    setVisibleCount(PAGE_SIZE);
+  }
+
+  function handleSubFilterChange(subId: string) {
+    setActiveSubFilter((prev) => (prev === subId ? "" : subId));
+    setDropdownOpen(false);
     setVisibleCount(PAGE_SIZE);
   }
 
@@ -166,24 +261,84 @@ export default function WorkPage() {
             </p>
           </div>
 
-          <div className="flex flex-col gap-6 border-t border-zinc-200 pt-8 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex flex-col gap-4 border-t border-zinc-200 pt-8 sm:flex-row sm:items-center sm:justify-between">
+            {/* ── Main filter tabs ── */}
             <div
               ref={filterBarRef}
               className="flex flex-wrap items-center gap-2 sm:gap-3"
             >
-              {FILTERS.map((filter) => (
+              {MAIN_FILTERS.map((filter) => (
                 <button
                   key={filter}
-                  onClick={() => handleFilterChange(filter)}
+                  onClick={() => handleMainFilterChange(filter)}
                   className={
-                    activeFilter === filter
+                    activeMainFilter === filter
                       ? "rounded-full bg-zinc-950 px-4 py-2 sm:px-5 sm:py-3 text-xs sm:text-sm font-semibold text-white"
                       : "rounded-full border border-zinc-200 bg-white px-4 py-2 sm:px-5 sm:py-3 text-xs sm:text-sm font-medium text-zinc-950 transition hover:border-zinc-300 hover:bg-zinc-50"
                   }
                 >
-                  {filter === "All" ? filter : formatCategoryLabel(filter)}
+                  {filter}
                 </button>
               ))}
+            </div>
+
+            {/* ── Subcategory dropdown (right side) ── */}
+            <div ref={dropdownRef} className="relative self-start sm:self-auto">
+              <button
+                ref={triggerRef}
+                onClick={() => {
+                  if (!dropdownOpen && triggerRef.current) {
+                    setDropdownRect(triggerRef.current.getBoundingClientRect());
+                  }
+                  setDropdownOpen((o) => !o);
+                }}
+                className={`flex items-center gap-2 rounded-full px-4 py-2 sm:px-5 sm:py-3 text-xs sm:text-sm font-medium transition ${
+                  activeSubFilter
+                    ? "bg-zinc-950 text-white"
+                    : "border border-zinc-200 bg-white text-zinc-950 hover:border-zinc-300 hover:bg-zinc-50"
+                }`}
+              >
+                <span>{dropdownLabel}</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className={`h-4 w-4 transition-transform duration-200 ${dropdownOpen ? "rotate-180" : ""}`}
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+
+              {dropdownOpen && dropdownRect &&
+                createPortal(
+                  <div
+                    id="work-sub-dropdown"
+                    style={{
+                      position: "fixed",
+                      top: dropdownRect.bottom + 8,
+                      right: window.innerWidth - dropdownRect.right,
+                      zIndex: 9999,
+                    }}
+                    className="min-w-60 rounded-2xl border border-zinc-200 bg-white py-1.5 shadow-xl"
+                  >
+                    {currentSubs.map((sub) => (
+                      <button
+                        key={sub.id}
+                        onClick={() => handleSubFilterChange(sub.id)}
+                        className={`block w-full px-4 py-2 text-left text-sm transition ${
+                          activeSubFilter === sub.id
+                            ? "bg-zinc-950 text-white"
+                            : "text-zinc-700 hover:bg-zinc-50"
+                        }`}
+                      >
+                        {sub.label}
+                      </button>
+                    ))}
+                  </div>,
+                  document.body
+                )}
             </div>
           </div>
         </section>
