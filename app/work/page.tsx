@@ -318,7 +318,7 @@ export default function WorkPage() {
                     style={{
                       position: "fixed",
                       top: dropdownRect.bottom + 8,
-                      right: window.innerWidth - dropdownRect.right,
+                      left: Math.min(dropdownRect.left, window.innerWidth - 264),
                       zIndex: 9999,
                     }}
                     className="min-w-60 rounded-2xl border border-zinc-200 bg-white py-1.5 shadow-xl"
