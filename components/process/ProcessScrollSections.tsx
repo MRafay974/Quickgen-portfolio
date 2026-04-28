@@ -157,7 +157,7 @@ function RoadmapExpanded({ activePhase, progressPct }: SharedRoadmapProps) {
       </div>
 
       <div
-        className="grid grid-cols-4 gap-6"
+        className="grid grid-cols-4 "
         style={{ paddingTop: 24, paddingBottom: 16 }}
       >
         {phases.map((phase) => (
@@ -217,33 +217,32 @@ function RoadmapCollapsed({ activePhase, progressPct }: SharedRoadmapProps) {
 //   - which z-index to use             (index 0 → z-20,  index 1 → z-21)
 //   - whether to apply the scale-down  (only index < total-1)
 
+// Continuous indices 0-7 across all 8 cards, total=8.
+// This ensures EVERY card except the very last gets the shrink-down effect
+// (condition: index < total - 1). With total=2 per pair, index=1 never shrank.
 const phaseCardContent: Record<number, React.ReactNode> = {
-  // Phase 0 — Discover + CreateCard1 stack together
   0: (
     <>
-      <DiscoverCard index={0} total={2} />
-      <CreateCard1 index={1} total={2} />
+      <DiscoverCard index={0} total={8} />
+      <CreateCard1 index={1} total={8} />
     </>
   ),
-  // Phase 1 — CreateCard2 + CreateCard3 stack together
   1: (
     <>
-      <CreateCard2 index={0} total={2} />
-      <CreateCard3 index={1} total={2} />
+      <CreateCard2 index={2} total={8} />
+      <CreateCard3 index={3} total={8} />
     </>
   ),
-  // Phase 2 — RefineCard1 + RefineCard2 stack together
   2: (
     <>
-      <RefineCard1 index={0} total={2} />
-      <RefineCard2 index={1} total={2} />
+      <RefineCard1 index={4} total={8} />
+      <RefineCard2 index={5} total={8} />
     </>
   ),
-  // Phase 3 — LaunchCard1 + LaunchCard2 stack together
   3: (
     <>
-      <LaunchCard1 index={0} total={2} />
-      <LaunchCard2 index={1} total={2} />
+      <LaunchCard1 index={6} total={8} />
+      <LaunchCard2 index={7} total={8} />
     </>
   ),
 };
@@ -381,13 +380,10 @@ export default function ProcessScrollSections() {
                   phaseRefs.current[i] = el;
                 }}
                 data-phase-idx={i}
-                className="w-full px-4 md:px-8 lg:px-16"
+                className="w-full"
                 style={{
-                  // Each phase section needs enough scroll height for both cards
-                  // to fully play out their sticky animation before the next phase.
-                  // paddingBottom gives that breathing room.
-                  paddingTop: "5rem",
-                  paddingBottom: "30vh",
+                  paddingTop: "4rem",
+                  paddingBottom: "8vh",
                 }}
               >
                 {phaseCardContent[i]}

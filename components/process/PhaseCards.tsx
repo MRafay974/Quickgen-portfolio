@@ -38,7 +38,7 @@ function CardLayout({
   return (
     <ScrollRevealCard className="w-full" index={index} total={total}>
       <div
-        className={`${bgColor} rounded-2xl px-6 py-6 md:px-10 md:py-7 flex flex-col items-center max-w-6xl mx-auto`}
+        className={`card-inner ${bgColor} rounded-2xl px-6 py-6 md:px-10 md:py-7 flex flex-col items-center w-full`}
       >
         <h3 className="text-lg md:text-xl lg:text-2xl font-black text-zinc-950 leading-tight text-center mb-4 max-w-xl">
           {title}
