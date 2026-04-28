@@ -1,6 +1,6 @@
 "use client";
 
-import { useLayoutEffect, type ReactNode } from "react";
+import { useEffect, type ReactNode } from "react";
 import { usePathname } from "next/navigation";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -13,11 +13,9 @@ type GlobalScrollEffectsProps = {
 export function GlobalScrollEffects({ children }: GlobalScrollEffectsProps) {
   const pathname = usePathname();
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (typeof window === "undefined") return;
-
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduceMotion) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     gsap.registerPlugin(ScrollTrigger);
 
@@ -38,61 +36,19 @@ export function GlobalScrollEffects({ children }: GlobalScrollEffectsProps) {
     gsap.ticker.add(updateScroll);
     gsap.ticker.lagSmoothing(0);
 
-    const refreshScroll = () => {
+    // Single delayed refresh — no MutationObserver which was triggering on every DOM change
+    const timeoutId = window.setTimeout(() => {
       lenis.resize();
       ScrollTrigger.refresh();
-    };
+    }, 300);
 
-    const mutationObserver = new MutationObserver(() => {
-      requestAnimationFrame(refreshScroll);
-    });
-
-    mutationObserver.observe(document.body, {
-      childList: true,
-      subtree: true,
-      attributes: true,
-    });
-
-    window.addEventListener("load", refreshScroll);
-    window.addEventListener("resize", refreshScroll);
-
-    requestAnimationFrame(refreshScroll);
-    const timeoutId = window.setTimeout(refreshScroll, 250);
-
-    const ctx = gsap.context(() => {
-      const animatedItems = gsap.utils.toArray<HTMLElement>("[data-animate='fade-up']");
-
-      animatedItems.forEach((item, index) => {
-        gsap.fromTo(
-          item,
-          {
-            y: 60,
-            opacity: 0,
-          },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 0.9,
-            ease: "power2.out",
-            delay: index * 0.08,
-            scrollTrigger: {
-              trigger: item,
-              start: "top 85%",
-              toggleActions: "play none none none",
-            },
-          }
-        );
-      });
-    });
+    window.addEventListener("resize", () => ScrollTrigger.refresh());
 
     return () => {
-      ctx.revert();
       window.clearTimeout(timeoutId);
-      window.removeEventListener("load", refreshScroll);
-      window.removeEventListener("resize", refreshScroll);
-      mutationObserver.disconnect();
       gsap.ticker.remove(updateScroll);
       lenis.destroy();
+      ScrollTrigger.getAll().forEach((t) => t.kill());
     };
   }, [pathname]);
 

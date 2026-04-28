@@ -72,7 +72,8 @@ export function Testimonials() {
     });
 
     return () => {
-      ScrollTrigger.getAll().forEach((t) => t.kill());
+      tl.scrollTrigger?.kill();
+      tl.kill();
     };
   }, []);
 
