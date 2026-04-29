@@ -28,6 +28,7 @@ export function Featured() {
           toggleActions: "play none none none",
           // Prevents ScrollTrigger from recalculating mid-animation
           once: true,
+          invalidateOnRefresh: true,
         },
         // Clean up will-change after animation to free GPU memory
         onComplete: () => {

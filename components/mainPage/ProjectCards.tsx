@@ -48,6 +48,7 @@ export function ProjectCards() {
           start: "top 55%",
           toggleActions: "play none none none",
           once: true,
+          invalidateOnRefresh: true,
         },
         onComplete: () => {
           gsap.set(cards, { willChange: "auto" });
@@ -73,6 +74,7 @@ export function ProjectCards() {
           start: "top 85%",
           toggleActions: "play none none none",
           once: true,
+          invalidateOnRefresh: true,
         },
         onComplete: () => {
           gsap.set(textRef.current, { willChange: "auto" });

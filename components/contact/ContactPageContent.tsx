@@ -45,6 +45,8 @@ export default function ContactPageContent() {
             trigger: textRef.current,
             start: "top 60%",
             toggleActions: "play none none none",
+            once: true,
+            invalidateOnRefresh: true,
           },
         }
       );
@@ -63,6 +65,8 @@ export default function ContactPageContent() {
             trigger: formRef.current,
             start: "top 60%",
             toggleActions: "play none none none",
+            once: true,
+            invalidateOnRefresh: true,
           },
         }
       );

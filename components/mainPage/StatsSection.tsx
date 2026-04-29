@@ -30,6 +30,7 @@ export function StatsSection() {
           start: "top 60%",
           toggleActions: "play none none none",
           once: true,
+          invalidateOnRefresh: true,
         },
         onComplete: () => {
           gsap.set(statItems, { willChange: "auto" });
@@ -55,6 +56,7 @@ export function StatsSection() {
           start: "top 60%",
           toggleActions: "play none none none",
           once: true,
+          invalidateOnRefresh: true,
         },
         onComplete: () => {
           gsap.set(textRef.current, { willChange: "auto" });

@@ -238,18 +238,18 @@ export default function ServicesPageContent() {
       // Hero image
       gsap.to(heroImgRef.current, {
         opacity: 1, y: 0, duration: 1.1, ease: "expo.out",
-        scrollTrigger: { trigger: heroImgRef.current, start: "top 85%", toggleActions: "play none none none", once: true },
+        scrollTrigger: { trigger: heroImgRef.current, start: "top 85%", toggleActions: "play none none none", once: true, invalidateOnRefresh: true },
       });
 
       // Intro section
       gsap.to(introRef.current, {
         opacity: 1, y: 0, duration: 1.1, ease: "expo.out",
-        scrollTrigger: { trigger: introRef.current, start: "top 85%", toggleActions: "play none none none", once: true },
+        scrollTrigger: { trigger: introRef.current, start: "top 85%", toggleActions: "play none none none", once: true, invalidateOnRefresh: true },
       });
 
       // Service list items — single timeline on the list container
       const listTl = gsap.timeline({
-        scrollTrigger: { trigger: listRef.current, start: "top 90%", toggleActions: "play none none none", once: true },
+        scrollTrigger: { trigger: listRef.current, start: "top 90%", toggleActions: "play none none none", once: true, invalidateOnRefresh: true },
       });
       listTl.to(listItems, { opacity: 1, y: 0, duration: 1.0, ease: "expo.out", stagger: 0.1 });
 
@@ -257,7 +257,7 @@ export default function ServicesPageContent() {
       sbImages.forEach((el) => {
         gsap.to(el, {
           opacity: 1, y: 0, duration: 1.1, ease: "expo.out",
-          scrollTrigger: { trigger: el, start: "top 85%", toggleActions: "play none none none", once: true },
+          scrollTrigger: { trigger: el, start: "top 85%", toggleActions: "play none none none", once: true, invalidateOnRefresh: true },
         });
       });
 
@@ -265,7 +265,7 @@ export default function ServicesPageContent() {
       sbContents.forEach((el) => {
         gsap.to(el, {
           opacity: 1, y: 0, duration: 1.1, ease: "expo.out",
-          scrollTrigger: { trigger: el, start: "top 75%", toggleActions: "play none none none", once: true },
+          scrollTrigger: { trigger: el, start: "top 75%", toggleActions: "play none none none", once: true, invalidateOnRefresh: true },
         });
       });
 

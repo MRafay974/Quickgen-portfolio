@@ -28,6 +28,7 @@ export function Process() {
           start: "top 10%",
           toggleActions: "play none none none",
           once: true,
+          invalidateOnRefresh: true,
         },
         onComplete: () => {
           gsap.set(textRef.current, { willChange: "auto" });

@@ -36,16 +36,33 @@ export function GlobalScrollEffects({ children }: GlobalScrollEffectsProps) {
     gsap.ticker.add(updateScroll);
     gsap.ticker.lagSmoothing(0);
 
-    // Single delayed refresh — no MutationObserver which was triggering on every DOM change
+    // Refresh after all resources (images, fonts) are loaded so ScrollTrigger
+    // calculates trigger positions against the final page height, not a partial one.
+    const onLoad = () => {
+      lenis.resize();
+      ScrollTrigger.refresh();
+    };
+
+    if (document.readyState === "complete") {
+      // Already loaded (e.g. hard-refresh with cache) — run immediately
+      onLoad();
+    } else {
+      window.addEventListener("load", onLoad);
+    }
+
+    // Fallback: also refresh shortly after mount in case load already fired
     const timeoutId = window.setTimeout(() => {
       lenis.resize();
       ScrollTrigger.refresh();
-    }, 300);
+    }, 500);
 
-    window.addEventListener("resize", () => ScrollTrigger.refresh());
+    const onResize = () => ScrollTrigger.refresh();
+    window.addEventListener("resize", onResize);
 
     return () => {
       window.clearTimeout(timeoutId);
+      window.removeEventListener("load", onLoad);
+      window.removeEventListener("resize", onResize);
       gsap.ticker.remove(updateScroll);
       lenis.destroy();
       ScrollTrigger.getAll().forEach((t) => t.kill());

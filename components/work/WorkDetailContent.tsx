@@ -91,6 +91,7 @@ export function WorkDetailContent({ project }: WorkDetailContentProps) {
             start: "top 70%",
             toggleActions: "play none none none",
             once: true,
+            invalidateOnRefresh: true,
           },
           onComplete: () => void gsap.set(featureItems, { willChange: "auto" }),
         });
@@ -111,6 +112,7 @@ export function WorkDetailContent({ project }: WorkDetailContentProps) {
             start: "top 75%",
             toggleActions: "play none none none",
             once: true,
+            invalidateOnRefresh: true,
           },
           onComplete: () => void gsap.set(techItems, { willChange: "auto" }),
         });
@@ -131,6 +133,7 @@ export function WorkDetailContent({ project }: WorkDetailContentProps) {
             start: "top 70%",
             toggleActions: "play none none none",
             once: true,
+            invalidateOnRefresh: true,
           },
           onComplete: () => void gsap.set(deepDiveItems, { willChange: "auto" }),
         });
@@ -155,6 +158,7 @@ export function WorkDetailContent({ project }: WorkDetailContentProps) {
             start: "top 75%",
             toggleActions: "play none none none",
             once: true,
+            invalidateOnRefresh: true,
           },
           onComplete: () => void gsap.set(highlightsRef.current, { willChange: "auto" }),
         });

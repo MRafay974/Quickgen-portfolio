@@ -41,6 +41,8 @@ export function ImpactCarousel() {
             trigger: textRef.current,
             start: "top 70%",
             toggleActions: "play none none none",
+            once: true,
+            invalidateOnRefresh: true,
           },
         }
       );

@@ -41,6 +41,7 @@ export function RecipeSection() {
           start: "top 60%",
           toggleActions: "play none none none",
           once: true,
+          invalidateOnRefresh: true,
         },
       });
 
@@ -51,6 +52,7 @@ export function RecipeSection() {
           start: "top 60%",
           toggleActions: "play none none none",
           once: true,
+          invalidateOnRefresh: true,
         },
       });
 

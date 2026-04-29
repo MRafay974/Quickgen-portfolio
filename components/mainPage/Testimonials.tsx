@@ -57,6 +57,7 @@ export function Testimonials() {
         start: "top 55%",
         toggleActions: "play none none none",
         once: true,
+        invalidateOnRefresh: true,
       },
       onComplete: () => {
         gsap.set(targets, { willChange: "auto" });

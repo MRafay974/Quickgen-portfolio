@@ -45,6 +45,7 @@ export function MoreWork() {
           start: "top 55%",
           toggleActions: "play none none none",
           once: true,
+          invalidateOnRefresh: true,
         },
         onComplete: () => {
           gsap.set(cards, { willChange: "auto" });
@@ -70,6 +71,7 @@ export function MoreWork() {
           start: "top 90%",
           toggleActions: "play none none none",
           once: true,
+          invalidateOnRefresh: true,
         },
         onComplete: () => {
           gsap.set(footerRef.current, { willChange: "auto" });
