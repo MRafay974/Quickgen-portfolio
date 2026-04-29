@@ -40,21 +40,21 @@ export function GlobalScrollEffects({ children }: GlobalScrollEffectsProps) {
     // calculates trigger positions against the final page height, not a partial one.
     const onLoad = () => {
       lenis.resize();
-      ScrollTrigger.refresh();
+      ScrollTrigger.refresh(true);
     };
 
     if (document.readyState === "complete") {
-      // Already loaded (e.g. hard-refresh with cache) — run immediately
       onLoad();
     } else {
       window.addEventListener("load", onLoad);
     }
 
-    // Fallback: also refresh shortly after mount in case load already fired
+    // Refresh shortly after mount so in-viewport elements animate correctly
+    // on route change (page starts at top, triggers may already be in range).
     const timeoutId = window.setTimeout(() => {
       lenis.resize();
-      ScrollTrigger.refresh();
-    }, 500);
+      ScrollTrigger.refresh(true);
+    }, 200);
 
     const onResize = () => ScrollTrigger.refresh();
     window.addEventListener("resize", onResize);
@@ -65,7 +65,10 @@ export function GlobalScrollEffects({ children }: GlobalScrollEffectsProps) {
       window.removeEventListener("resize", onResize);
       gsap.ticker.remove(updateScroll);
       lenis.destroy();
-      ScrollTrigger.getAll().forEach((t) => t.kill());
+      // DO NOT call ScrollTrigger.getAll().kill() here.
+      // Each component manages its own ScrollTriggers via ctx.revert().
+      // Killing all triggers here races with new-page useLayoutEffects that
+      // already created their triggers, leaving elements permanently at opacity:0.
     };
   }, [pathname]);
 
