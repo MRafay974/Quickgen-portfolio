@@ -39,43 +39,57 @@ export function Testimonials() {
   const authorRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLDivElement>(null);
 
-  // Scroll-in animation on mount
   useEffect(() => {
     if (typeof window === "undefined") return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     gsap.registerPlugin(ScrollTrigger);
 
-    const targets = [badgeRef.current, quoteRef.current, authorRef.current, buttonRef.current];
+    // Set initial black background on the section itself
+    gsap.set(sectionRef.current, { backgroundColor: "#000000" });
 
-    // Lock initial states before first paint
-    gsap.set(targets, { opacity: 0, y: 35, willChange: "transform, opacity" });
+    const ctx = gsap.context(() => {
+      // Fast black → white transition: fires over a short scroll window at the
+      // bottom of THIS section, so both Testimonials and ImpactCarousel flip together.
+      gsap.to(sectionRef.current, {
+        backgroundColor: "#ffffff",
+        ease: "none",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          // Start when the bottom of the section is 20% above the viewport bottom
+          start: "bottom 80%",
+          // End when the bottom of the section exits the viewport — short window = fast flip
+          end: "bottom 20%",
+          scrub: 0.1,           // low scrub = near-instant response to scroll
+          invalidateOnRefresh: true,
+        },
+      });
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: "top 55%",
-        toggleActions: "play none none none",
-        once: true,
-        invalidateOnRefresh: true,
-      },
-      onComplete: () => {
-        gsap.set(targets, { willChange: "auto" });
-      },
-    });
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-    tl.to(targets, {
-      opacity: 1,
-      y: 0,
-      duration: 1.3,
-      ease: "power1.out",
-      stagger: 0.1,
-    });
+      const targets = [badgeRef.current, quoteRef.current, authorRef.current, buttonRef.current];
+      gsap.set(targets, { opacity: 0, y: 35, willChange: "transform, opacity" });
 
-    return () => {
-      tl.scrollTrigger?.kill();
-      tl.kill();
-    };
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 55%",
+          toggleActions: "play none none none",
+          once: true,
+          invalidateOnRefresh: true,
+        },
+        onComplete: () => gsap.set(targets, { willChange: "auto" }),
+      });
+
+      tl.to(targets, {
+        opacity: 1,
+        y: 0,
+        duration: 1.3,
+        ease: "power1.out",
+        stagger: 0.1,
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
   }, []);
 
   const handleNext = () => {
@@ -89,10 +103,10 @@ export function Testimonials() {
   const activeTestimonial = testimonials[activeIndex];
 
   return (
-    <section ref={sectionRef} className="bg-black text-white">
+    <section ref={sectionRef} className="text-white">
       <div className="mx-auto max-w-7xl px-6 py-24 lg:px-8">
-        <div className="rounded-[3rem] bg-zinc-950/80 p-8 shadow-[0_40px_120px_-60px_rgba(0,0,0,0.75)] sm:p-12">
-          <div className="grid gap-10 lg:grid-cols-[1.35fr_auto] lg:items-start">
+<div className="p-8 sm:p-12">
+            <div className="grid gap-10 lg:grid-cols-[1.35fr_auto] lg:items-start">
             <div className="space-y-8">
 
               {/* Badge */}
@@ -111,7 +125,6 @@ export function Testimonials() {
                   }`}
                 >
                   <p className="text-4xl font-semibold leading-tight text-white sm:text-5xl">
-                    
                     {activeTestimonial.quote.map((segment, index) => (
                       <span
                         key={index}
@@ -120,7 +133,6 @@ export function Testimonials() {
                         {segment.text}
                       </span>
                     ))}
-                    
                   </p>
                 </div>
               </div>

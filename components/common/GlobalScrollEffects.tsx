@@ -20,9 +20,9 @@ export function GlobalScrollEffects({ children }: GlobalScrollEffectsProps) {
     gsap.registerPlugin(ScrollTrigger);
 
     const lenis = new Lenis({
-      duration: 0.7,
+      duration: 1.4,
       smoothWheel: true,
-      wheelMultiplier: 3.0,
+      wheelMultiplier: 1.5,
       touchMultiplier: 1.2,
       autoRaf: false,
     });

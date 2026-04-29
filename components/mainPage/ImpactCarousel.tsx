@@ -20,39 +20,61 @@ const slides = [
 
 export function ImpactCarousel() {
   const swiperRef = useRef<SwiperInstance | null>(null);
+  const sectionRef = useRef<HTMLElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
 
-  useLayoutEffect(() => {
+ useLayoutEffect(() => {
     if (typeof window === "undefined") return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     gsap.registerPlugin(ScrollTrigger);
 
+    // Start black — visually continuous with Testimonials above
+    gsap.set(sectionRef.current, { backgroundColor: "#000000" });
+
     const ctx = gsap.context(() => {
-      gsap.fromTo(
-        textRef.current,
-        { opacity: 0, y: 60 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.9,
-          ease: "back.out",
+      // Mirror the same trigger as Testimonials: animate over the bottom
+      // portion of the Testimonials section so both sections flip in sync.
+      const testimonialSection = sectionRef.current?.previousElementSibling as HTMLElement | null;
+      if (testimonialSection) {
+        gsap.to(sectionRef.current, {
+          backgroundColor: "#ffffff",
+          ease: "none",
           scrollTrigger: {
-            trigger: textRef.current,
-            start: "top 70%",
-            toggleActions: "play none none none",
-            once: true,
+            trigger: testimonialSection,
+            start: "bottom 80%",   // same window as Testimonials
+            end: "bottom 20%",
+            scrub: 0.1,            // same fast scrub
             invalidateOnRefresh: true,
           },
-        }
-      );
-    });
+        });
+      }
+
+      if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        gsap.fromTo(
+          textRef.current,
+          { opacity: 0, y: 60 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.9,
+            ease: "back.out",
+            scrollTrigger: {
+              trigger: textRef.current,
+              start: "top 70%",
+              toggleActions: "play none none none",
+              once: true,
+              invalidateOnRefresh: true,
+            },
+          }
+        );
+      }
+    }, sectionRef);
 
     return () => ctx.revert();
   }, []);
 
   return (
-    <section className="bg-white text-black">
+    <section ref={sectionRef} className="text-black">
       <div className="py-24">
         <Swiper
   modules={[Autoplay]}

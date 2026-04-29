@@ -93,26 +93,36 @@ export function Navbar({ currentPage }: NavbarProps) {
         </div>
 
         {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => {
-            const isActive = isActiveRoute(link.href, link.label);
-            return (
-              <Link
-                key={link.label}
-                href={link.href}
-                className={navLinkClasses(isActive)}
-              >
-                {link.label}
-              </Link>
-            );
-          })}
-          <Link
-            href="/contact"
-            className="rounded px-6 py-2 text-sm font-semibold text-white bg-[#C0392B] transition hover:bg-[#a93226]"
-          >
-            Book Free Call
-          </Link>
-        </nav>
+{/* Desktop nav */}
+<nav className="hidden md:flex items-center gap-8">
+  {navLinks.map((link) => {
+    const isActive = isActiveRoute(link.href, link.label);
+    return (
+     <Link
+  key={link.label}
+  href={link.href}
+  className={`relative overflow-hidden group inline-block h-[1.2em] leading-[1.2em] ${
+    isActive ? "text-red-500" : isWhiteBackground ? "text-zinc-950" : "text-white"
+  }`}
+>
+  {/* Top label — slides up on hover */}
+  <span className="block transition-transform duration-300 ease-in-out group-hover:-translate-y-full">
+    {link.label}
+  </span>
+  {/* Bottom label — slides up into view on hover */}
+  <span className="absolute top-full left-0 block transition-transform duration-300 ease-in-out group-hover:-translate-y-full text-red-500">
+    {link.label}
+  </span>
+</Link>
+    );
+  })}
+  <Link
+    href="/contact"
+    className="rounded px-6 py-2 text-sm font-semibold text-white bg-[#C0392B] transition hover:bg-[#a93226]"
+  >
+    Book Free Call
+  </Link>
+</nav>
 
         {/* Mobile hamburger */}
         <button
