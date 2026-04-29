@@ -77,7 +77,7 @@ export function Testimonials() {
           once: true,
           invalidateOnRefresh: true,
         },
-        onComplete: () => gsap.set(targets, { willChange: "auto" }),
+        onComplete: () => { gsap.set(targets, { willChange: "auto" }); },
       });
 
       tl.to(targets, {
