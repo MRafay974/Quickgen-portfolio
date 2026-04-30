@@ -58,9 +58,9 @@ export default function ProcessPageContent() {
           {/* Right: product image anchored to right edge */}
           <div className="w-1/2 lg:w-2/5 shrink-0 relative">
             <img
-              src="/images/process/printer.png"
+              src="/images/process/drone.png"
               alt="Product"
-              className="absolute bottom-0 right-[-5] w-full object-contain max-h-[175px] lg:max-h-[380px]"
+              className="absolute right-[-5] w-full object-contain max-h-[175px] lg:max-h-[380px]"
             />
           </div>
         </div>
