@@ -162,7 +162,7 @@ export default function Home() {
       {/* ── Rest of page ── */}
       <Featured />
       <Process />
-      <ProjectCards />
+      {/* <ProjectCards /> */}
       <Testimonials />
       <ImpactCarousel />
       <MoreWork />
