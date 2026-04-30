@@ -52,14 +52,18 @@ function formatCategoryLabel(category: string) {
   );
 }
 
-const PAGE_SIZE = 6;
+const INITIAL_COUNT = 6;
+// Categories pinned to the TOP when "All" or "Hardware" is selected
+const PINNED_CATEGORIES_ORDER = ["iot_smart_devices", "health_tech_wearables"] as const;
+// Categories pushed to the BOTTOM when "All" or "Hardware" is selected
+const DEMOTED_CATEGORIES_ORDER = ["pcb_reverse_eng", "ev_battery_power"] as const;
 
 export default function WorkPage() {
   const [activeMainFilter, setActiveMainFilter] = useState<MainFilter>("All");
   const [activeSubFilter, setActiveSubFilter] = useState<string>("");
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [dropdownRect, setDropdownRect] = useState<DOMRect | null>(null);
-  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
+  const [visibleCount, setVisibleCount] = useState(INITIAL_COUNT);
 
   const headingRef = useRef<HTMLHeadingElement>(null);
   const descRef = useRef<HTMLParagraphElement>(null);
@@ -196,14 +200,35 @@ export default function WorkPage() {
     if (activeMainFilter === "Software") {
       return deduped.filter((c) => SOFTWARE_CATEGORIES.includes(c.category));
     }
-    if (activeMainFilter === "Hardware") {
-      return deduped.filter((c) => HARDWARE_CATEGORIES.includes(c.category));
+
+    // Helper: pin top + demote bottom for All / Hardware
+    function applyPinning(cards: typeof deduped) {
+      const pinned = PINNED_CATEGORIES_ORDER.flatMap((cat) =>
+        cards.filter((c) => c.category === cat)
+      );
+      const demoted = DEMOTED_CATEGORIES_ORDER.flatMap((cat) =>
+        cards.filter((c) => c.category === cat)
+      );
+      const pinnedSlugs  = new Set(pinned.map((c) => c.slug));
+      const demotedSlugs = new Set(demoted.map((c) => c.slug));
+      const middle = cards.filter(
+        (c) => !pinnedSlugs.has(c.slug) && !demotedSlugs.has(c.slug)
+      );
+      return [...pinned, ...middle, ...demoted];
     }
-    return deduped;
+
+    if (activeMainFilter === "Hardware") {
+      const hardware = deduped.filter((c) => HARDWARE_CATEGORIES.includes(c.category));
+      return applyPinning(hardware);
+    }
+
+    // "All" — same pinning applied to the full deduped set
+    return applyPinning(deduped);
   })();
 
   const visibleCards = filteredCards.slice(0, visibleCount);
   const hasMore = visibleCount < filteredCards.length;
+  const remainingCount = filteredCards.length - visibleCount;
 
   const currentSubs = getSubsForMainFilter(activeMainFilter);
   const activeSubLabel = currentSubs.find((s) => s.id === activeSubFilter)?.label;
@@ -219,13 +244,13 @@ export default function WorkPage() {
     setActiveMainFilter(filter);
     setActiveSubFilter("");
     setDropdownOpen(false);
-    setVisibleCount(PAGE_SIZE);
+    setVisibleCount(INITIAL_COUNT);
   }
 
   function handleSubFilterChange(subId: string) {
     setActiveSubFilter((prev) => (prev === subId ? "" : subId));
     setDropdownOpen(false);
-    setVisibleCount(PAGE_SIZE);
+    setVisibleCount(INITIAL_COUNT);
   }
 
   return (
@@ -348,13 +373,13 @@ export default function WorkPage() {
             <p className="py-16 text-center text-zinc-500">No projects found.</p>
           ) : (
             <>
-              {/* ── Mobile: 2-column masonry ── */}
-              <div className="columns-2 gap-3 sm:hidden">
+              {/* ── Mobile: 2-column grid ── */}
+              <div className="grid grid-cols-2 gap-3 sm:hidden">
                 {visibleCards.map((project) => (
                   <Link
                     key={project.slug}
                     href={`/work/${project.slug}`}
-                    className="work-card group mb-3 block break-inside-avoid cursor-pointer"
+                    className="work-card group block cursor-pointer"
                   >
                     <article className="rounded-2xl bg-zinc-100 overflow-hidden">
                       <div className="relative">
@@ -384,14 +409,13 @@ export default function WorkPage() {
                 ))}
               </div>
 
-              {/* ── Desktop: masonry grid ── */}
-              <div className="hidden sm:block">
-                <div className="columns-2 gap-6">
+              {/* ── Desktop: 2-column grid ── */}
+              <div className="hidden sm:grid sm:grid-cols-2 gap-6">
                   {visibleCards.map((project) => (
                     <Link
                       key={project.slug}
                       href={`/work/${project.slug}`}
-                      className="work-card group mb-6 block break-inside-avoid cursor-pointer"
+                      className="work-card group block cursor-pointer"
                     >
                       <article className="rounded-2xl border border-zinc-200 bg-zinc-50 shadow-sm transition hover:shadow-lg overflow-hidden">
                         <div className="relative">
@@ -440,16 +464,15 @@ export default function WorkPage() {
                       </article>
                     </Link>
                   ))}
-                </div>
               </div>
 
               {hasMore && (
                 <div className="mt-10 flex justify-center">
                   <button
-                    onClick={() => setVisibleCount((prev) => prev + PAGE_SIZE)}
+                    onClick={() => setVisibleCount(filteredCards.length)}
                     className="rounded-full border border-zinc-200 bg-white px-8 py-3 text-sm font-semibold text-zinc-950 transition hover:border-zinc-300 hover:bg-zinc-50"
                   >
-                    Load more
+                    Load all
                   </button>
                 </div>
               )}

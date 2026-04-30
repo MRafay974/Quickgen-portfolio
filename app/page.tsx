@@ -10,7 +10,6 @@ import gsap from "gsap";
 
 import { Featured } from "@/components/mainPage/Featured";
 import { Process } from "@/components/mainPage/Process";
-import { ProjectCards } from "@/components/mainPage/ProjectCards";
 import { MoreWork } from "@/components/mainPage/MoreWork"
 import { Testimonials } from "@/components/mainPage/Testimonials";
 import { ImpactCarousel } from "@/components/mainPage/ImpactCarousel";
@@ -18,6 +17,7 @@ import { StatsSection } from "@/components/mainPage/StatsSection";
 import { RecipeSection } from "@/components/common/RecipeSection";
 import { Footer } from "@/components/common/Footer";
 import { Navbar } from "@/components/common/Navbar";
+import { FloatingContact } from "@/components/common/FloatingContact";
 
 // ─── Card data ────────────────────────────────────────────────────────────────
 // Drop your image paths into `imageSrc` when ready.
@@ -169,6 +169,7 @@ export default function Home() {
       <StatsSection />
       <RecipeSection />
       <Footer />
+      <FloatingContact />
     </div>
   );
 }

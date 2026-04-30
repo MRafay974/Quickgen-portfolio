@@ -66,7 +66,7 @@ export function Featured() {
           <div ref={imageRef} className="relative flex items-center justify-center">
             <div className="relative overflow-hidden rounded-[3rem]">
               <img
-                src="/images/landingPage/scentix.png"
+                src="/images/landingPage/HEADLAMPS.png"
                 alt="Featured project"
                 className="h-[30rem] w-full object-contain"
               />
