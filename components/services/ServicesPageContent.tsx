@@ -7,14 +7,14 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 // ─── Data ────────────────────────────────────────────────────────────────────
 
 const servicesList = [
-  { id: "01", label: "Design",        subtitle: "Crafting form through function, aesthetics, and usability.",  preview: "/images/service/1.png" },
+  { id: "01", label: "Design",        subtitle: "Crafting form through function, aesthetics, and usability.",  preview: "/images/service/black.png" },
   { id: "02", label: "Engineering",   subtitle: "Turning ideas into precise, manufacturable hardware solutions.", preview: "/images/service/2.png" },
   { id: "03", label: "Software",      subtitle: "Building seamless digital experiences from app to firmware.",   preview: "/images/service/3.png" },
   { id: "04", label: "Manufacturing", subtitle: "Taking products from prototype to production at scale.",          preview: "/images/service/4.png" },
 ];
 
 const designSection = {
-  image: "/images/service/1.png",
+  image: "/images/service/black.png",
   title: "Design",
   tags: ["Product design", "Branding", "UX/UI", "Design research", "Prototyping", "Modelling", "Packaging"],
   description:
@@ -108,7 +108,7 @@ function ServiceBlock({ id, image, title, tags, description, caseStudies, bg, te
           <img
             src={image}
             alt={title}
-            className="w-full object-contain"
+            className={`w-full object-contain ${id === "design" ? "max-h-136" : ""}`}
           />
         </div>
       </div>
