@@ -35,8 +35,6 @@ const clientLogos: { src: string; alt: string; href: string }[] = [
   { src: "/images/clients/19.png", alt: "Client 19", href: "https://www.zeroemissionfuels.com/" },
   { src: "/images/clients/21.png", alt: "Client 21", href: "https://www.atsnuc.com/" },
   { src: "/images/clients/22.png", alt: "Client 22", href: "https://remimb.com/" },
-  { src: "/images/clients/23.png", alt: "Client 23", href: "https://www.edutech.com/" },
-  { src: "/images/clients/24.png", alt: "Client 24", href: "https://www.instagram.com/apollovisiongolf/" },
 ];
 
 // Row 1 → right-to-left  |  Row 2 → left-to-right (reversed order for variety)
