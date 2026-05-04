@@ -187,7 +187,7 @@ export function StatsSection() {
                 {row1Logos.map((logo) => (
                   <a
                     key={`r1-${setIdx}-${logo.src}`}
-                    href={logo.href}
+                    // href={logo.href}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group shrink-0 flex items-center justify-center"
@@ -219,7 +219,7 @@ export function StatsSection() {
                 {row2Logos.map((logo) => (
                   <a
                     key={`r2-${setIdx}-${logo.src}`}
-                    href={logo.href}
+                    // href={logo.href}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group shrink-0 flex items-center justify-center"
