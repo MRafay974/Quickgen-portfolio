@@ -140,7 +140,7 @@ export default function Home() {
 
         {/* ── Subtitle — pinned to bottom ── */}
         <div ref={subtitleRef} className="absolute bottom-10 left-0 right-0 z-20 flex justify-center px-6 pointer-events-none">
-          <p className="text-lg md:text-xl text-zinc-400  text-center max-w-xl font-bold leading-tight">
+          <p className="text-lg md:text-xl text-zinc-200  text-center max-w-xl font-bold leading-tight">
             We turn what exists
             in your mind into what
             exists in the market.

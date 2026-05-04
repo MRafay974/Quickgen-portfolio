@@ -12,10 +12,36 @@ const stats = [
   { value: null, display: "Zero", label: "Missed Deadlines" },
 ];
 
-const clientLogos = Array.from({ length: 24 }, (_, index) => ({
-  src: `/images/clients/${index + 1}.png`,
-  alt: `Client ${index + 1}`,
-}));
+// logo 20.png is absent from the assets — skip it
+const clientLogos: { src: string; alt: string; href: string }[] = [
+  { src: "/images/clients/1.png", alt: "Client 1", href: "https://aquamonix.com.au/" },
+  { src: "/images/clients/2.png", alt: "Client 2", href: "https://www.aeyron.com/" },
+  { src: "/images/clients/3.png", alt: "Client 3", href: "https://litrek.com.au/" },
+  { src: "/images/clients/4.png", alt: "Client 4", href: "https://www.rtechinc.co/" },
+  { src: "/images/clients/5.png", alt: "Client 5", href: "https://simplifiautomation.com/" },
+  { src: "/images/clients/6.png", alt: "Client 6", href: "https://naly.ai/en" },
+  { src: "/images/clients/7.png", alt: "Client 7", href: "https://www.adelehealth.com/" },
+  { src: "/images/clients/8.png", alt: "Client 8", href: "https://www.uplyftwearables.com/" },
+  { src: "/images/clients/9.png", alt: "Client 9", href: "https://www.flux.ai/p/" },
+  { src: "/images/clients/10.png", alt: "Client 10", href: "https://innotech.com/" },
+  { src: "/images/clients/11.png", alt: "Client 11", href: "https://www.nak.com.tw/" },
+  { src: "/images/clients/12.png", alt: "Client 12", href: "https://microclimate.com/" },
+  { src: "/images/clients/13.png", alt: "Client 13", href: "https://livello.com/" },
+  { src: "/images/clients/14.png", alt: "Client 14", href: "https://www.honeypoint3d.com/" },
+  { src: "/images/clients/15.png", alt: "Client 15", href: "https://www.asteroidtechs.com/en/home" },
+  { src: "/images/clients/16.png", alt: "Client 16", href: "https://www.studiobassing.com/" },
+  { src: "/images/clients/17.png", alt: "Client 17", href: "https://designengineerconstruct.com/" },
+  { src: "/images/clients/18.png", alt: "Client 18", href: "https://pacmotor.com/" },
+  { src: "/images/clients/19.png", alt: "Client 19", href: "https://www.zeroemissionfuels.com/" },
+  { src: "/images/clients/21.png", alt: "Client 21", href: "https://www.atsnuc.com/" },
+  { src: "/images/clients/22.png", alt: "Client 22", href: "https://remimb.com/" },
+  { src: "/images/clients/23.png", alt: "Client 23", href: "https://www.edutech.com/" },
+  { src: "/images/clients/24.png", alt: "Client 24", href: "https://www.instagram.com/apollovisiongolf/" },
+];
+
+// Row 1 → right-to-left  |  Row 2 → left-to-right (reversed order for variety)
+const row1Logos = clientLogos;
+const row2Logos = [...clientLogos].reverse();
 
 export function StatsSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -150,49 +176,93 @@ export function StatsSection() {
         </div>
       </div>
 
-      {/* ── Infinite clients logo strip ─────────────────────────────────────── */}
-      <div className="border-t border-zinc-100 pb-12 pt-5 sm:pt-6">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="relative overflow-hidden">
-            <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-20 bg-linear-to-r from-white via-white/90 to-transparent sm:w-28 lg:w-36" />
-            <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-20 bg-linear-to-l from-white via-white/90 to-transparent sm:w-28 lg:w-36" />
+      {/* ── Infinite clients logo strips ─────────────────────────────────── */}
+      <div className="border-t border-zinc-100 pb-12 pt-5 sm:pt-6 space-y-4">
 
-            <div className="clients-track flex min-w-max items-center gap-4 py-5 sm:gap-6 lg:gap-8">
-              {[0, 1, 2].map((setIdx) => (
-                <div key={setIdx} className="flex shrink-0 items-center justify-center gap-4 sm:gap-6 lg:gap-8">
-                  {clientLogos.map((logo) => (
-                    <div
-                      key={`${setIdx}-${logo.src}`}
-                      className="flex shrink-0 items-center justify-center "
-                    >
-                      <Image
-                        src={logo.src}
-                        alt={logo.alt}
-                        width={320}
-                        height={160}
-                        sizes="(min-width: 1024px) 288px, (min-width: 640px) 240px, 208px"
-                        className="h-auto max-h-24 w-auto max-w-full object-contain opacity-90 transition-opacity duration-300 hover:opacity-100 sm:max-h-28 lg:max-h-32"
-                        draggable={false}
-                      />
-                    </div>
-                  ))}
-                </div>
-              ))}
-            </div>
+        {/* Row 1 — scrolls right to left */}
+        <div className="relative overflow-hidden">
+          <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-20 bg-linear-to-r from-white via-white/90 to-transparent sm:w-28 lg:w-36" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-20 bg-linear-to-l from-white via-white/90 to-transparent sm:w-28 lg:w-36" />
+          <div className="clients-track-rtl flex min-w-max items-center gap-4 py-3 sm:gap-10 lg:gap-20">
+            {[0, 1, 2].map((setIdx) => (
+              <div key={setIdx} className="flex shrink-0 items-center gap-4 sm:gap-10 lg:gap-20">
+                {row1Logos.map((logo) => (
+                  <a
+                    key={`r1-${setIdx}-${logo.src}`}
+                    href={logo.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group shrink-0 flex items-center justify-center"
+                    aria-label={logo.alt}
+                  >
+                    <Image
+                      src={logo.src}
+                      alt={logo.alt}
+                      width={380}
+                      height={190}
+                      sizes="(min-width: 1024px) 340px, (min-width: 640px) 260px, 182px"
+                      className="h-auto max-h-20 w-auto max-w-44 object-contain grayscale opacity-75 transition-all duration-300 ease-out group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 sm:max-h-28 sm:max-w-56 lg:max-h-36 lg:max-w-72"
+                      draggable={false}
+                    />
+                  </a>
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Row 2 — scrolls left to right */}
+        <div className="relative overflow-hidden">
+          <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-20 bg-linear-to-r from-white via-white/90 to-transparent sm:w-28 lg:w-36" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-20 bg-linear-to-l from-white via-white/90 to-transparent sm:w-28 lg:w-36" />
+          <div className="clients-track-ltr flex min-w-max items-center gap-4 py-3 sm:gap-10 lg:gap-20">
+            {[0, 1, 2].map((setIdx) => (
+              <div key={setIdx} className="flex shrink-0 items-center gap-4 sm:gap-10 lg:gap-20">
+                {row2Logos.map((logo) => (
+                  <a
+                    key={`r2-${setIdx}-${logo.src}`}
+                    href={logo.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group shrink-0 flex items-center justify-center"
+                    aria-label={logo.alt}
+                  >
+                    <Image
+                      src={logo.src}
+                      alt={logo.alt}
+                      width={380}
+                      height={190}
+                      sizes="(min-width: 1024px) 340px, (min-width: 640px) 260px, 182px"
+                      className="h-auto max-h-20 w-auto max-w-44 object-contain grayscale opacity-75 transition-all duration-300 ease-out group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 sm:max-h-28 sm:max-w-56 lg:max-h-36 lg:max-w-72"
+                      draggable={false}
+                    />
+                  </a>
+                ))}
+              </div>
+            ))}
           </div>
         </div>
 
         <style>{`
-          .clients-track {
-            animation: clients-scroll 130s linear infinite;
+          .clients-track-rtl {
+            animation: clients-scroll-rtl 120s linear infinite;
             will-change: transform;
           }
-          @keyframes clients-scroll {
+          .clients-track-ltr {
+            animation: clients-scroll-ltr 120s linear infinite;
+            will-change: transform;
+          }
+          @keyframes clients-scroll-rtl {
             0%   { transform: translateX(0); }
             100% { transform: translateX(-33.333333%); }
           }
+          @keyframes clients-scroll-ltr {
+            0%   { transform: translateX(-33.333333%); }
+            100% { transform: translateX(0); }
+          }
           @media (prefers-reduced-motion: reduce) {
-            .clients-track {
+            .clients-track-rtl,
+            .clients-track-ltr {
               animation: none;
             }
           }
