@@ -184,7 +184,7 @@ export function StatsSection() {
           <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-20 bg-linear-to-r from-white via-white/90 to-transparent sm:w-28 lg:w-36" />
           <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-20 bg-linear-to-l from-white via-white/90 to-transparent sm:w-28 lg:w-36" />
           <div className="clients-track-rtl flex min-w-max items-center gap-4 py-3 sm:gap-10 lg:gap-20">
-            {[0, 1, 2].map((setIdx) => (
+            {[0, 1].map((setIdx) => (
               <div key={setIdx} className="flex shrink-0 items-center gap-4 sm:gap-10 lg:gap-20">
                 {row1Logos.map((logo) => (
                   <a
@@ -216,7 +216,7 @@ export function StatsSection() {
           <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-20 bg-linear-to-r from-white via-white/90 to-transparent sm:w-28 lg:w-36" />
           <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-20 bg-linear-to-l from-white via-white/90 to-transparent sm:w-28 lg:w-36" />
           <div className="clients-track-ltr flex min-w-max items-center gap-4 py-3 sm:gap-10 lg:gap-20">
-            {[0, 1, 2].map((setIdx) => (
+            {[0, 1].map((setIdx) => (
               <div key={setIdx} className="flex shrink-0 items-center gap-4 sm:gap-10 lg:gap-20">
                 {row2Logos.map((logo) => (
                   <a
@@ -245,20 +245,22 @@ export function StatsSection() {
 
         <style>{`
           .clients-track-rtl {
-            animation: clients-scroll-rtl 120s linear infinite;
+            animation: clients-scroll-rtl 140s linear infinite;
             will-change: transform;
+            transform: translate3d(0, 0, 0);
           }
           .clients-track-ltr {
-            animation: clients-scroll-ltr 120s linear infinite;
+            animation: clients-scroll-ltr 140s linear infinite;
             will-change: transform;
+            transform: translate3d(0, 0, 0);
           }
           @keyframes clients-scroll-rtl {
-            0%   { transform: translateX(0); }
-            100% { transform: translateX(-33.333333%); }
+            0%   { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-50%, 0, 0); }
           }
           @keyframes clients-scroll-ltr {
-            0%   { transform: translateX(-33.333333%); }
-            100% { transform: translateX(0); }
+            0%   { transform: translate3d(-50%, 0, 0); }
+            100% { transform: translate3d(0, 0, 0); }
           }
           @media (prefers-reduced-motion: reduce) {
             .clients-track-rtl,
