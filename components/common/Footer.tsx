@@ -155,9 +155,9 @@ export function Footer({ activeLink: _activeLink }: FooterProps) {
 
               <div className="flex flex-col gap-3">
                 <span className="text-m font-semibold text-white">Socials</span>
-                <a href="https://www.linkedin.com/company/quickgentech" target="_blank" rel="noopener noreferrer" className="text-base text-zinc-400 transition-colors hover:text-white">LinkedIn</a>
-                <a href="https://clutch.co" target="_blank" rel="noopener noreferrer" className="text-base text-zinc-400 transition-colors hover:text-white">Clutch</a>
-                <a href="https://upwork.com" target="_blank" rel="noopener noreferrer" className="text-base text-zinc-400 transition-colors hover:text-white">Upwork</a>
+                <a href="https://www.linkedin.com/company/quickgentechnologies/" target="_blank" rel="noopener noreferrer" className="text-base text-zinc-400 transition-colors hover:text-white">LinkedIn</a>
+                {/* <a href="https://clutch.co" target="_blank" rel="noopener noreferrer" className="text-base text-zinc-400 transition-colors hover:text-white">Clutch</a> */}
+                {/* <a href="https://upwork.com" target="_blank" rel="noopener noreferrer" className="text-base text-zinc-400 transition-colors hover:text-white">Upwork</a> */}
               </div>
             </div>
 
