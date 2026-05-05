@@ -2,6 +2,7 @@
 
 import { useLayoutEffect, useRef } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -13,6 +14,9 @@ type FooterProps = {
 export function Footer({ activeLink: _activeLink }: FooterProps) {
   const footerRef = useRef<HTMLElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
+  const infoRef = useRef<HTMLDivElement>(null);
+  const wordmarkRef = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
 
   useLayoutEffect(() => {
     if (typeof window === "undefined") return;
@@ -20,8 +24,8 @@ export function Footer({ activeLink: _activeLink }: FooterProps) {
 
     gsap.registerPlugin(ScrollTrigger);
 
-    // Lock initial state synchronously before first paint
-    gsap.set(ctaRef.current, { opacity: 0, y: 35, willChange: "transform, opacity" });
+    gsap.set([ctaRef.current, infoRef.current], { opacity: 0, y: 35, willChange: "transform, opacity" });
+    gsap.set(wordmarkRef.current, { opacity: 0, y: 60, willChange: "transform, opacity" });
 
     const ctx = gsap.context(() => {
       gsap.to(ctaRef.current, {
@@ -32,6 +36,32 @@ export function Footer({ activeLink: _activeLink }: FooterProps) {
         scrollTrigger: {
           trigger: footerRef.current,
           start: "top 60%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      });
+
+      gsap.to(infoRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 1.1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: infoRef.current,
+          start: "top 85%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      });
+
+      gsap.to(wordmarkRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 1.3,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: wordmarkRef.current,
+          start: "top 95%",
           toggleActions: "play none none none",
           once: true,
         },
@@ -57,22 +87,92 @@ export function Footer({ activeLink: _activeLink }: FooterProps) {
         </Link>
       </div>
 
-      {/* Bottom bar */}
-      <div className="border-t border-white/10 px-4 py-5 sm:px-8 sm:py-6">
-        <div className="mx-auto flex max-w-7xl flex-col items-center gap-2 text-center text-xs text-zinc-400 sm:flex-row sm:justify-between sm:text-left sm:text-sm">
-          <span>QuickGen Technology</span>
-          <span>
+      {/* Main footer info */}
+      <div ref={infoRef} className="px-6 pt-14 pb-10 sm:px-10 lg:px-10">
+        <div className="mx-auto max-w-7xl">
+          <div className="flex flex-col gap-10 lg:flex-row lg:justify-between">
 
+            {/* Offices — left side */}
+            <div className="flex flex-col gap-8 sm:flex-row sm:gap-12">
 
-            Dubai, UAE &nbsp;·&nbsp;{" "}
-            <a 
-              href="mailto:hello@quickgentech.com"
-              className="transition-colors duration-200 hover:text-red-500"
-            >
-              hello@quickgentech.com
-            </a>
-          </span>
+              {/* Australia */}
+              <div className="max-w-[200px]">
+                <p className="mb-3 text-m font-semibold text-[#C0392B]">Australia Office</p>
+                <p className="font-bold text-white">Toowoomba, Queensland</p>
+                <div className="mt-3 flex flex-col gap-1.5">
+                  <p className="text-sm text-white">+61 431 816 698</p>
+                  <a href="mailto:info@quickgentech.com" className="text-sm text-white transition-colors hover:text-[#C0392B]">info@quickgentech.com</a>
+                  <p className="text-sm text-white">Suite 96, 58–62 Water Street</p>
+                </div>
+              </div>
+
+              {/* Pakistan */}
+              <div className="max-w-[200px]">
+                <p className="mb-3 text-m font-semibold text-[#C0392B]">Pakistan Office</p>
+                <p className="font-bold text-white">Islamabad</p>
+                <div className="mt-3 flex flex-col gap-1.5">
+                  <p className="text-sm text-white">+92 335 5367422</p>
+                  <a href="mailto:info@quickgentech.com" className="text-sm text-white transition-colors hover:text-[#C0392B]">info@quickgentech.com</a>
+                  <p className="text-sm text-white">Office 1307, National Science &amp; Technology Park, H–12</p>
+                </div>
+              </div>
+
+              {/* Dubai */}
+              <div className="max-w-[200px]">
+                <p className="mb-3 text-m font-semibold text-[#C0392B]">Dubai Office</p>
+                <p className="font-bold text-white">Dubai Silicon Oasis</p>
+                <div className="mt-3 flex flex-col gap-1.5">
+                  <p className="text-sm text-white">+971 50 561 0698</p>
+                  <a href="mailto:info@quickgentech.com" className="text-sm text-white transition-colors hover:text-[#C0392B]">info@quickgentech.com</a>
+                  <p className="text-sm text-white">Quickgen Technologies FZCO,<br />Dubai, United Arab Emirates</p>
+                </div>
+              </div>
+
+            </div>
+
+            {/* Nav + Socials — right side */}
+            <div className="flex gap-16">
+              <nav className="flex flex-col gap-3">
+                {[
+                  { label: "Home", href: "/" },
+                  { label: "Work", href: "/work" },
+                  { label: "Services", href: "/services" },
+                  { label: "Process", href: "/process" },
+                  { label: "Contact", href: "/contact" },
+                ].map(({ label, href }) => {
+                  const isActive = pathname === href || (href !== "/" && pathname.startsWith(href));
+                  return (
+                    <Link
+                      key={href}
+                      href={href}
+                      className={`text-m transition-colors ${isActive ? "text-[#C0392B]" : "text-white hover:text-zinc-300"}`}
+                    >
+                      {label}
+                    </Link>
+                  );
+                })}
+              </nav>
+
+              <div className="flex flex-col gap-3">
+                <span className="text-m font-semibold text-white">Socials</span>
+                <a href="https://www.linkedin.com/company/quickgentech" target="_blank" rel="noopener noreferrer" className="text-base text-zinc-400 transition-colors hover:text-white">LinkedIn</a>
+                <a href="https://clutch.co" target="_blank" rel="noopener noreferrer" className="text-base text-zinc-400 transition-colors hover:text-white">Clutch</a>
+                <a href="https://upwork.com" target="_blank" rel="noopener noreferrer" className="text-base text-zinc-400 transition-colors hover:text-white">Upwork</a>
+              </div>
+            </div>
+
+          </div>
         </div>
+      </div>
+
+      {/* Big wordmark cut at bottom */}
+      <div ref={wordmarkRef} className="mt-16 overflow-hidden leading-none">
+        <p
+          className="select-none text-center font-black uppercase text-white"
+          style={{ fontSize: "clamp(80px, 18vw, 260px)", lineHeight: 0.75, marginBottom: "-0.25em" }}
+        >
+          QUICKGEN
+        </p>
       </div>
 
     </footer>
