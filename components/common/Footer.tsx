@@ -166,10 +166,10 @@ export function Footer({ activeLink: _activeLink }: FooterProps) {
       </div>
 
       {/* Big wordmark cut at bottom */}
-      <div ref={wordmarkRef} className="mt-16 overflow-hidden leading-none">
+      <div ref={wordmarkRef} className="mt-10 overflow-hidden leading-none sm:mt-14 lg:mt-16">
         <p
           className="select-none text-center font-black uppercase text-white"
-          style={{ fontSize: "clamp(80px, 18vw, 260px)", lineHeight: 0.75, marginBottom: "-0.25em" }}
+          style={{ fontSize: "clamp(38px, 18vw, 260px)", lineHeight: 0.75, marginBottom: "-0.22em" }}
         >
           QUICKGEN
         </p>
