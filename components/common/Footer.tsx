@@ -101,7 +101,7 @@ export function Footer({ activeLink: _activeLink }: FooterProps) {
                 <p className="font-bold text-white">Toowoomba, Queensland</p>
                 <div className="mt-3 flex flex-col gap-1.5">
                   <p className="text-sm text-white">+61 431 816 698</p>
-                  <a href="mailto:info@quickgentech.com" className="text-sm text-white transition-colors hover:text-[#C0392B]">info@quickgentech.com</a>
+                  <a href="mailto:Support@quickgentech.com" className="text-sm text-white transition-colors hover:text-[#C0392B]">Support@quickgentech.com</a>
                   <p className="text-sm text-white">Suite 96, 58–62 Water Street</p>
                 </div>
               </div>
@@ -112,7 +112,7 @@ export function Footer({ activeLink: _activeLink }: FooterProps) {
                 <p className="font-bold text-white">Islamabad</p>
                 <div className="mt-3 flex flex-col gap-1.5">
                   <p className="text-sm text-white">+92 335 5367422</p>
-                  <a href="mailto:info@quickgentech.com" className="text-sm text-white transition-colors hover:text-[#C0392B]">info@quickgentech.com</a>
+                  <a href="mailto: Support@quickgentech.com" className="text-sm text-white transition-colors hover:text-[#C0392B]">Support@quickgentech.com</a>
                   <p className="text-sm text-white">Office 1307, National Science &amp; Technology Park, H–12</p>
                 </div>
               </div>
@@ -123,7 +123,7 @@ export function Footer({ activeLink: _activeLink }: FooterProps) {
                 <p className="font-bold text-white">Dubai Silicon Oasis</p>
                 <div className="mt-3 flex flex-col gap-1.5">
                   <p className="text-sm text-white">+971 50 561 0698</p>
-                  <a href="mailto:info@quickgentech.com" className="text-sm text-white transition-colors hover:text-[#C0392B]">info@quickgentech.com</a>
+                  <a href="mailto: Support@quickgentech.com" className="text-sm text-white transition-colors hover:text-[#C0392B]">Support@quickgentech.com</a>
                   <p className="text-sm text-white">Quickgen Technologies FZCO,<br />Dubai, United Arab Emirates</p>
                 </div>
               </div>

@@ -202,10 +202,10 @@ export default function ContactPageContent() {
             )}
 
             <a
-              href="mailto:hello@quickgentech.com"
+              href="mailto: Support@quickgentech.com"
               className="text-sm font-semibold text-red-500 hover:text-red-600 transition sm:text-base"
             >
-              hello@quickgentech.com
+               Support@quickgentech.com
             </a>
           </div>
         </form>
