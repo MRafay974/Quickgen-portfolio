@@ -4,7 +4,6 @@ import { useRef, useLayoutEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import type { Swiper as SwiperInstance } from "swiper";
-import Link from "next/link";
 import "swiper/css";
 import gsap from "gsap";
 
@@ -130,12 +129,12 @@ export default function Home() {
             Build for Real
             <span className="text-red-500">.</span>
           </h1>
-          <Link
-            href="/contact"
+          <button
+            onClick={() => document.dispatchEvent(new Event("open-contact-modal"))}
             className="mt-3 rounded px-8 py-4 text-m font-semibold text-white bg-[#C0392B] transition hover:bg-[#a93226] inline-flex items-center gap-2"
           >
             Book Your Free Discovery Call →
-          </Link>
+          </button>
         </div>
 
         {/* ── Subtitle — pinned to bottom ── */}

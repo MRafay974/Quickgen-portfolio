@@ -40,7 +40,7 @@ export default function ProcessPageContent() {
             Start-up to enterprise,<br />we have seen it all.
           </h2>
           <p className="text-base leading-7 text-zinc-500 max-w-xl lg:pt-2">
-            At Brash, we believe in working collaboratively with our clients every step of the way.
+            At Quickgen, we believe in working collaboratively with our clients every step of the way.
             Through ongoing communication, we ensure your vision remains the driving force behind
             the entire process. Whether you are looking for full development or just one of the four
             steps our process, we can help you create something remarkable.

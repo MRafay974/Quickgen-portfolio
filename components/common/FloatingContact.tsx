@@ -34,6 +34,12 @@ export function FloatingContact() {
   }, [isOpen]);
 
   useEffect(() => {
+    const handler = () => open();
+    document.addEventListener("open-contact-modal", handler);
+    return () => document.removeEventListener("open-contact-modal", handler);
+  }, []);
+
+  useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
   }, [isOpen]);
