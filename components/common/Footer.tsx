@@ -79,12 +79,12 @@ export function Footer({ activeLink: _activeLink }: FooterProps) {
         <h2 className="text-3xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
           Let&apos;s build <br /> what&apos;s next.
         </h2>
-        <Link
-          href="/contact"
+        <button
+          onClick={() => document.dispatchEvent(new Event("open-contact-modal"))}
           className="mt-8 inline-flex items-center gap-2 rounded bg-[#C0392B] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#a93226] sm:mt-10 sm:px-12 sm:py-4 sm:text-base lg:px-16"
         >
           Book Your Free Discovery Call →
-        </Link>
+        </button>
       </div>
 
       {/* Main footer info */}
