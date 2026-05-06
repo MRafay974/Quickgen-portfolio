@@ -16,7 +16,6 @@ import { StatsSection } from "@/components/mainPage/StatsSection";
 import { RecipeSection } from "@/components/common/RecipeSection";
 import { Footer } from "@/components/common/Footer";
 import { Navbar } from "@/components/common/Navbar";
-import { FloatingContact } from "@/components/common/FloatingContact";
 
 // ─── Card data ────────────────────────────────────────────────────────────────
 // Drop your image paths into `imageSrc` when ready.
@@ -168,7 +167,6 @@ export default function Home() {
       <StatsSection />
       <RecipeSection />
       <Footer />
-      <FloatingContact />
     </div>
   );
 }

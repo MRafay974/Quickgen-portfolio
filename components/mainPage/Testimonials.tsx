@@ -121,6 +121,14 @@ export function Testimonials() {
     return () => ctx.revert();
   }, []);
 
+  const handlePrev = () => {
+    setIsVisible(false);
+    window.setTimeout(() => {
+      setActiveIndex((current) => (current - 1 + testimonials.length) % testimonials.length);
+      setIsVisible(true);
+    }, 300);
+  };
+
   const handleNext = () => {
     setIsVisible(false);
     window.setTimeout(() => {
@@ -167,8 +175,23 @@ export function Testimonials() {
               </div> */}
             </div>
 
-            {/* Button */}
-            <div ref={buttonRef} className="flex items-start justify-end">
+            {/* Buttons */}
+            <div ref={buttonRef} className="flex items-start justify-end gap-3">
+              <button
+                onClick={handlePrev}
+                className="inline-flex h-16 w-16 items-center justify-center rounded-full bg-white/5 text-white transition hover:bg-white/10"
+                aria-label="Previous testimonial"
+              >
+                <svg viewBox="0 0 24 24" fill="none" className="h-6 w-6">
+                  <path
+                    d="M15 6l-6 6 6 6"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </button>
               <button
                 onClick={handleNext}
                 className="inline-flex h-16 w-16 items-center justify-center rounded-full bg-white/5 text-white transition hover:bg-white/10"
