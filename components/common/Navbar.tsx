@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 
 type NavLink = {
@@ -66,10 +67,6 @@ export function Navbar({ currentPage }: NavbarProps) {
       : "transition text-white hover:text-red-500";
   };
 
-  const logoClasses = isWhiteBackground
-    ? "flex h-12 w-12 items-center justify-center rounded-full bg-zinc-950 text-sm font-bold text-white"
-    : "flex h-12 w-12 items-center justify-center rounded-full bg-white text-sm font-bold text-zinc-950";
-
   const hamburgerColor = isWhiteBackground ? "text-zinc-950" : "text-white";
 
   const isActiveRoute = (href: string, label: string) => {
@@ -87,8 +84,15 @@ export function Navbar({ currentPage }: NavbarProps) {
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4 md:py-6">
         <div className="flex items-center gap-3">
-          <Link href="/" className={logoClasses}>
-            BRASH
+          <Link href="/">
+            <Image
+              src="/images/logo/logo.png"
+              alt="Logo"
+              width={48}
+              height={48}
+              className="h-14 w-auto object-contain"
+              priority
+            />
           </Link>
         </div>
 
