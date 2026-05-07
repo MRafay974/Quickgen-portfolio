@@ -57,14 +57,14 @@ export function Process() {
           </div>
 
           {/* Text — only animated element */}
-          <div ref={textRef} className="mx-auto flex max-w-3xl flex-col items-center space-y-8 text-center">
+          <div ref={textRef} className="mx-auto flex max-w-3xl flex-col items-center space-y-5 text-center">
             <h2 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
               Every layer, Every discipline.
             </h2>
-            <p className="max-w-2xl text-lg leading-8 text-zinc-400">
+            <p className="max-w-2xl text-lg leading-8 text-zinc-200">
               A product is not just what you see. It is the board inside it, the code running on that board, the system connecting it to the world
             </p>
-            <div>
+          <div>
 <Link
   href="/process"
   className="inline-flex rounded-full border border-white/10 bg-white/5 px-8 py-3 text-base font-semibold text-white transition hover:border-white/20 hover:bg-white/10"

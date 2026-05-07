@@ -10,7 +10,6 @@ export function FloatingContact() {
   const [status, setStatus]       = useState<"idle" | "sending" | "success" | "error">("idle");
   const firstInputRef             = useRef<HTMLInputElement>(null);
 
-  // Trigger entrance animation after mount
   useEffect(() => {
     const t = setTimeout(() => setMounted(true), 300);
     return () => clearTimeout(t);
@@ -90,8 +89,6 @@ export function FloatingContact() {
       <div
         className="group fixed bottom-8 right-8 z-50 cursor-pointer"
         style={{
-          width: 112,
-          height: 112,
           opacity: mounted ? 1 : 0,
           transform: mounted
             ? "scale(1) translateY(0)"
@@ -105,85 +102,50 @@ export function FloatingContact() {
         tabIndex={0}
         onKeyDown={(e) => e.key === "Enter" && open()}
       >
-        {/* Frosted glass backing ring — ensures text is legible on any bg */}
-        <div
-          className="absolute inset-0 rounded-full"
-          style={{
-            background: "rgba(0,0,0,0.55)",
-            backdropFilter: "blur(8px)",
-            WebkitBackdropFilter: "blur(8px)",
-            border: "1.5px solid rgba(255,255,255,0.18)",
-          }}
+        {/* Ripple rings — anchored to the icon circle on the left */}
+        <span
+          className="beacon-pulse pointer-events-none absolute left-0 top-0 h-[60px] w-[60px] rounded-full"
+          style={{ background: "rgba(192,57,43,0.30)" }}
+        />
+        <span
+          className="beacon-pulse beacon-pulse-delay pointer-events-none absolute left-0 top-0 h-[60px] w-[60px] rounded-full"
+          style={{ background: "rgba(192,57,43,0.18)" }}
         />
 
-        {/* Rotating circular "BOOK A CALL" text */}
-        <svg
-          viewBox="0 0 112 112"
-          width="112"
-          height="112"
-          className="fab-spin absolute inset-0"
-          aria-hidden="true"
-        >
-          <defs>
-            <path
-              id="fab-circle-path"
-              d="M 56,56 m -40,0 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0"
-            />
-          </defs>
-
-          {/* Dark stroke layer for contrast on light backgrounds */}
-          <text
-            fontSize="10.5"
-            fontWeight="900"
-            letterSpacing="2.8"
-            fill="none"
-            stroke="rgba(0,0,0,0.6)"
-            strokeWidth="3.5"
-            strokeLinejoin="round"
-          >
-            <textPath href="#fab-circle-path" startOffset="0%">
-              BOOK A CALL • BOOK A CALL •{" "}
-            </textPath>
-          </text>
-
-          {/* Main white text */}
-          <text
-            fontSize="10.5"
-            fontWeight="900"
-            letterSpacing="2.8"
-            fill="#ffffff"
-          >
-            <textPath href="#fab-circle-path" startOffset="0%">
-              BOOK A CALL • BOOK A CALL •{" "}
-            </textPath>
-          </text>
-        </svg>
-
-        {/* Center icon button */}
+        {/* Expanding pill — circle → pill on hover */}
         <button
           aria-hidden="true"
           tabIndex={-1}
-          className="absolute left-1/2 top-1/2 flex h-[68px] w-[68px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full text-white outline-none transition-transform duration-200 group-hover:scale-110"
+          className="relative flex items-center gap-0 overflow-hidden rounded-full text-white outline-none transition-all duration-300 ease-out group-hover:gap-2.5 group-hover:scale-105"
           style={{
             background: "#C0392B",
-            boxShadow:
-              "0 0 0 3px rgba(192,57,43,0.35), 0 8px 28px rgba(192,57,43,0.55)",
+            height: 60,
+            paddingLeft: 19,
+            paddingRight: 19,
+            boxShadow: "0 0 0 3px rgba(192,57,43,0.35), 0 6px 20px rgba(192,57,43,0.55)",
           }}
         >
-          {/* chat icon */}
+          {/* Phone icon */}
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            strokeWidth="2"
+            strokeWidth="2.8"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className="relative z-10 h-7 w-7"
+            style={{ width: 22, height: 22, flexShrink: 0 }}
             aria-hidden="true"
           >
-            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 3.07 9.8 19.79 19.79 0 0 1 .07 1.18 2 2 0 0 1 2.03 0h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L6.09 7.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 14.92z" />
           </svg>
+
+          {/* "Book a Call" label — slides in from right */}
+          <span
+            className="max-w-0 overflow-hidden whitespace-nowrap text-sm font-bold tracking-wide opacity-0 transition-all duration-300 ease-out group-hover:max-w-[120px] group-hover:opacity-100"
+          >
+            Book a Call
+          </span>
         </button>
       </div>
 
@@ -342,15 +304,18 @@ export function FloatingContact() {
 
       {/* ── Keyframes ─────────────────────────────────────────────────────── */}
       <style>{`
-        .fab-spin {
-          animation: fab-rotate 9s linear infinite;
+        .beacon-pulse {
+          animation: beacon-ripple 2s ease-out infinite;
         }
-        @keyframes fab-rotate {
-          from { transform: rotate(0deg); }
-          to   { transform: rotate(360deg); }
+        .beacon-pulse-delay {
+          animation-delay: 0.7s;
+        }
+        @keyframes beacon-ripple {
+          0%   { transform: scale(0.85); opacity: 1; }
+          100% { transform: scale(1.55); opacity: 0; }
         }
         @media (prefers-reduced-motion: reduce) {
-          .fab-spin { animation: none; }
+          .beacon-pulse { animation: none; }
         }
       `}</style>
     </>
