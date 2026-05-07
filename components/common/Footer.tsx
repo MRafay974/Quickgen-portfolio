@@ -119,7 +119,7 @@ export function Footer({ activeLink: _activeLink }: FooterProps) {
 
               {/* Dubai */}
               <div className="max-w-[200px]">
-                <p className="mb-3 text-m font-semibold text-[#C0392B]">Dubai Office</p>
+                <p className="mb-3 text-m font-semibold text-[#C0392B]">UAE Office</p>
                 <p className="font-bold text-white">Dubai Silicon Oasis</p>
                 <div className="mt-3 flex flex-col gap-1.5">
                   <p className="text-sm text-white">+971 50 561 0698</p>
