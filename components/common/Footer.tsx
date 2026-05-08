@@ -138,6 +138,7 @@ export function Footer({ activeLink: _activeLink }: FooterProps) {
                   { label: "Work", href: "/work" },
                   { label: "Services", href: "/services" },
                   { label: "Process", href: "/process" },
+                  { label: "Careers", href: "/careers" },
                   { label: "Contact", href: "/contact" },
                 ].map(({ label, href }) => {
                   const isActive = pathname === href || (href !== "/" && pathname.startsWith(href));
