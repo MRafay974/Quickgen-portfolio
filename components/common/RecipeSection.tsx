@@ -10,10 +10,26 @@ export function RecipeSection() {
   const gridRef = useRef<HTMLDivElement>(null);
 
   const cards = [
-    { title: "Hardware Dev Guide", subtitle: "Product",  accent: "bg-slate-950 text-white" },
-    { title: "Software Brochure",  subtitle: "Software", accent: "bg-amber-50 text-slate-950" },
-    { title: "Product Dev Guide",  subtitle: "Design",   accent: "bg-slate-900 text-white" },
-    { title: "GTM Playbook",       subtitle: "Medical",  accent: "bg-slate-200 text-slate-950" },
+    {
+      title: "Product Brochure",
+      pdf:   "/documents/Product%20Brochure.pdf",
+      bg:    "bg-slate-800",
+    },
+    {
+      title: "Hardware Brochure",
+      pdf:   "/documents/Hardware%20Brochure.pdf",
+      bg:    "bg-blue-950",
+    },
+    {
+      title: "Software Brochure",
+      pdf:   "/documents/Software%20Brochure.pdf",
+      bg:    "bg-stone-100",
+    },
+    {
+      title: "Medical Product Design Brochure",
+      pdf:   "/documents/Medical%20Product%20Design%20Brochure.pdf",
+      bg:    "bg-gray-100",
+    },
   ];
 
   useLayoutEffect(() => {
@@ -72,7 +88,7 @@ export function RecipeSection() {
   return (
     <section ref={sectionRef} className="bg-white text-black">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
-        <div className="rounded-[2rem] bg-[#f4f4f4] p-6 shadow-[0_30px_80px_-40px_rgba(15,23,42,0.2)] sm:rounded-[3rem] sm:p-12">
+        <div className="rounded-4xl bg-[#f4f4f4] p-6 shadow-[0_30px_80px_-40px_rgba(15,23,42,0.2)] sm:rounded-[3rem] sm:p-12">
 
           {/* Heading — animated */}
           <div ref={headingRef} className="mx-auto max-w-3xl text-center">
@@ -88,15 +104,40 @@ export function RecipeSection() {
           <div ref={gridRef} className="mt-10 grid grid-cols-2 gap-4 sm:mt-16 sm:gap-6 md:grid-cols-4 lg:gap-8">
             {cards.map((card) => (
               <div key={card.title} className="recipe-card space-y-3 sm:space-y-4">
-                <div className={`relative overflow-hidden rounded-[1.5rem] sm:rounded-[2rem] ${card.accent} p-4 sm:p-6`}>
-                  <div className="absolute right-3 top-3 flex h-8 w-8 items-center justify-center rounded-full bg-red-500 text-[10px] font-bold text-white sm:right-6 sm:top-6 sm:h-10 sm:w-10 sm:text-sm">
-                    BRASH
-                  </div>
-                  <div className="h-36 rounded-[1.25rem] bg-white/5 sm:h-52 sm:rounded-[1.75rem]" />
+
+                {/* Card placeholder */}
+                <div className={`rounded-3xl sm:rounded-4xl aspect-3/4 ${card.bg}`} />
+
+                {/* Title + download */}
+                <div className="flex items-start justify-center gap-2 px-1 text-center">
+                  <h3 className="text-sm font-bold leading-snug text-slate-700 sm:text-base">
+                    {card.title}
+                  </h3>
+                  <a
+                    href={card.pdf}
+                    download
+                    aria-label={`Download ${card.title}`}
+                    className="mt-0.5 shrink-0 text-slate-600 hover:text-red-500 transition-colors"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="h-4 w-4 sm:h-5 sm:w-5"
+                      aria-hidden="true"
+                    >
+                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                      <polyline points="7 10 12 15 17 10" />
+                      <line x1="12" y1="15" x2="12" y2="3" />
+                    </svg>
+                  </a>
                 </div>
-                <div className="text-center">
-                  <h3 className="mt-2 text-sm font-semibold text-slate-950 sm:mt-3 sm:text-lg">{card.title}</h3>
-                </div>
+
               </div>
             ))}
           </div>

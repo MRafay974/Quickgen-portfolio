@@ -27,7 +27,7 @@ const values = [
 // ─── Component ────────────────────────────────────────────────────────────────
 
 export default function CareersPageContent() {
-  const [form, setForm]             = useState({ name: "", email: "", phone: "", position: "" });
+  const [form, setForm]             = useState({ name: "", email: "", phone: "", position: "", otherPosition: "" });
   const [resumeFile, setResumeFile] = useState<File | null>(null);
   const [dragActive, setDragActive] = useState(false);
   const [status, setStatus]         = useState<"idle" | "sending" | "success" | "error">("idle");
@@ -198,11 +198,12 @@ export default function CareersPageContent() {
     try {
       const fd = new FormData();
       fd.append("access_key", process.env.NEXT_PUBLIC_WEB3FORMS_KEY ?? "");
-      fd.append("subject",    `Career Application — ${form.position}`);
+      const appliedPosition = form.position === "other" ? form.otherPosition : form.position;
+      fd.append("subject",    `Career Application — ${appliedPosition}`);
       fd.append("name",       form.name);
       fd.append("email",      form.email);
       fd.append("phone",      form.phone);
-      fd.append("position",   form.position);
+      fd.append("position",   appliedPosition);
       if (resumeFile) fd.append("resume", resumeFile, resumeFile.name);
 
       const res  = await fetch("https://api.web3forms.com/submit", { method: "POST", body: fd });
@@ -210,7 +211,7 @@ export default function CareersPageContent() {
 
       if (data.success) {
         setStatus("success");
-        setForm({ name: "", email: "", phone: "", position: "" });
+        setForm({ name: "", email: "", phone: "", position: "", otherPosition: "" });
         setResumeFile(null);
         const input = document.getElementById("resume-input") as HTMLInputElement | null;
         if (input) input.value = "";
@@ -286,16 +287,49 @@ export default function CareersPageContent() {
           />
 
           {/* Job position */}
-          <input
-            type="text"
-            name="position"
-            value={form.position}
-            onChange={handleChange}
-            placeholder="Job position you're applying for"
-            required
-            autoComplete="off"
-            className="w-full rounded-2xl bg-zinc-100 px-4 py-3 text-sm text-zinc-950 placeholder:text-zinc-400 outline-none focus:ring-2 focus:ring-zinc-300 transition sm:px-6 sm:py-4 sm:text-base"
-          />
+          <div className="relative">
+            <select
+              name="position"
+              value={form.position}
+              onChange={handleChange}
+              required
+              className={`w-full appearance-none rounded-2xl bg-zinc-100 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-zinc-300 transition sm:px-6 sm:py-4 sm:text-base pr-10 ${
+                form.position ? "text-zinc-950" : "text-zinc-400"
+              }`}
+            >
+              <option value="" disabled>Job position you&apos;re applying for</option>
+              <option value="Hardware Engineer">Hardware Engineer</option>
+              <option value="Firmware Engineer">Firmware Engineer</option>
+              <option value="Software Engineer - Full Stack">Software Engineer - Full Stack</option>
+              <option value="Software Engineer - Backend">Software Engineer - Backend</option>
+              <option value="Software Engineer - Frontend UI/UX">Software Engineer - Frontend UI/UX</option>
+              <option value="Graphics Designer">Graphics Designer</option>
+              <option value="Mechanical Engineer">Mechanical Engineer</option>
+              <option value="Business Development">Business Development</option>
+              <option value="Project Management">Project Management</option>
+              <option value="Hardware - Intern">Hardware - Intern</option>
+              <option value="Software - Intern">Software - Intern</option>
+              <option value="Business Management - Intern">Business Management - Intern</option>
+              <option value="other">Other - Please Specify</option>
+            </select>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-400" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </div>
+
+          {/* Other position text box */}
+          {form.position === "other" && (
+            <input
+              type="text"
+              name="otherPosition"
+              value={form.otherPosition}
+              onChange={handleChange}
+              placeholder="Please specify your position"
+              required
+              autoComplete="off"
+              className="w-full rounded-2xl bg-zinc-100 px-4 py-3 text-sm text-zinc-950 placeholder:text-zinc-400 outline-none focus:ring-2 focus:ring-zinc-300 transition sm:px-6 sm:py-4 sm:text-base"
+            />
+          )}
 
           {/* Resume/CV upload */}
           <div
