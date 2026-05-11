@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /api/
 
-Sitemap: https://quickgentech.com/sitemap.xml
+Sitemap: https://quickgen-portfolio.vercel.app/sitemap.xml
