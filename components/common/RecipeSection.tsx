@@ -1,6 +1,7 @@
 "use client";
 
 import { useLayoutEffect, useRef } from "react";
+import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -12,23 +13,23 @@ export function RecipeSection() {
   const cards = [
     {
       title: "Product Brochure",
+      image: "/documents/1.png",
       pdf:   "/documents/Product%20Brochure.pdf",
-      bg:    "bg-slate-800",
     },
     {
       title: "Hardware Brochure",
+      image: "/documents/2.png",
       pdf:   "/documents/Hardware%20Brochure.pdf",
-      bg:    "bg-blue-950",
     },
     {
       title: "Software Brochure",
+      image: "/documents/3.png",
       pdf:   "/documents/Software%20Brochure.pdf",
-      bg:    "bg-stone-100",
     },
     {
       title: "Medical Product Design Brochure",
+      image: "/documents/4.png",
       pdf:   "/documents/Medical%20Product%20Design%20Brochure.pdf",
-      bg:    "bg-gray-100",
     },
   ];
 
@@ -40,13 +41,11 @@ export function RecipeSection() {
 
     const cardItems = gsap.utils.toArray<HTMLElement>(".recipe-card");
 
-    // Lock all initial states synchronously before first paint
     gsap.set(headingRef.current, { opacity: 0, y: 35, willChange: "transform, opacity" });
     gsap.set(cardItems,          { opacity: 0, y: 50, willChange: "transform, opacity" });
 
     const ctx = gsap.context(() => {
 
-      // Heading text
       gsap.to(headingRef.current, {
         opacity: 1,
         y: 0,
@@ -61,7 +60,6 @@ export function RecipeSection() {
         },
       });
 
-      // Cards — single shared timeline, one trigger on the grid container
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: gridRef.current,
@@ -90,7 +88,7 @@ export function RecipeSection() {
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
         <div className="rounded-4xl bg-[#f4f4f4] p-6 shadow-[0_30px_80px_-40px_rgba(15,23,42,0.2)] sm:rounded-[3rem] sm:p-12">
 
-          {/* Heading — animated */}
+          {/* Heading */}
           <div ref={headingRef} className="mx-auto max-w-3xl text-center">
             <h2 className="text-2xl font-bold tracking-tight text-black sm:text-4xl lg:text-5xl">
               Our build philosophy.
@@ -100,15 +98,23 @@ export function RecipeSection() {
             </p>
           </div>
 
-          {/* Cards — animated */}
+          {/* Cards */}
           <div ref={gridRef} className="mt-10 grid grid-cols-2 gap-4 sm:mt-16 sm:gap-6 md:grid-cols-4 lg:gap-8">
             {cards.map((card) => (
-              <div key={card.title} className="recipe-card space-y-3 sm:space-y-4">
+              <div key={card.title} className="recipe-card flex flex-col gap-2.5 sm:gap-3">
 
-                {/* Card placeholder */}
-                <div className={`rounded-3xl sm:rounded-4xl aspect-3/4 ${card.bg}`} />
+                {/* Card image — border radius applied directly to the image container */}
+                <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl sm:rounded-3xl bg-[#e8353a]">
+                  <Image
+                    src={card.image}
+                    alt={card.title}
+                    fill
+                    className="object-contain"
+                    sizes="(max-width: 640px) 50vw, 25vw"
+                  />
+                </div>
 
-                {/* Title + download */}
+                {/* Title + download — sits snugly below the image */}
                 <div className="flex items-start justify-center gap-2 px-1 text-center">
                   <h3 className="text-sm font-bold leading-snug text-slate-700 sm:text-base">
                     {card.title}
