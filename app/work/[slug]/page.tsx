@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 import { Footer } from "@/components/common/Footer";
 import { Navbar } from "@/components/common/Navbar";
 import { RecipeSection } from "@/components/common/RecipeSection";
@@ -14,6 +15,30 @@ type WorkDetailPageProps = {
 
 export function generateStaticParams() {
   return workCards.map((project) => ({ slug: project.slug }));
+}
+
+export async function generateMetadata({ params }: WorkDetailPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const project = workCards.find((item) => item.slug === slug);
+
+  if (!project) {
+    return { title: "Project Not Found" };
+  }
+
+  const url = `https://quickgentech.com/work/${slug}`;
+  const description = project.overview ?? `${project.title} — a Quickgen project.`;
+
+  return {
+    title: project.title,
+    description,
+    alternates: { canonical: url },
+    openGraph: {
+      title: `${project.title} | Quickgen`,
+      description,
+      url,
+      images: project.image ? [{ url: project.image, alt: project.title }] : [],
+    },
+  };
 }
 
 export default async function WorkDetailPage({ params }: WorkDetailPageProps) {
