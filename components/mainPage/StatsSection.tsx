@@ -185,13 +185,9 @@ export function StatsSection() {
             {[0, 1].map((setIdx) => (
               <div key={setIdx} className="flex shrink-0 items-center gap-4 sm:gap-10 lg:gap-20">
                 {row1Logos.map((logo) => (
-                  <a
+                  <div
                     key={`r1-${setIdx}-${logo.src}`}
-                    // href={logo.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
                     className="group shrink-0 flex items-center justify-center"
-                    aria-label={logo.alt}
                   >
                     <Image
                       src={logo.src}
@@ -202,7 +198,7 @@ export function StatsSection() {
                       className="h-auto max-h-20 w-auto max-w-44 object-contain grayscale opacity-75 transition-all duration-300 ease-out group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 sm:max-h-28 sm:max-w-56 lg:max-h-36 lg:max-w-72"
                       draggable={false}
                     />
-                  </a>
+                  </div>
                 ))}
               </div>
             ))}
@@ -217,13 +213,9 @@ export function StatsSection() {
             {[0, 1].map((setIdx) => (
               <div key={setIdx} className="flex shrink-0 items-center gap-4 sm:gap-10 lg:gap-20">
                 {row2Logos.map((logo) => (
-                  <a
+                  <div
                     key={`r2-${setIdx}-${logo.src}`}
-                    // href={logo.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
                     className="group shrink-0 flex items-center justify-center"
-                    aria-label={logo.alt}
                   >
                     <Image
                       src={logo.src}
@@ -234,7 +226,7 @@ export function StatsSection() {
                       className="h-auto max-h-20 w-auto max-w-44 object-contain grayscale opacity-75 transition-all duration-300 ease-out group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 sm:max-h-28 sm:max-w-56 lg:max-h-36 lg:max-w-72"
                       draggable={false}
                     />
-                  </a>
+                  </div>
                 ))}
               </div>
             ))}

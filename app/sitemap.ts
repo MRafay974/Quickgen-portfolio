@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { workCards } from "@/constants/work/workCards";
 
-const BASE_URL = "https://quickgen-portfolio.vercel.app/";
+const BASE_URL = "https://quickgen-portfolio.vercel.app";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes: MetadataRoute.Sitemap = [
