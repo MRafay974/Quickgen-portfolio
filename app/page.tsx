@@ -128,12 +128,13 @@ export default function Home() {
             Build for Real
             <span className="text-red-500">.</span>
           </h1>
-          <button
-            onClick={() => document.dispatchEvent(new Event("open-contact-modal"))}
+          <a
+            href="/contact"
+            onClick={(e) => { e.preventDefault(); document.dispatchEvent(new Event("open-contact-modal")); }}
             className="mt-3 rounded px-8 py-4 text-m font-semibold text-white bg-[#C0392B] transition hover:bg-[#a93226] inline-flex items-center gap-2"
           >
             Book Your Free Discovery Call →
-          </button>
+          </a>
         </div>
 
         {/* ── Subtitle — pinned to bottom ── */}
