@@ -4,25 +4,7 @@ import { useState, useRef, useLayoutEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-// ─── Data ────────────────────────────────────────────────────────────────────
 
-const openRoles = [
-  { id: "firmware-engineer",    title: "Firmware Engineer",              department: "Engineering", location: "Remote / On-site", type: "Full-time" },
-  { id: "product-designer",     title: "Product Designer",               department: "Design",      location: "Remote",           type: "Full-time" },
-  { id: "pcb-engineer",         title: "PCB Design Engineer",            department: "Engineering", location: "On-site",          type: "Full-time" },
-  { id: "mobile-developer",     title: "Mobile Developer (iOS / Android)", department: "Software",  location: "Remote",           type: "Contract"  },
-  { id: "mechanical-engineer",  title: "Mechanical Engineer",            department: "Engineering", location: "On-site",          type: "Full-time" },
-  { id: "open-application",     title: "Open Application",               department: "Any",         location: "Remote / On-site", type: "Any"       },
-];
-
-const values = [
-  { icon: "⚡", title: "Ship real products",  desc: "Work on hardware and software that ends up in people's hands — not just demos." },
-  { icon: "🌏", title: "Global impact",        desc: "Clients from 15+ countries. We solve diverse, challenging problems at every scale." },
-  { icon: "🛠", title: "Full-stack teams",     desc: "Design, engineering, firmware, and manufacturing under one roof — real collaboration." },
-  { icon: "📈", title: "Grow fast",            desc: "Flat structure, direct mentorship, and opportunities to lead projects from day one." },
-  { icon: "🏡", title: "Flexible work",        desc: "Remote-first culture with optional on-site access for hands-on hardware work." },
-  { icon: "🎯", title: "Meaningful equity",    desc: "We believe the people who build the company should share in its success." },
-];
 
 // ─── Component ────────────────────────────────────────────────────────────────
 

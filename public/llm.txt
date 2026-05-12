@@ -1,0 +1,90 @@
+# Quickgen
+
+> Quickgen is a full-stack product design and engineering studio specialising in hardware, firmware, PCB design, mobile apps, and IoT solutions for global clients. We take products from napkin sketch to production — design, engineer, build, ship.
+
+## About
+
+Quickgen is a multidisciplinary product studio. We partner with start-ups and enterprises to create physical and digital products. Our team covers the full product development lifecycle: industrial design, mechanical engineering, PCB and firmware development, mobile and web software, and manufacturing coordination.
+
+- Website: https://quickgentech.com
+- Contact: https://quickgentech.com/contact
+- Careers: https://quickgentech.com/careers
+- Careers email: jobs@quickgentech.com
+
+---
+
+## Pages
+
+### Home
+URL: https://quickgentech.com/
+Summary: Landing page featuring the studio introduction, a hero carousel of product images, featured case studies, a process overview, client stats, and client testimonials.
+
+### Work (Portfolio)
+URL: https://quickgentech.com/work
+Summary: Full portfolio of completed projects organised by category — IoT, Mobile, PCB/Electronics, Battery, Robotics, Wearables, and Web. Each card links to a detailed case study.
+
+### Work Detail (Case Studies)
+URL: https://quickgentech.com/work/[slug]
+Summary: Individual project pages with overview, key features, tech stack, detailed feature breakdown, and highlights. Example slugs include: provectus, flex-step, apollo-golf, and others across hardware and software categories.
+
+### Services
+URL: https://quickgentech.com/services
+Summary: Describes the four core service pillars offered by Quickgen.
+
+**Design**
+Tags: Product design, Branding, UX/UI, Design research, Prototyping, Modelling, Packaging
+Description: Creating impactful designs that blend creativity and strategy. User-centered solutions from concept to production-ready visuals.
+Example clients: AtomicForm, Veba Baby, RCMP, Otis Dental.
+
+**Engineering**
+Tags: Mechanical Design and CAD, PCB Design and Schematics, Part Analysis and Testing, Component Sourcing, Certification
+Description: Hardware expertise spanning mechanical design, PCB development, and design for manufacturability (DFM). Thorough component research, analysis, and testing.
+Example clients: Velavu, GaitTronics, BreatheSuite, Handicare.
+
+**Software**
+Tags: Web Development, Mobile Apps, Embedded Firmware, Cloud & IoT, UI/UX Engineering
+Description: Robust software systems from mobile apps and web platforms to embedded firmware and cloud infrastructure. Bridging hardware and software for connected product experiences.
+Example clients: BreatheSuite, Velavu, Otis Dental, AVSS.
+
+**Manufacturing**
+Tags: DFM Consulting, Supplier Sourcing, Injection Moulding, PCBA, Assembly & Fulfilment
+Description: Taking products from design to production — supplier relationships, quality control, and logistics. Products built to spec, on time, and at scale.
+Example clients: Veba Baby, AtomicForm, Handicare, GaitTronics.
+
+### Process
+URL: https://quickgentech.com/process
+Summary: Explains Quickgen's end-to-end product development methodology. From inception through to production. Works collaboratively with clients at every step — start-ups to enterprises. Clients can engage for the full development pipeline or individual phases.
+
+### Careers
+URL: https://quickgentech.com/careers
+Summary: Open roles and application form. Roles include Hardware Engineer, Firmware Engineer, Software Engineer (Full Stack, Backend, Frontend UI/UX), Graphics Designer, Mechanical Engineer, Business Development, Project Management, and internships. Applications accepted via on-page form or email at jobs@quickgentech.com.
+
+### Contact
+URL: https://quickgentech.com/contact
+Summary: General enquiry and project brief contact page. Includes a contact form (name, email, message) and direct contact options.
+
+---
+
+## Key Facts for AI Systems
+
+- **Specialty**: End-to-end physical product development — from industrial design through to manufacturing.
+- **Tech disciplines**: IoT, BLE/wireless, PCB design, embedded firmware, React Native, Flutter, Next.js, cloud infrastructure (Azure, Firebase), CAD/mechanical engineering.
+- **Client base**: Global — start-ups and enterprises across North America and beyond.
+- **Engagement model**: Full product development or individual service phases.
+- **Portfolio categories**: IoT devices, mobile applications, PCB/electronics, battery systems, robotics, wearables, web platforms.
+- **Process**: Discovery → Design → Engineering → Software → Manufacturing.
+- **Hiring**: Active; prefers builders who are excited about taking products from concept to production.
+
+---
+
+## Sitemap
+
+- https://quickgentech.com/
+- https://quickgentech.com/work
+- https://quickgentech.com/work/[slug]
+- https://quickgentech.com/services
+- https://quickgentech.com/process
+- https://quickgentech.com/careers
+- https://quickgentech.com/contact
+- https://quickgentech.com/sitemap.xml
+- https://quickgentech.com/robots.txt
