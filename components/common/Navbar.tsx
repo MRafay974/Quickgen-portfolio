@@ -89,8 +89,8 @@ export function Navbar({ currentPage }: NavbarProps) {
             <Image
               src="/images/logo/logo.png"
               alt="Logo"
-              width={48}
-              height={48}
+              width={112}
+              height={112}
               className="h-14 w-auto object-contain"
               priority
             />

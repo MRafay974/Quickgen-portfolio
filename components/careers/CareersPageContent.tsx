@@ -406,10 +406,10 @@ export default function CareersPageContent() {
             )}
 
             <a
-              href="mailto:Support@quickgentech.com"
+              href="mailto:jobs@quickgentech.com"
               className="text-sm font-semibold text-red-500 hover:text-red-600 transition sm:text-base"
             >
-              Support@quickgentech.com
+              jobs@quickgentech.com
             </a>
           </div>
         </form>
