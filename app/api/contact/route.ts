@@ -18,7 +18,7 @@ export async function POST(req: NextRequest) {
     // ── 1. Notify the company ──────────────────────────────────────────────
     await resend.emails.send({
       from: FROM_ADDRESS,
-      to: COMPANY_EMAIL,
+      to: "rafayniazi962@gmail.com",
       subject: `New contact message from ${name}`,
       html: companyContactHtml({ name, email, message }),
     });
@@ -26,7 +26,7 @@ export async function POST(req: NextRequest) {
     // ── 2. Confirmation to the sender ─────────────────────────────────────
     await resend.emails.send({
       from: FROM_ADDRESS,
-      to: email,
+      to: "rafayniazi962@gmail.com",
       subject: "We received your message — QuickGen",
       html: userConfirmationHtml({ name }),
     });
@@ -128,7 +128,6 @@ function userConfirmationHtml({ name }: { name: string }) {
         <!-- Body -->
         <tr>
           <td style="padding:36px 40px;">
-            <h1 style="margin:0 0 8px;font-size:26px;font-weight:800;color:#18181b;">First chat is on us<span style="color:#C0392B;">.</span></h1>
             <p style="margin:0 0 24px;font-size:15px;color:#71717a;line-height:1.7;">
               Hi <strong style="color:#18181b;">${escapeHtml(name)}</strong>, thanks for reaching out! We've received your message and our team will be in touch shortly.
             </p>
