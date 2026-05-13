@@ -84,15 +84,10 @@ export default function ContactPageContent() {
     setStatus("sending");
 
     try {
-      const res = await fetch("https://api.web3forms.com/submit", {
+      const res = await fetch("/api/contact", {
         method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({
-          access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY,
-          name: form.name,
-          email: form.email,
-          message: form.message,
-        }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: form.name, email: form.email, message: form.message }),
       });
 
       const data = await res.json();

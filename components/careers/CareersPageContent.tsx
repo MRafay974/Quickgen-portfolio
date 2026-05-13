@@ -179,16 +179,14 @@ export default function CareersPageContent() {
 
     try {
       const fd = new FormData();
-      fd.append("access_key", process.env.NEXT_PUBLIC_WEB3FORMS_KEY ?? "");
       const appliedPosition = form.position === "other" ? form.otherPosition : form.position;
-      fd.append("subject",    `Career Application — ${appliedPosition}`);
-      fd.append("name",       form.name);
-      fd.append("email",      form.email);
-      fd.append("phone",      form.phone);
-      fd.append("position",   appliedPosition);
+      fd.append("name",     form.name);
+      fd.append("email",    form.email);
+      fd.append("phone",    form.phone);
+      fd.append("position", appliedPosition);
       if (resumeFile) fd.append("resume", resumeFile, resumeFile.name);
 
-      const res  = await fetch("https://api.web3forms.com/submit", { method: "POST", body: fd });
+      const res  = await fetch("/api/careers", { method: "POST", body: fd });
       const data = await res.json();
 
       if (data.success) {
