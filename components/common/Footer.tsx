@@ -24,10 +24,11 @@ export function Footer({ activeLink: _activeLink }: FooterProps) {
 
     gsap.registerPlugin(ScrollTrigger);
 
-    gsap.set([ctaRef.current, infoRef.current], { opacity: 0, y: 35, willChange: "transform, opacity" });
-    gsap.set(wordmarkRef.current, { opacity: 0, y: 60, willChange: "transform, opacity" });
-
     const ctx = gsap.context(() => {
+      // gsap.set inside the context so ctx.revert() properly cleans up opacity/transform on unmount
+      gsap.set([ctaRef.current, infoRef.current], { opacity: 0, y: 35, willChange: "transform, opacity" });
+      gsap.set(wordmarkRef.current, { opacity: 0, y: 60, willChange: "transform, opacity" });
+
       gsap.to(ctaRef.current, {
         opacity: 1,
         y: 0,
@@ -38,6 +39,7 @@ export function Footer({ activeLink: _activeLink }: FooterProps) {
           start: "top 60%",
           toggleActions: "play none none none",
           once: true,
+          invalidateOnRefresh: true,
         },
       });
 
@@ -51,9 +53,12 @@ export function Footer({ activeLink: _activeLink }: FooterProps) {
           start: "top 85%",
           toggleActions: "play none none none",
           once: true,
+          invalidateOnRefresh: true,
         },
       });
 
+      // "top bottom" fires as soon as any part of the wordmark enters the viewport —
+      // more reliable on mobile where shorter pages leave little scroll room
       gsap.to(wordmarkRef.current, {
         opacity: 1,
         y: 0,
@@ -61,9 +66,10 @@ export function Footer({ activeLink: _activeLink }: FooterProps) {
         ease: "power2.out",
         scrollTrigger: {
           trigger: wordmarkRef.current,
-          start: "top 95%",
+          start: "top bottom",
           toggleActions: "play none none none",
           once: true,
+          invalidateOnRefresh: true,
         },
       });
     }, footerRef);
