@@ -18,7 +18,7 @@ export async function POST(req: NextRequest) {
     // ── 1. Notify the company ──────────────────────────────────────────────
     await resend.emails.send({
       from: FROM_ADDRESS,
-      to: "rafayniazi962@gmail.com",
+      to: COMPANY_EMAIL,
       subject: `New contact message from ${name}`,
       html: companyContactHtml({ name, email, message }),
     });
@@ -26,7 +26,7 @@ export async function POST(req: NextRequest) {
     // ── 2. Confirmation to the sender ─────────────────────────────────────
     await resend.emails.send({
       from: FROM_ADDRESS,
-      to: "rafayniazi962@gmail.com",
+      to: email,
       subject: "We received your message — QuickGen",
       html: userConfirmationHtml({ name }),
     });

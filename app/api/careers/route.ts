@@ -4,7 +4,7 @@ import { Resend } from "resend";
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 const LOGO_URL = "https://quickgentech.com/images/logo/logo.png";
-const COMPANY_EMAIL = "support@quickgentech.com";
+const COMPANY_EMAIL = "jobs@quickgentech.com";
 const FROM_ADDRESS = "QuickGen <no-reply@quickgentech.com>";
 
 export async function POST(req: NextRequest) {
@@ -34,7 +34,7 @@ export async function POST(req: NextRequest) {
     // ── 1. Notify the company ──────────────────────────────────────────────
     await resend.emails.send({
       from: FROM_ADDRESS,
-      to: "rafayniazi962@gmail.com",
+      to: COMPANY_EMAIL,
       subject: `Career Application — ${position} (${name})`,
       html: companyApplicationHtml({ name, email, phone, position }),
       attachments,
@@ -43,7 +43,7 @@ export async function POST(req: NextRequest) {
     // ── 2. Confirmation to the applicant ─────────────────────────────────
     await resend.emails.send({
       from: FROM_ADDRESS,
-      to: "rafayniazi962@gmail.com",
+      to: email,
       subject: "Your application was received — QuickGen",
       html: userConfirmationHtml({ name, position }),
     });
