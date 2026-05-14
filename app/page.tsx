@@ -129,8 +129,9 @@ export default function Home() {
             <span className="text-red-500">.</span>
           </h1>
           <a
-            href="/contact"
-            onClick={(e) => { e.preventDefault(); document.dispatchEvent(new Event("open-contact-modal")); }}
+            href="https://calendly.com/usairemalamgeerbemts/product-discussion-30-minute"
+            target="_blank"
+            rel="noopener noreferrer"
             className="mt-3 rounded px-8 py-4 text-m font-semibold text-white bg-[#C0392B] transition hover:bg-[#a93226] inline-flex items-center gap-2"
           >
             Book Your Free Discovery Call →

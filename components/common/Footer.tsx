@@ -86,8 +86,9 @@ export function Footer({ activeLink: _activeLink }: FooterProps) {
           Let&apos;s build <br /> what&apos;s next.
         </h2>
         <a
-          href="/contact"
-          onClick={(e) => { e.preventDefault(); document.dispatchEvent(new Event("open-contact-modal")); }}
+          href="https://calendly.com/usairemalamgeerbemts/product-discussion-30-minute"
+          target="_blank"
+          rel="noopener noreferrer"
           className="mt-8 inline-flex items-center gap-2 rounded bg-[#C0392B] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#a93226] sm:mt-10 sm:px-12 sm:py-4 sm:text-base lg:px-16"
         >
           Book Your Free Discovery Call →
